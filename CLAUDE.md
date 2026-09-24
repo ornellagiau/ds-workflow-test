@@ -7,3 +7,4 @@ This repo is the single source of truth for the DS workflow test design system.
 - **Never edit** `src/tokens.css`, `src/docs/Tokens.mdx` or `figma/descriptions.json` by hand. They are generated.
 - **Docs change = MDX change.** Figma descriptions come from the `figma-description:<variant>:` lines in each component `.mdx`, mapped via `figma/component-map.json`.
 - **Agents may:** read everything, open pull requests. **Agents may not:** merge, delete tokens, rename tokens without an alias.
+- **Two Storybooks:** `.storybook/` (dev) and `.storybook-docs/` (polished) read the same MDX. Never put readable content into `.storybook-docs/`; it holds styling only.

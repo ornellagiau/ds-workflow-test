@@ -5,6 +5,6 @@
   },
   "1:128": {
     "name": "Button secondary",
-    "description": "Alternative action next to a primary button. Never on its own as the only action."
+    "description": "Alternative action next or below to a primary button."
   }
 }

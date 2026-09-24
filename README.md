@@ -9,10 +9,19 @@ Figma (values) → GitHub (docs + code) → Storybook on GitHub Pages (team view
 4. The workflow runs on every push. Your Storybook appears at `https://<user>.github.io/<repo>/`.
 5. In Claude: connect the **GitHub** connector and point it at the repo. `CLAUDE.md` tells it where to look.
 
+## Two Storybooks, one source
+| URL | For | Config |
+|---|---|---|
+| `/` | Design and product: doc pages only, neutral theme | `.storybook-docs/` |
+| `/dev/` | Developers: all stories, controls, test cases | `.storybook/` |
+
+Both read the **same** `src/**/*.mdx` and stories. `.storybook-docs/` holds styling and settings only, never content.
+
 ## Local
 ```
 npm install
-npm run storybook
+npm run storybook        # dev version, port 6006
+npm run storybook:docs   # polished version, port 6007
 ```
 
 ## Where things live

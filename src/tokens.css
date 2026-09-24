@@ -1,11 +1,11 @@
 /* GENERATED from tokens/tokens.json. Do not edit. */
 :root {
-  --primitive-blue: #4D63EE;
+  --primitive-blue: #4705C3;
   --primitive-white: #FFFFFF;
   --primitive-black: #000000;
-  --button-primary-surface-idle: #4D63EE;
+  --button-primary-surface-idle: #4705C3;
   --button-primary-text: #FFFFFF;
-  --button-primary-outline-idle: #4D63EE;
+  --button-primary-outline-idle: #4705C3;
   --button-secondary-text: #000000;
-  --button-secondary-outline-idle: #4D63EE;
+  --button-secondary-outline-idle: #4705C3;
 }
