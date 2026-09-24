@@ -1,3 +1,6 @@
+# Builds both Storybooks on every push to main and publishes them to GitHub Pages (free for public repos).
+#   /      polished docs for design and product  (.storybook-docs)
+#   /dev/  full Storybook for developers         (.storybook)
 name: Publish Storybook
 on:
   push:
@@ -22,10 +25,11 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - run: npm run build-storybook
+      # npm install (not npm ci): lockfile may lag behind package.json in this test repo
+      - run: npm install --no-audit --no-fund
+      - run: npm run build-all
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: storybook-static
+          path: site
       - id: deployment
         uses: actions/deploy-pages@v4
