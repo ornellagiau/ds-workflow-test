@@ -10,13 +10,15 @@
     "storybook:docs": "npm run tokens && storybook dev -c .storybook-docs -p 6007",
     "build-docs": "storybook build -c .storybook-docs -o site",
     "build-dev": "storybook build -c .storybook -o site/dev",
-    "build-all": "npm run prepare-content && npm run build-docs && npm run build-dev"
+    "build-all": "npm run prepare-content && npm run build-docs && npm run build-dev",
+    "figma:connect": "figma connect publish --skip-update-check"
   },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@figma/code-connect": "^2.0.1",
     "@storybook/addon-docs": "^10.6.0",
     "@storybook/react-vite": "^10.6.0",
     "@vitejs/plugin-react": "^4.3.4",
