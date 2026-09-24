@@ -1,0 +1,10 @@
+{
+  "$description": "Maps Figma components to code. Figma has two separate components; code has one Button with a variant prop.",
+  "Button": {
+    "code": "src/components/Button/Button.jsx",
+    "variants": {
+      "primary":   { "figmaName": "Button primary",   "nodeId": "1:127", "key": "25a2f23b4cb00248f8ef38500228c84fca56b47d" },
+      "secondary": { "figmaName": "Button secondary", "nodeId": "1:128", "key": "a22d6e21de0819628b88e6965ab3ee147a2258ab" }
+    }
+  }
+}
