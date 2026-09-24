@@ -1,0 +1,10 @@
+{
+  "1:127": {
+    "name": "Button primary",
+    "description": "Main action in a view. Max. one per view. For navigation use a link."
+  },
+  "1:128": {
+    "name": "Button secondary",
+    "description": "Alternative action next to a primary button. Never on its own as the only action."
+  }
+}

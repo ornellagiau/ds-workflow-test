@@ -1,0 +1,49 @@
+import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import * as ButtonStories from "./Button.stories";
+
+<Meta of={ButtonStories} />
+
+{/* figma-description:primary: Main action in a view. Max. one per view. For navigation use a link. */}
+{/* figma-description:secondary: Alternative action next to a primary button. Never on its own as the only action. */}
+
+# Button
+
+> **Status: draft.** Written by Claude from the Figma file and the code. Needs review.
+
+<Canvas of={ButtonStories.Pair} />
+
+## Purpose
+Triggers an **action on the current page**, e.g. save, submit, cancel.
+
+| Variant | Use for |
+|---|---|
+| `primary` | The one main action in a view. |
+| `secondary` | An alternative action next to a primary, e.g. "Abbrechen". |
+
+## When not to use
+- For navigation to another page → use a link.
+**Button vs. link:** a button *does* something on this page. A link *goes* somewhere.
+
+## Anti-patterns
+- Two `primary` buttons in the same view.
+- Using a button's color tokens on other elements (they are button-only by name).
+
+
+## Accessibility
+- Contrast (checked against tokens): `primary` text white on #4D63EE = **4.84:1** (passes AA, narrowly for 12px). `secondary` text black on white = 21:1. Outline #4D63EE on white = 4.84:1 (passes 3:1 for UI components).
+- `secondary` has a transparent background: contrast depends on the page background. Only checked on white.
+- Focus: uses the browser's default focus ring. Do not remove it.
+
+## Known gaps (from Figma)
+- Height is **37px**, below the 44px target size.
+- No hover, focus, disabled or pressed states exist in Figma yet.
+- `button-primary/text` and `button-secondary/text` have no state segment; the other tokens use `-idle`.
+- Figma has two separate components; code has one `Button` with a `variant` prop. Mapping: `figma/component-map.json`.
+
+## Examples
+<Canvas of={ButtonStories.Primary} />
+<Canvas of={ButtonStories.Secondary} />
+<Canvas of={ButtonStories.InForm} />
+
+## Props
+<Controls of={ButtonStories.Primary} />
