@@ -1,6 +1,7 @@
-# Builds both Storybooks on every push to main and publishes them to GitHub Pages (free for public repos).
-#   /      polished docs for design and product  (.storybook-docs)
-#   /dev/  full Storybook for developers         (.storybook)
+# On every push to main:
+#   deploy:       builds both Storybooks and publishes them to GitHub Pages
+#                 /      polished docs (.storybook-docs)   /dev/  developer Storybook (.storybook)
+#   code-connect: publishes src/**/*.figma.ts templates to Figma (needs secret FIGMA_ACCESS_TOKEN)
 name: Publish Storybook
 on:
   push:
@@ -33,3 +34,22 @@ jobs:
           path: site
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  code-connect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm install --no-audit --no-fund
+      - name: Publish Code Connect templates to Figma
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+        run: |
+          if [ -z "$FIGMA_ACCESS_TOKEN" ]; then
+            echo "No FIGMA_ACCESS_TOKEN secret set, skipping Code Connect publish."
+            exit 0
+          fi
+          npm run figma:connect
