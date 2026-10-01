@@ -5,13 +5,14 @@
   "scripts": {
     "tokens": "node scripts/build-tokens.mjs",
     "figma:descriptions": "node scripts/figma-descriptions.mjs",
-    "prepare-content": "npm run tokens && npm run figma:descriptions",
+    "prepare-content": "npm run tokens && npm run figma:descriptions && npm run check-sync",
     "storybook": "npm run tokens && storybook dev -p 6006",
     "storybook:docs": "npm run tokens && storybook dev -c .storybook-docs -p 6007",
     "build-docs": "storybook build -c .storybook-docs -o site",
     "build-dev": "storybook build -c .storybook -o site/dev",
     "build-all": "npm run prepare-content && npm run build-docs && npm run build-dev",
-    "figma:connect": "figma connect publish --skip-update-check"
+    "figma:connect": "figma connect publish --skip-update-check",
+    "check-sync": "node scripts/check-sync.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
