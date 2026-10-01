@@ -1,11 +1,14 @@
 # On every push to main:
 #   deploy:       builds both Storybooks and publishes them to GitHub Pages
 #                 /      polished docs (.storybook-docs)   /dev/  developer Storybook (.storybook)
+#   (deploy also runs scripts/check-sync.mjs -> Status/Sync status page)
 #   code-connect: publishes src/**/*.figma.ts templates to Figma (needs secret FIGMA_ACCESS_TOKEN)
 name: Publish Storybook
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: "0 6 * * *"   # daily 06:00 UTC: catches Figma changes even without a code push
   workflow_dispatch:
 permissions:
   contents: read
@@ -29,6 +32,8 @@ jobs:
       # npm install (not npm ci): lockfile may lag behind package.json in this test repo
       - run: npm install --no-audit --no-fund
       - run: npm run build-all
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}   # used by scripts/check-sync.mjs (read-only)
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
