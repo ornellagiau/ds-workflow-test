@@ -38,7 +38,7 @@ Triggers an **action on the current page**, e.g. save, submit, cancel.
 - Height is **37px**, below the 44px target size.
 - No hover, focus, disabled or pressed states exist in Figma yet.
 - `button-primary/text` and `button-secondary/text` have no state segment; the other tokens use `-idle`.
-- Figma has two separate components; code has one `Button` with a `variant` prop. Mapping: `figma/component-map.json`.
+-  The label is a Figma text property (`Label`) and maps to `children`. Figma `Variant` maps to `variant`. Mapping: `Button.figma.ts`.
 
 ## Examples
 <Canvas of={ButtonStories.Primary} />
