@@ -1,10 +1,12 @@
 {
-  "$description": "Maps Figma components to code. Figma has two separate components; code has one Button with a variant prop.",
+  "$description": "Maps Figma components to code. Figma: one component set 'Button' with a Variant property. Code: one Button with a variant prop. Code Connect template: src/components/Button/Button.figma.ts.",
   "Button": {
     "code": "src/components/Button/Button.jsx",
+    "figmaSetId": "39:4",
+    "properties": { "Variant": "variant", "Label": "children" },
     "variants": {
-      "primary":   { "figmaName": "Button primary",   "nodeId": "1:127", "key": "25a2f23b4cb00248f8ef38500228c84fca56b47d" },
-      "secondary": { "figmaName": "Button secondary", "nodeId": "1:128", "key": "a22d6e21de0819628b88e6965ab3ee147a2258ab" }
+      "primary":   { "figmaName": "Variant=Primary",   "nodeId": "1:127" },
+      "secondary": { "figmaName": "Variant=Secondary", "nodeId": "1:128" }
     }
   }
 }
