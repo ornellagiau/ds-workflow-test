@@ -6,10 +6,10 @@ export default {
   argTypes: { variant: { control: "inline-radio", options: ["primary", "secondary"] } },
 };
 
-/** The one main action in a view. Figma: "Button primary". */
+/** The one main action in a view. Figma: Button, Variant=Primary. */
 export const Primary = { args: { variant: "primary", children: "Button primary" } };
 
-/** An alternative, less important action. Figma: "Button secondary". */
+/** An alternative, less important action. Figma: Button, Variant=Secondary. */
 export const Secondary = { args: { variant: "secondary", children: "Button secondary" } };
 
 /** Typical pairing: one primary, one secondary. The primary comes first in reading order. */
