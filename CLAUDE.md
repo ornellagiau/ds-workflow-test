@@ -8,4 +8,4 @@ This repo is the single source of truth for the DS workflow test design system.
 - **Docs change = MDX change.** Figma descriptions come from the `figma-description:<variant>:` lines in each component `.mdx`, mapped via `figma/component-map.json`.
 - **Agents may:** read everything, open pull requests. **Agents may not:** merge, delete tokens, rename tokens without an alias.
 - **Two Storybooks:** `.storybook/` (dev) and `.storybook-docs/` (polished) read the same MDX. Never put readable content into `.storybook-docs/`; it holds styling only.
-- **Code Connect:** `*.figma.ts` next to each component are copies of the templates stored in Figma. When a Figma component's properties or layer names change, update the template in Figma and here.
+- **Code Connect:** `*.figma.ts` next to each component are the source of the Code Connect templates. CI publishes them to Figma on every push. When a Figma component's properties change, update the `.figma.ts` file; never edit templates in Figma.
