@@ -131,6 +131,9 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 Compares each Figma component with its code. Last checked: **${today}**.
 
+
+> **No alerts yet.** Differences are only shown on this page. They don't fail any build, send notifications or open issues, and an unreadable Figma file (e.g. an expired token) is only shown here too. Check this page regularly until alerts are set up.
+
 `;
 if (error) {
   mdx += `> **Not checked.** ${esc(error)}\n`;
