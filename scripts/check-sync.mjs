@@ -19,7 +19,7 @@ const varIdToCss = {};
       const id = v.$extensions?.["com.figma"]?.variableId;
       const [collection, ...rest] = [...path, k];
       const name = rest.join("-").toLowerCase().replace(/\s+/g, "-");
-      if (id) varIdToCss[id] = collection === "Primitives" ? `--primitive-${name}` : `--${name}`;
+      if (id) varIdToCss[id] = /primitive/i.test(collection) ? `--primitive-${name}` : `--${name}`;
     } else walk(v, [...path, k]);
   }
 })(tokens, []);

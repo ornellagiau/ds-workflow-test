@@ -1,6 +1,9 @@
 // Runs inside Figma (Claude via Figma MCP "use_figma"). Returns tokens.json content (W3C DTCG format).
 // Read-only. Copy the returned JSON into tokens/tokens.json and open a PR.
-const cols = await figma.variables.getLocalVariableCollectionsAsync();
+// Only these collections are exported. The real Turm collections ("Color Primitives", "Color Semantics")
+// also live in this file but are not used by the repo yet.
+const EXPORT_COLLECTIONS = ["Dummy Primitives", "Dummy Semantic"];
+const cols = (await figma.variables.getLocalVariableCollectionsAsync()).filter((c) => EXPORT_COLLECTIONS.includes(c.name));
 const hex = c => "#" + [c.r, c.g, c.b].map(x => Math.round(x * 255).toString(16).padStart(2, "0")).join("").toUpperCase();
 const out = { $description: `Exported from Figma file ${figma.fileKey}. Do not edit by hand.` };
 for (const c of cols) {

@@ -3,7 +3,9 @@
 import { readFileSync, writeFileSync } from "node:fs";
 
 const data = JSON.parse(readFileSync("tokens/tokens.json", "utf8"));
-const flat = {}; // "Semantic.button-primary.text" -> token
+const flat = {}; // "Dummy Semantic.button-primary.text" -> token
+// A collection counts as "primitives" if its name contains "primitive" (e.g. "Dummy Primitives").
+const isPrimitive = (collection) => /primitive/i.test(collection);
 
 (function walk(node, path) {
   for (const [k, v] of Object.entries(node)) {
@@ -25,7 +27,7 @@ function resolve(value, depth = 0) {
 const cssVar = (t) => {
   const [collection, ...rest] = t.path;
   const name = rest.join("-").toLowerCase().replace(/\s+/g, "-");
-  return collection === "Primitives" ? `--primitive-${name}` : `--${name}`;
+  return isPrimitive(collection) ? `--primitive-${name}` : `--${name}`;
 };
 
 let css = "/* GENERATED from tokens/tokens.json. Do not edit. */\n:root {\n";
@@ -52,8 +54,8 @@ const row = (t) => {
   const scopes = t.$extensions?.["com.figma"]?.scopes?.join(", ") ?? "";
   return `| \`${t.path.slice(1).join("/")}\` | \`${cssVar(t)}\` | ${swatch(v)} ${v} | ${t.$value.startsWith("{") ? `\`${t.$value}\`` : "—"} | ${scopes} |\n`;
 };
-for (const t of Object.values(flat)) if (t.path[0] === "Semantic") mdx += row(t);
+for (const t of Object.values(flat)) if (!isPrimitive(t.path[0])) mdx += row(t);
 mdx += `\n## Primitives\n\nDo not use in components.\n\n| Figma name | CSS variable | Value | Alias | Figma scopes |\n|---|---|---|---|---|\n`;
-for (const t of Object.values(flat)) if (t.path[0] === "Primitives") mdx += row(t);
+for (const t of Object.values(flat)) if (isPrimitive(t.path[0])) mdx += row(t);
 writeFileSync("src/docs/Tokens.mdx", mdx);
 console.log(`tokens: ${Object.keys(flat).length} -> src/tokens.css + src/docs/Tokens.mdx`);
