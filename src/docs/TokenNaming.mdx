@@ -1,0 +1,44 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+import TokenMap from "./TokenMap.jsx";
+
+<Meta title="Foundations/Token naming" summary="How Turm color tokens are named: the pattern, the words per slot, and the rules. With an interactive map." />
+
+<div className="tokendoc">
+
+# Token naming
+
+Every color token follows one pattern:
+
+`{Component}/{Element}/{Role}/{State}`
+
+Example: `Button/Surface/Primary/Idle`.
+
+The CSS naming rule still needs to be defined.
+
+| Slot | Question it answers | Words in use |
+|---|---|---|
+| Component | Where is it used? `Color` means global: use it anywhere. | Color, Button, Card, Checkbox, Chip, Header, Input, Label, Link, Modal, Product-Switch, Radio, Switch, Tag, Teaser, Toggle |
+| Element | What is colored? | Surface, Background, Border, Text, Logo |
+| Role | What is the function or variant? | Primary, Secondary, Highlight, Ghost, Inversed, Strong, Live, Opinion, Exclusiv, Transparent, Modal-Background |
+| State | Which state? | Idle, Hover, Active, Focused, Selected, Disabled, Error, Warning, Success |
+
+Light and dark are not part of the name. They are modes of the same token.
+
+## Rules
+1. Use a global `Color/*` token first. Use a component token only inside its component.
+2. Never use a primitive in a component.
+3. Empty slots are skipped. `Color/Surface/Error` has no Role. `Toggle/Surface/Active` has no Role.
+4. Error, Warning and Success are States, never Roles.
+5. A word always sits in the same slot.
+6. No spaces. Multi-word names use a hyphen: `Product-Switch`.
+
+## Open
+Surface and Background both exist as Elements. The difference is not decided yet.
+
+## Explore the names
+<TokenMap />
+
+## Good to know
+Toggle and Switch are separate components.
+
+</div>
