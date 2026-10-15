@@ -86,8 +86,6 @@ import Sw from "./Swatch.jsx";
 
 <Meta title="Foundations/Color tokens (draft)" summary="Real Turm color tokens, grouped by what you want to color. Light and dark values, what each token is for, and AA status." />
 
-<div className="tokendoc">
-
 # Color tokens (draft)
 
 > **Source: Figma.** Values and descriptions come from the Figma file [Turm Foundations](https://www.figma.com/design/MepRgN24p5VtYVZf1IZer7). Change them there. This page is generated.
@@ -155,8 +153,6 @@ for (const [fam, items] of families) {
   for (const [name, hex] of items) mdx += `| ${cp(name)} | ${sw(hex)} ${hex} |\n`;
   mdx += `\n</details>\n\n`;
 }
-
-mdx += "</div>\n";
 
 writeFileSync("src/docs/ColorTokensDraft.mdx", mdx);
 console.log(`token docs: ${sem.size} semantic + ${Object.keys(prim).length} primitives -> src/docs/ColorTokensDraft.mdx`);

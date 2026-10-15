@@ -135,7 +135,7 @@ export default function TokenMap() {
             ))}
           </svg>
           {COLS.map((c, ci) => (
-            <div key={c.key} style={{ position: "relative", padding: "0 16px", borderLeft: ci ? `1px solid ${LINE}` : "none", paddingLeft: ci ? 16 : 0 }}>
+            <div key={c.key} style={{ position: "relative", padding: ci ? "0 16px" : "0 16px 0 0", borderLeft: ci ? `1px solid ${LINE}` : "none" }}>
               <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", opacity: 0.55, marginBottom: 10 }}>{c.label}</div>
               {columns[c.key].map((v) => {
                 const k = nodeKey(c.key, v);
