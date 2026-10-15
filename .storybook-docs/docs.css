@@ -22,3 +22,35 @@
 /* Live example frames */
 .sbdocs .docs-story { border-radius: 8px; }
 .sbdocs .sbdocs-preview { border: 1px solid #E4E6E9; box-shadow: none; border-radius: 8px; margin: 16px 0 32px; }
+
+/* Token pages (Token naming, Color tokens): large headlines and Material-style tables.
+   Scoped to pages wrapped in <div className="tokendoc">, so other pages keep the layout above.
+   Accordions (<details>) are compact outlined cards. */
+.sbdocs.sbdocs-content:has(.tokendoc) { max-width: 1120px; }
+.sbdocs.sbdocs-content .tokendoc h1 { font-size: 57px; line-height: 64px; font-weight: 500; letter-spacing: -0.02em; margin: 0 0 40px; }
+.sbdocs.sbdocs-content .tokendoc h2 { font-size: 32px; line-height: 40px; font-weight: 500; letter-spacing: -0.01em; margin: 72px 0 16px; }
+.sbdocs.sbdocs-content .tokendoc h3 { font-size: 22px; line-height: 28px; font-weight: 500; margin: 40px 0 8px; }
+.sbdocs.sbdocs-content .tokendoc p, .sbdocs.sbdocs-content .tokendoc li { font-size: 16px; line-height: 26px; }
+.sbdocs.sbdocs-content .tokendoc blockquote { border-left: 0; border-radius: 12px; padding: 16px 20px; margin: 0 0 40px; }
+
+/* Tables: rounded outline, tinted header row, thin dividers between rows and columns. */
+.sbdocs.sbdocs-content .tokendoc table { border-collapse: separate; border-spacing: 0; border: 1px solid #E4E6E9; border-radius: 24px; overflow: hidden; margin: 16px 0 40px; }
+.sbdocs.sbdocs-content .tokendoc th { font-size: 14px; font-weight: 600; letter-spacing: 0; color: #3A3F45; background: #F6F7F8; padding: 16px 20px; }
+.sbdocs.sbdocs-content .tokendoc td { padding: 16px 20px; vertical-align: top; }
+.sbdocs.sbdocs-content .tokendoc th, .sbdocs.sbdocs-content .tokendoc td { border-right: 1px solid #E4E6E9; border-bottom: 1px solid #E4E6E9; }
+.sbdocs.sbdocs-content .tokendoc th:last-child, .sbdocs.sbdocs-content .tokendoc td:last-child { border-right: 0; }
+.sbdocs.sbdocs-content .tokendoc tbody tr:last-child td { border-bottom: 0; }
+.sbdocs.sbdocs-content .tokendoc td:first-child { font-weight: 600; }
+/* Accordions (components, primitives): outlined card with a compact title. */
+.sbdocs.sbdocs-content .tokendoc details { border: 1px solid #E4E6E9; border-radius: 12px; padding: 2px 16px; margin: 8px 0; }
+.sbdocs.sbdocs-content .tokendoc summary { font-size: 15px; line-height: 22px; font-weight: 500; cursor: pointer; padding: 8px 0; }
+.sbdocs.sbdocs-content .tokendoc details[open] > summary { border-bottom: 1px solid #E4E6E9; margin-bottom: 4px; }
+.sbdocs.sbdocs-content .tokendoc details table { margin: 8px 0 14px; }
+/* "Details" inside a table row is a small link, not a card. */
+.sbdocs.sbdocs-content .tokendoc td details { border: 0; border-radius: 0; padding: 0; margin: 0; }
+.sbdocs.sbdocs-content .tokendoc td summary { font-size: 13px; line-height: 20px; font-weight: 500; color: #006A64; padding: 0; }
+.sbdocs.sbdocs-content .tokendoc td details[open] > summary { border: 0; margin: 0 0 6px; }
+@media (max-width: 700px) {
+  .sbdocs.sbdocs-content .tokendoc h1 { font-size: 40px; line-height: 48px; }
+  .sbdocs.sbdocs-content .tokendoc h2 { font-size: 26px; line-height: 34px; }
+}
