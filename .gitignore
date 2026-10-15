@@ -2,4 +2,3 @@ node_modules
 storybook-static
 site
 src/docs/SyncStatus.mdx
-src/docs/ColorTokensDraft.mdx
