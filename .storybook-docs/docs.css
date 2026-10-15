@@ -1,5 +1,5 @@
 /* Reading layout for the polished docs. Styling only, no content. */
-.sbdocs.sbdocs-wrapper { padding: 56px 40px 96px; background: #FFFFFF; }
+.sbdocs.sbdocs-wrapper { padding: 100px 100px 96px; background: #FFFFFF; }
 .sbdocs.sbdocs-content { max-width: 760px; font-family: "Inter", system-ui, sans-serif; color: #1F2328; }
 
 .sbdocs.sbdocs-content h1 { font-size: 40px; line-height: 1.15; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 24px; border: 0; }
