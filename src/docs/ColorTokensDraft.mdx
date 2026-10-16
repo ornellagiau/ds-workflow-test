@@ -18,34 +18,35 @@ import Sw from "./Swatch.jsx";
 Naming rules and the interactive map: **Foundations / Token naming**.
 
 ## Global tokens
-24 tokens. Accessibility: ✅ passes AA · ⚠️ passes in one mode or for one pairing · ❌ fails AA · ➖ not applicable.
+25 tokens. Accessibility: ✅ passes AA · ⚠️ passes in one mode or for one pairing · ❌ fails AA · ➖ not applicable.
 
-### Surface (10)
+### Background (10)
 
 | Token | Light · Dark | Primitive | AA | Use | More |
 |---|---|---|---|---|---|
-| `Color/Surface/Primary` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `szWhite` / `szGray/950` | ✅ | Default page background. | <details><summary>Details</summary><strong>Not for:</strong> Overlays (use Modal-Background) or emphasized blocks (use Secondary or Inversed).<br /><strong>Accessibility:</strong> ✅ Text/Primary and Text/Secondary pass AA in light and dark.</details> |
-| `Color/Surface/Secondary` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | `szGray/50` / `szGray/800` | ✅ | Subtle tinted background that separates groups of content from Surface/Primary. | <details><summary>Details</summary><strong>Not for:</strong> Interaction feedback (use Hover) or high-contrast blocks (use Inversed).<br /><strong>Accessibility:</strong> ✅ Text/Primary and Text/Secondary pass AA in light and dark.</details> |
-| `Color/Surface/Inversed` | <Sw c="#29293A" /> #29293A · <Sw c="#383948" /> #383948 | `szGray/900` / `szGray/800` | ⚠️ | High-contrast block with Text/Inversed on top. | <details><summary>Details</summary><strong>Not for:</strong> Designing in dark mode<br /><strong>Accessibility:</strong> ⚠️ Light: Text/Inversed passes AA. Dark: Text/Inversed fails AA<br /><strong>Other:</strong> Behaves differently per mode, check the pairing before use.</details> |
-| `Color/Surface/Hover` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#494A58" /> #494A58 | `szGray/100` / `szGray/700` | ✅ | Background feedback on hover for neutral interactive surfaces. | <details><summary>Details</summary><strong>Not for:</strong> hover on highlight and status surfaces.<br /><strong>Accessibility:</strong> ✅ Text/Primary and Text/Secondary pass AA in light and dark.</details> |
-| `Color/Surface/Highlight` | <Sw c="#E7F5F3" /> #E7F5F3 · <Sw c="#006A64" /> #006A64 | `szGreen/50` / `szGreen/600` | ⚠️ | Brand-tinted background that draws attention to non-critical content. | <details><summary>Details</summary><strong>Not for:</strong> Status feedback (use Success, Error or Warning).<br /><strong>Accessibility:</strong> ⚠️ Text/Primary and Text/Highlight pass AA in light and dark. Text/Secondary fails AA in dark.</details> |
-| `Color/Surface/Success` | <Sw c="#E6F7E5" /> #E6F7E5 · <Sw c="#153108" /> #153108 | `szSignalGreen/50` / `szSignalGreen/900` | ⚠️ | Background for positive and confirmation messages. | <details><summary>Details</summary><strong>Not for:</strong> Brand emphasis (use Highlight).<br /><strong>Accessibility:</strong> ⚠️ Text/Primary passes AA in light and dark. Text/Success fails AA for normal text in light (large text only), passes in dark.</details> |
-| `Color/Surface/Error` | <Sw c="#FEEFED" /> #FEEFED · <Sw c="#3C0A0F" /> #3C0A0F | `szRed/50` / `szRed/950` | ✅ | Background for error messages and invalid fields. | <details><summary>Details</summary><strong>Not for:</strong> Warnings (use Warning).<br /><strong>Accessibility:</strong> ✅ Text/Primary and Text/Error pass AA in light and dark.</details> |
-| `Color/Surface/Warning` | <Sw c="#FEF1D9" /> #FEF1D9 · <Sw c="#341300" /> #341300 | `szOrange/50` / `szOrange/950` | ⚠️ | Background for warnings and caution messages. | <details><summary>Details</summary><strong>Not for:</strong> Errors (use Error).<br /><strong>Accessibility:</strong> ⚠️ Text/Primary passes AA in light and dark. Text/Warning fails AA in light (large text only), passes in dark.</details> |
-| `Color/Surface/Transparent` | <Sw c="#FFFFFF00" /> #FFFFFF00 · <Sw c="#1B1C2600" /> #1B1C2600 | `szWhite @0%` / `szGray/950 @0%` | ➖ | Explicit no-fill value | <details><summary>Details</summary><strong>Not for:</strong> Hiding content or as an overlay.<br /><strong>Accessibility:</strong> ➖ No contrast of its own, depends on the surface behind it.<br /><strong>Other:</strong> value with 0% opacity</details> |
-| `Color/Surface/Modal-Background` | <Sw c="#1B1C26F5" /> #1B1C26F5 · <Sw c="#1B1C26F5" /> #1B1C26F5 | `szGray/950 @96%` | ➖ | Scrim behind modals and overlays. | <details><summary>Details</summary><strong>Not for:</strong> The surface of the modal itself (use Modal/Surface).<br /><strong>Accessibility:</strong> ➖ Not applicable, the content behind the scrim is meant to stay unreadable.<br /><strong>Other:</strong> 96% opacity, same in light and dark.</details> |
+| `Color/Background/Primary` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `szWhite` / `szGray/950` | ✅ | Default page background. | <details><summary>Details</summary><strong>Not for:</strong> Overlays (use Modal Background) or emphasized blocks (use Secondary or Inversed).<br /><strong>Accessibility:</strong> ✅ Content/Primary and Content/Secondary pass AA in light and dark.</details> |
+| `Color/Background/Secondary` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | `szGray/50` / `szGray/800` | ✅ | Subtle tinted background that separates groups of content from Background/Primary. | <details><summary>Details</summary><strong>Not for:</strong> Interaction feedback (use Hover) or high-contrast blocks (use Inversed).<br /><strong>Accessibility:</strong> ✅ Content/Primary and Content/Secondary pass AA in light and dark.</details> |
+| `Color/Background/Inversed` | <Sw c="#29293A" /> #29293A · <Sw c="#383948" /> #383948 | `szGray/900` / `szGray/800` | ⚠️ | High-contrast block with Content/Inversed on top. | <details><summary>Details</summary><strong>Not for:</strong> Designing in dark mode<br /><strong>Accessibility:</strong> ⚠️ Light: Content/Inversed passes AA. Dark: Content/Inversed fails AA<br /><strong>Other:</strong> Behaves differently per mode, check the pairing before use.</details> |
+| `Color/Background/Hover` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#494A58" /> #494A58 | `szGray/100` / `szGray/700` | ✅ | Background feedback on hover for neutral interactive surfaces. | <details><summary>Details</summary><strong>Not for:</strong> hover on highlight and status surfaces.<br /><strong>Accessibility:</strong> ✅ Content/Primary and Content/Secondary pass AA in light and dark.</details> |
+| `Color/Background/Highlight` | <Sw c="#E7F5F3" /> #E7F5F3 · <Sw c="#006A64" /> #006A64 | `szGreen/50` / `szGreen/600` | ⚠️ | Brand-tinted background that draws attention to non-critical content. | <details><summary>Details</summary><strong>Not for:</strong> Status feedback (use Success, Error or Warning).<br /><strong>Accessibility:</strong> ⚠️ Content/Primary and Content/Highlight pass AA in light and dark. Content/Secondary fails AA in dark.</details> |
+| `Color/Background/Success` | <Sw c="#E6F7E5" /> #E6F7E5 · <Sw c="#153108" /> #153108 | `szSignalGreen/50` / `szSignalGreen/900` | ⚠️ | Background for positive and confirmation messages. | <details><summary>Details</summary><strong>Not for:</strong> Brand emphasis (use Highlight).<br /><strong>Accessibility:</strong> ⚠️ Content/Primary passes AA in light and dark. Content/Success fails AA for normal text in light (large text only), passes in dark.</details> |
+| `Color/Background/Error` | <Sw c="#FEEFED" /> #FEEFED · <Sw c="#3C0A0F" /> #3C0A0F | `szRed/50` / `szRed/950` | ✅ | Background for error messages and invalid fields. | <details><summary>Details</summary><strong>Not for:</strong> Warnings (use Warning).<br /><strong>Accessibility:</strong> ✅ Content/Primary and Content/Error pass AA in light and dark.</details> |
+| `Color/Background/Warning` | <Sw c="#FEF1D9" /> #FEF1D9 · <Sw c="#341300" /> #341300 | `szOrange/50` / `szOrange/950` | ⚠️ | Background for warnings and caution messages. | <details><summary>Details</summary><strong>Not for:</strong> Errors (use Error).<br /><strong>Accessibility:</strong> ⚠️ Content/Primary passes AA in light and dark. Content/Warning fails AA in light (large text only), passes in dark.</details> |
+| `Color/Background/Transparent` | <Sw c="#FFFFFF00" /> #FFFFFF00 · <Sw c="#1B1C2600" /> #1B1C2600 | `szWhite @0%` / `szGray/950 @0%` | ➖ | Explicit no-fill value | <details><summary>Details</summary><strong>Not for:</strong> Hiding content or as an overlay.<br /><strong>Accessibility:</strong> ➖ No contrast of its own, depends on the surface behind it.<br /><strong>Other:</strong> value with 0% opacity</details> |
+| `Color/Background/Modal Background` | <Sw c="#1B1C26F5" /> #1B1C26F5 · <Sw c="#1B1C26F5" /> #1B1C26F5 | `szGray/950 @96%` | ➖ | Scrim behind modals and overlays. | <details><summary>Details</summary><strong>Not for:</strong> The surface of the modal itself (use Modal/Surface).<br /><strong>Accessibility:</strong> ➖ Not applicable, the content behind the scrim is meant to stay unreadable.<br /><strong>Other:</strong> 96% opacity, same in light and dark.</details> |
 
-### Text (7)
+### Content (8)
 
 | Token | Light · Dark | Primitive |
 |---|---|---|
-| `Color/Text/Primary` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `szGray/900` / `szGray/25` |
-| `Color/Text/Secondary` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `szGray/600` / `szGray/200` |
-| `Color/Text/Highlight` | <Sw c="#006A64" /> #006A64 · <Sw c="#C4E8E3" /> #C4E8E3 | `szGreen/600` / `szGreen/100` |
-| `Color/Text/Success` | <Sw c="#33842A" /> #33842A · <Sw c="#5EB958" /> #5EB958 | `szSignalGreen/500` / `szSignalGreen/300` |
-| `Color/Text/Error` | <Sw c="#BF080E" /> #BF080E · <Sw c="#FF4C4C" /> #FF4C4C | `szRed/600` / `szRed/400` |
-| `Color/Text/Warning` | <Sw c="#BD7F00" /> #BD7F00 · <Sw c="#BD7F00" /> #BD7F00 | `szOrange/400` |
-| `Color/Text/Inversed` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#29293A" /> #29293A | `szGray/25` / `szGray/900` |
+| `Color/Content/Primary/Idle/Default` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `szGray/900` / `szGray/25` |
+| `Color/Content/Primary/Idle/Inversed` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#29293A" /> #29293A | `szGray/25` / `szGray/900` |
+| `Color/Content/Secondary/Idle/Default` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `szGray/600` / `szGray/200` |
+| `Color/Content/Secondary/Idle/Inversed` | <Sw c="#A5A5AE" /> #A5A5AE · <Sw c="#5C5E6A" /> #5C5E6A | `szGray/300` / `szGray/600` |
+| `Color/Content/Highlight` | <Sw c="#006A64" /> #006A64 · <Sw c="#C4E8E3" /> #C4E8E3 | `szGreen/600` / `szGreen/100` |
+| `Color/Content/Success` | <Sw c="#33842A" /> #33842A · <Sw c="#5EB958" /> #5EB958 | `szSignalGreen/500` / `szSignalGreen/300` |
+| `Color/Content/Error` | <Sw c="#BF080E" /> #BF080E · <Sw c="#FF4C4C" /> #FF4C4C | `szRed/600` / `szRed/400` |
+| `Color/Content/Warning` | <Sw c="#BD7F00" /> #BD7F00 · <Sw c="#BD7F00" /> #BD7F00 | `szOrange/400` |
 
 Descriptions follow.
 
@@ -90,18 +91,18 @@ Descriptions follow.
 | `Border/Secondary/Disabled` | <Sw c="#A5A5AE" /> #A5A5AE · <Sw c="#383948" /> #383948 | — | `szGray/300` / `szGray/800` |
 | `Border/Highlight/Focused` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
 | `Border/Ghost/Focused` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Text/Primary/Idle` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#29293A" /> #29293A | — | `szGray/25` / `szGray/900` |
-| `Text/Primary/Hover` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#29293A" /> #29293A | — | `szGray/25` / `szGray/900` |
-| `Text/Primary/Disabled` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#898B96" /> #898B96 | — | `szGray/50` / `szGray/400` |
-| `Text/Secondary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
-| `Text/Secondary/Hover` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
-| `Text/Secondary/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#898B96" /> #898B96 | — | `szGray/400` |
-| `Text/Highlight/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | — | `szGray/900` |
-| `Text/Highlight/Hover` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | — | `szGray/900` |
-| `Text/Highlight/Disabled` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#898B96" /> #898B96 | — | `szGray/50` / `szGray/400` |
-| `Text/Ghost/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
-| `Text/Ghost/Hover` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
-| `Text/Ghost/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#898B96" /> #898B96 | — | `szGray/400` |
+| `Content/Primary/Idle` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#29293A" /> #29293A | — | `szGray/25` / `szGray/900` |
+| `Content/Primary/Hover` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#29293A" /> #29293A | — | `szGray/25` / `szGray/900` |
+| `Content/Primary/Disabled` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#898B96" /> #898B96 | — | `szGray/50` / `szGray/400` |
+| `Content/Secondary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
+| `Content/Secondary/Hover` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
+| `Content/Secondary/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#898B96" /> #898B96 | — | `szGray/400` |
+| `Content/Highlight/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | — | `szGray/900` |
+| `Content/Highlight/Hover` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | — | `szGray/900` |
+| `Content/Highlight/Disabled` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#898B96" /> #898B96 | — | `szGray/50` / `szGray/400` |
+| `Content/Ghost/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
+| `Content/Ghost/Hover` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
+| `Content/Ghost/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#898B96" /> #898B96 | — | `szGray/400` |
 
 </details>
 
@@ -110,13 +111,13 @@ Descriptions follow.
 
 | Token | Light · Dark | Via | Primitive |
 |---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Surface/Primary` | `szWhite` / `szGray/950` |
-| `Surface/Primary/Hover` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#1B1C26" /> #1B1C26 | `—` / `Color/Surface/Primary` | `szGray/25` / `szGray/950` |
-| `Surface/Secondary/Idle` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | `Color/Surface/Secondary` | `szGray/50` / `szGray/800` |
+| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
+| `Surface/Primary/Hover` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#1B1C26" /> #1B1C26 | `—` / `Color/Background/Primary` | `szGray/25` / `szGray/950` |
+| `Surface/Secondary/Idle` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | `Color/Background/Secondary` | `szGray/50` / `szGray/800` |
 | `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
 | `Border/Primary/Focused` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Text/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
-| `Text/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Text/Secondary` | `szGray/600` / `szGray/200` |
+| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| `Content/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Content/Secondary/Idle/Default` | `szGray/600` / `szGray/200` |
 
 </details>
 
@@ -125,19 +126,19 @@ Descriptions follow.
 
 | Token | Light · Dark | Via | Primitive |
 |---|---|---|---|
-| `Background/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Surface/Primary` | `szWhite` / `szGray/950` |
-| `Background/Primary/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#494A58" /> #494A58 | `Color/Surface/Secondary` / `Color/Surface/Hover` | `szGray/50` / `szGray/700` |
-| `Background/Primary/Focused` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Surface/Primary` | `szWhite` / `szGray/950` |
-| `Background/Primary/Selected` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
-| `Background/Primary/Disabled` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#29293A" /> #29293A | — | `szGray/50` / `szGray/900` |
-| `Background/Primary/Error` | <Sw c="#FEEFED" /> #FEEFED · <Sw c="#3C0A0F" /> #3C0A0F | `Color/Surface/Error` | `szRed/50` / `szRed/950` |
+| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
+| `Surface/Primary/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#494A58" /> #494A58 | `Color/Background/Secondary` / `Color/Background/Hover` | `szGray/50` / `szGray/700` |
+| `Surface/Primary/Focused` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
+| `Surface/Primary/Selected` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
+| `Surface/Primary/Disabled` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#29293A" /> #29293A | — | `szGray/50` / `szGray/900` |
+| `Surface/Primary/Error` | <Sw c="#FEEFED" /> #FEEFED · <Sw c="#3C0A0F" /> #3C0A0F | `Color/Background/Error` | `szRed/50` / `szRed/950` |
 | `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
 | `Border/Primary/Hover` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
 | `Border/Primary/Focused` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
 | `Border/Primary/Selected` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
 | `Border/Primary/Disabled` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
 | `Border/Primary/Error` | <Sw c="#E90004" /> #E90004 · <Sw c="#E90004" /> #E90004 | — | `szRed/500` |
-| `Text/Primary/Selected` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
+| `Content/Primary/Selected` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
 
 </details>
 
@@ -146,13 +147,13 @@ Descriptions follow.
 
 | Token | Light · Dark | Via | Primitive |
 |---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Surface/Primary` | `szWhite` / `szGray/950` |
+| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
 | `Surface/Primary/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#1B1C26" /> #1B1C26 | — | `szGray/50` / `szGray/950` |
 | `Surface/Primary/Active` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#1B1C26" /> #1B1C26 | — | `szGray/50` / `szGray/950` |
 | `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
 | `Border/Primary/Hover` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Active` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
-| `Text/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
+| `Border/Primary/Active` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
 
 </details>
 
@@ -170,10 +171,10 @@ Descriptions follow.
 | `Border/Highlight/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
 | `Border/Highlight/Hover` | <Sw c="#C4E8E3" /> #C4E8E3 · <Sw c="#C4E8E3" /> #C4E8E3 | — | `szGreen/100` |
 | `Border/Highlight/Active` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Text/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
-| `Text/Primary/Hover` | <Sw c="#71737F" /> #71737F · <Sw c="#C0C1C6" /> #C0C1C6 | — | `szGray/500` / `szGray/200` |
-| `Text/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Text/Secondary` | `szGray/600` / `szGray/200` |
-| `Text/Highlight/Idle` | <Sw c="#006A64" /> #006A64 · <Sw c="#C4E8E3" /> #C4E8E3 | `Color/Text/Highlight` | `szGreen/600` / `szGreen/100` |
+| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
+| `Content/Primary/Hover` | <Sw c="#71737F" /> #71737F · <Sw c="#C0C1C6" /> #C0C1C6 | — | `szGray/500` / `szGray/200` |
+| `Content/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Content/Secondary/Idle/Default` | `szGray/600` / `szGray/200` |
+| `Content/Highlight/Idle` | <Sw c="#006A64" /> #006A64 · <Sw c="#C4E8E3" /> #C4E8E3 | `Color/Content/Highlight` | `szGreen/600` / `szGreen/100` |
 | `Logo/Primary` | <Sw c="#29293A" /> #29293A · <Sw c="#FFFFFF" /> #FFFFFF | — | `szGray/900` / `szWhite` |
 
 </details>
@@ -183,18 +184,18 @@ Descriptions follow.
 
 | Token | Light · Dark | Via | Primitive |
 |---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Surface/Primary` | `szWhite` / `szGray/950` |
+| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
 | `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
 | `Border/Primary/Active` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
 | `Border/Primary/Error` | <Sw c="#FF4C4C" /> #FF4C4C · <Sw c="#FC817D" /> #FC817D | — | `szRed/400` / `szRed/300` |
 | `Border/Primary/Warning` | <Sw c="#D39D00" /> #D39D00 · <Sw c="#FADDA2" /> #FADDA2 | — | `szOrange/300` / `szOrange/100` |
-| `Text/Primary/Idle` | <Sw c="#71737F" /> #71737F · <Sw c="#A5A5AE" /> #A5A5AE | — | `szGray/500` / `szGray/300` |
-| `Text/Primary/Active` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
-| `Text/Primary/Error` | <Sw c="#BF080E" /> #BF080E · <Sw c="#FF4C4C" /> #FF4C4C | `Color/Text/Error` | `szRed/600` / `szRed/400` |
-| `Text/Primary/Warning` | <Sw c="#BD7F00" /> #BD7F00 · <Sw c="#BD7F00" /> #BD7F00 | `Color/Text/Warning` | `szOrange/400` |
-| `Text/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Text/Secondary` | `szGray/600` / `szGray/200` |
-| `Text/Secondary/Error` | <Sw c="#BF080E" /> #BF080E · <Sw c="#FF4C4C" /> #FF4C4C | `Color/Text/Error` | `szRed/600` / `szRed/400` |
-| `Text/Secondary/Warning` | <Sw c="#BD7F00" /> #BD7F00 · <Sw c="#BD7F00" /> #BD7F00 | `Color/Text/Warning` | `szOrange/400` |
+| `Content/Primary/Idle` | <Sw c="#71737F" /> #71737F · <Sw c="#A5A5AE" /> #A5A5AE | — | `szGray/500` / `szGray/300` |
+| `Content/Primary/Active` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| `Content/Primary/Error` | <Sw c="#BF080E" /> #BF080E · <Sw c="#FF4C4C" /> #FF4C4C | `Color/Content/Error` | `szRed/600` / `szRed/400` |
+| `Content/Primary/Warning` | <Sw c="#BD7F00" /> #BD7F00 · <Sw c="#BD7F00" /> #BD7F00 | `Color/Content/Warning` | `szOrange/400` |
+| `Content/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Content/Secondary/Idle/Default` | `szGray/600` / `szGray/200` |
+| `Content/Secondary/Error` | <Sw c="#BF080E" /> #BF080E · <Sw c="#FF4C4C" /> #FF4C4C | `Color/Content/Error` | `szRed/600` / `szRed/400` |
+| `Content/Secondary/Warning` | <Sw c="#BD7F00" /> #BD7F00 · <Sw c="#BD7F00" /> #BD7F00 | `Color/Content/Warning` | `szOrange/400` |
 
 </details>
 
@@ -208,11 +209,11 @@ Descriptions follow.
 | `Surface/Exclusiv/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#C4E8E3" /> #C4E8E3 | — | `szGray/900` / `szGreen/100` |
 | `Surface/Live/Idle` | <Sw c="#E90004" /> #E90004 · <Sw c="#E90004" /> #E90004 | — | `szRed/500` |
 | `Surface/Opinion/Idle` | <Sw c="#C4E8E3" /> #C4E8E3 · <Sw c="#C4E8E3" /> #C4E8E3 | — | `szGreen/100` |
-| `Text/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
-| `Text/Secondary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | `Color/Text/Primary` / `Color/Text/Inversed` | `szGray/900` |
-| `Text/Exclusiv/Idle` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#29293A" /> #29293A | `Color/Text/Inversed` | `szGray/25` / `szGray/900` |
-| `Text/Live/Idle` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Inversed` / `Color/Text/Primary` | `szGray/25` |
-| `Text/Opinion/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | `Color/Text/Primary` / `Color/Text/Inversed` | `szGray/900` |
+| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| `Content/Secondary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | `Color/Content/Primary/Idle/Default` / `Color/Content/Primary/Idle/Inversed` | `szGray/900` |
+| `Content/Exclusiv/Idle` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#29293A" /> #29293A | `Color/Content/Primary/Idle/Inversed` | `szGray/25` / `szGray/900` |
+| `Content/Live/Idle` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Inversed` / `Color/Content/Primary/Idle/Default` | `szGray/25` |
+| `Content/Opinion/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | `Color/Content/Primary/Idle/Default` / `Color/Content/Primary/Idle/Inversed` | `szGray/900` |
 
 </details>
 
@@ -223,10 +224,10 @@ Descriptions follow.
 |---|---|---|---|
 | `Border/Primary/Idle` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
 | `Border/Primary/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#5C5E6A" /> #5C5E6A | — | `szGray/400` / `szGray/600` |
-| `Border/Secondary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
+| `Border/Secondary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
 | `Border/Secondary/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#5C5E6A" /> #5C5E6A | — | `szGray/400` / `szGray/600` |
-| `Text/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
-| `Text/Primary/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#5C5E6A" /> #5C5E6A | — | `szGray/400` / `szGray/600` |
+| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| `Content/Primary/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#5C5E6A" /> #5C5E6A | — | `szGray/400` / `szGray/600` |
 
 </details>
 
@@ -238,25 +239,25 @@ Descriptions follow.
 | `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#29293A" /> #29293A | `Header/Surface/Primary/Idle` | `szWhite` / `szGray/900` |
 | `Surface/Primary/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | `Header/Surface/Primary/Hover` | `szGray/50` / `szGray/800` |
 | `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Header/Border/Primary/Idle` | `szGray/100` / `szGray/800` |
-| `Text/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
-| `Text/Primary/Hover` | <Sw c="#71737F" /> #71737F · <Sw c="#C0C1C6" /> #C0C1C6 | — | `szGray/500` / `szGray/200` |
-| `Text/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Text/Secondary` | `szGray/600` / `szGray/200` |
-| `Text/Highlight/Idle` | <Sw c="#006A64" /> #006A64 · <Sw c="#C4E8E3" /> #C4E8E3 | `Color/Text/Highlight` | `szGreen/600` / `szGreen/100` |
-| `Logo/Primary` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
+| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| `Content/Primary/Hover` | <Sw c="#71737F" /> #71737F · <Sw c="#C0C1C6" /> #C0C1C6 | — | `szGray/500` / `szGray/200` |
+| `Content/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Content/Secondary/Idle/Default` | `szGray/600` / `szGray/200` |
+| `Content/Highlight/Idle` | <Sw c="#006A64" /> #006A64 · <Sw c="#C4E8E3" /> #C4E8E3 | `Color/Content/Highlight` | `szGreen/600` / `szGreen/100` |
+| `Logo/Primary` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
 
 </details>
 
 <details>
-<summary>Product-Switch (7)</summary>
+<summary>ProductSwitch (7)</summary>
 
 | Token | Light · Dark | Via | Primitive |
 |---|---|---|---|
-| `Background/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | — | `szGray/900` |
-| `Background/Secondary/Idle` | <Sw c="#383948" /> #383948 · <Sw c="#383948" /> #383948 | — | `szGray/800` |
+| `Surface/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | — | `szGray/900` |
+| `Surface/Secondary/Idle` | <Sw c="#383948" /> #383948 · <Sw c="#383948" /> #383948 | — | `szGray/800` |
 | `Border/Primary` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#5C5E6A" /> #5C5E6A | — | `szGray/600` |
-| `Text/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
-| `Text/Primary/Hover` | <Sw c="#7BD0C6" /> #7BD0C6 · <Sw c="#7BD0C6" /> #7BD0C6 | — | `szGreen/200` |
-| `Text/Secondary/Idle` | <Sw c="#71737F" /> #71737F · <Sw c="#71737F" /> #71737F | — | `szGray/500` |
+| `Content/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
+| `Content/Primary/Hover` | <Sw c="#7BD0C6" /> #7BD0C6 · <Sw c="#7BD0C6" /> #7BD0C6 | — | `szGreen/200` |
+| `Content/Secondary/Idle` | <Sw c="#71737F" /> #71737F · <Sw c="#71737F" /> #71737F | — | `szGray/500` |
 | `Logo/Idle` | <Sw c="#C0C1C6" /> #C0C1C6 · <Sw c="#C0C1C6" /> #C0C1C6 | — | `szGray/200` |
 
 </details>
@@ -266,19 +267,19 @@ Descriptions follow.
 
 | Token | Light · Dark | Via | Primitive |
 |---|---|---|---|
-| `Background/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Surface/Primary` | `szWhite` / `szGray/950` |
-| `Background/Primary/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#494A58" /> #494A58 | `Color/Surface/Secondary` / `Color/Surface/Hover` | `szGray/50` / `szGray/700` |
-| `Background/Primary/Focused` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Surface/Primary` | `szWhite` / `szGray/950` |
-| `Background/Primary/Selected` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
-| `Background/Primary/Disabled` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#29293A" /> #29293A | — | `szGray/50` / `szGray/900` |
-| `Background/Primary/Error` | <Sw c="#FEEFED" /> #FEEFED · <Sw c="#3C0A0F" /> #3C0A0F | `Color/Surface/Error` | `szRed/50` / `szRed/950` |
+| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
+| `Surface/Primary/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#494A58" /> #494A58 | `Color/Background/Secondary` / `Color/Background/Hover` | `szGray/50` / `szGray/700` |
+| `Surface/Primary/Focused` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
+| `Surface/Primary/Selected` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
+| `Surface/Primary/Disabled` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#29293A" /> #29293A | — | `szGray/50` / `szGray/900` |
+| `Surface/Primary/Error` | <Sw c="#FEEFED" /> #FEEFED · <Sw c="#3C0A0F" /> #3C0A0F | `Color/Background/Error` | `szRed/50` / `szRed/950` |
 | `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
 | `Border/Primary/Hover` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
 | `Border/Primary/Focused` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
 | `Border/Primary/Selected` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
 | `Border/Primary/Disabled` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
 | `Border/Primary/Error` | <Sw c="#E90004" /> #E90004 · <Sw c="#E90004" /> #E90004 | — | `szRed/500` |
-| `Text/Primary/Selected` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
+| `Content/Primary/Selected` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
 
 </details>
 
@@ -290,7 +291,7 @@ Descriptions follow.
 | `Surface/Primary/Idle` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | — | `szGray/50` / `szGray/800` |
 | `Surface/Primary/Active` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#494A58" /> #494A58 | — | `szWhite` / `szGray/700` |
 | `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#5C5E6A" /> #5C5E6A | — | `szGray/100` / `szGray/600` |
-| `Text/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
+| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
 
 </details>
 
@@ -301,7 +302,7 @@ Descriptions follow.
 |---|---|---|---|
 | `Surface/Primary/Idle` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | — | `szGray/50` / `szGray/800` |
 | `Border/Primary/Focused` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Text/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
+| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
 
 </details>
 
@@ -310,12 +311,12 @@ Descriptions follow.
 
 | Token | Light · Dark | Via | Primitive |
 |---|---|---|---|
-| `Background/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Surface/Primary` | `szWhite` / `szGray/950` |
+| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
 | `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
 | `Border/Primary/Hover` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Active` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
-| `Text/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Text/Primary` | `szGray/900` / `szGray/25` |
-| `Text/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Text/Secondary` | `szGray/600` / `szGray/200` |
+| `Border/Primary/Active` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| `Content/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Content/Secondary/Idle/Default` | `szGray/600` / `szGray/200` |
 
 </details>
 
