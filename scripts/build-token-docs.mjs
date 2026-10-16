@@ -1,5 +1,5 @@
 // tokens/turm-colors.draft.json -> src/docs/ColorTokensDraft.mdx
-// DRAFT. Real Turm color tokens, grouped by what you want to color (Surface, Text, Border), then by component.
+// DRAFT. Real Turm color tokens, grouped by what you want to color (Background, Content, Border), then by component.
 // Values are written literally into the MDX, because Storybook's AI manifest only sees what is in the file.
 import { readFileSync, writeFileSync } from "node:fs";
 
@@ -7,14 +7,17 @@ const data = JSON.parse(readFileSync("tokens/turm-colors.draft.json", "utf8"));
 const prim = data.primitives;
 const sem = new Map(data.semantic.map(([name, light, dark, description]) => [name, { name, light, dark, description }]));
 
-const ELEMENTS = ["Surface", "Background", "Border", "Text", "Logo"];
+const ELEMENTS = ["Surface", "Background", "Border", "Content", "Logo"];
 const STATES = ["Idle", "Hover", "Active", "Focused", "Selected", "Disabled", "Error", "Warning", "Success"];
 const ROLES = ["Primary", "Secondary", "Highlight", "Ghost"];
+const VARIANTS = ["Default", "Inversed"];
 
-// Values: "#RRGGBB" literal, "p:szGray/950@96" primitive at 96% opacity, "s:Color/Surface/Primary" other semantic token.
+// Values: "#RRGGBB" literal, "p:szGray/950@96" primitive at 96% opacity, "s:Color/Background/Primary" other semantic token,
+// "x:<name>" alias to a variable that is no longer in the collection (stale, the build stops).
 function resolve(ref, mode, depth = 0) {
   if (depth > 6) throw new Error(`Alias depth > 6 at ${ref}`);
   if (ref.startsWith("#")) return ref;
+  if (ref.startsWith("x:")) throw new Error(`Alias points to a variable outside the collection (stale after a rename): ${ref.slice(2)}. Re-point it in Figma, then export again.`);
   const [target, opacity] = ref.slice(2).split("@");
   let hex;
   if (ref.startsWith("p:")) {
@@ -35,10 +38,11 @@ const esc = (s) => s.replace(/\|/g, "\\|").replace(/[{}]/g, (m) => `\\${m}`).rep
 
 function parseName(name) {
   const [component, element, ...rest] = name.split("/");
-  let role = null, state = null;
-  if (rest.length === 2) [role, state] = rest;
+  let role = null, state = null, variant = null;
+  if (rest.length === 3) [role, state, variant] = rest;
+  else if (rest.length === 2) [role, state] = rest;
   else if (rest.length === 1) (STATES.includes(rest[0]) ? (state = rest[0]) : (role = rest[0]));
-  return { component, element, role, state };
+  return { component, element, role, state, variant };
 }
 
 // Description lines look like "🎯 Intent: ...". Match on the label, not on the emoji.
@@ -104,11 +108,13 @@ ${globals.length} tokens. Accessibility: ✅ passes AA · ⚠️ passes in one m
 
 `;
 
-for (const element of ["Surface", "Text", "Border"]) {
+for (const element of ["Background", "Content", "Border"]) {
   const rows = globals.filter((t) => t.element === element);
   if (!rows.length) continue;
+  // Content: Primary and Secondary (Default, Inversed) first, then the status colors. Sort is stable.
+  if (element === "Content") rows.sort((a, b) => rank(ROLES, a.role) - rank(ROLES, b.role) || rank(VARIANTS, a.variant) - rank(VARIANTS, b.variant));
   const parsed = rows.map((t) => ({ t, f: fields(t.description) }));
-  const hasDesc = parsed.some((p) => p.t.description);
+  const hasDesc = parsed.some((p) => p.f.intent || p.f.notFor || p.f.a11y || p.f.other);
   mdx += `### ${element} (${rows.length})\n\n`;
   // Visible: token, values, AA icon, one-line use. Not for / Accessibility / Other open on demand.
   mdx += hasDesc ? `| Token | Light · Dark | Primitive | AA | Use | More |\n|---|---|---|---|---|---|\n` : `| Token | Light · Dark | Primitive |\n|---|---|---|\n`;

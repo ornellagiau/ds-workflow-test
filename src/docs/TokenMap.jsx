@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import data from "../../tokens/turm-colors.draft.json";
 
-// Interactive map of the token naming: Component -> Element -> Role -> State.
+// Interactive map of the token naming: Component -> Element -> Role -> State -> Variant.
 // Hover (or tap, to pin) a name: thin lines show which other names exist together with it.
 // Reads the same data as the generated Color tokens page, so it cannot go out of date.
 
@@ -10,8 +10,9 @@ const COLS = [
   { key: "element", label: "Element" },
   { key: "role", label: "Role" },
   { key: "state", label: "State" },
+  { key: "variant", label: "Variant" },
 ];
-const ELEMENTS = ["Surface", "Background", "Border", "Text", "Logo"];
+const ELEMENTS = ["Surface", "Background", "Border", "Content", "Logo"];
 const STATES = ["Idle", "Hover", "Active", "Focused", "Selected", "Disabled", "Error", "Warning", "Success"];
 
 // Calm palette: one accent, everything else is the text color at low opacity (works in light and dark docs).
@@ -23,10 +24,11 @@ const LINE = "rgba(128,128,128,0.28)";
 // "Color/Surface/Error" has no Role: a lone last word counts as State if it is a state word.
 function parse(name) {
   const [component, element, ...rest] = name.split("/");
-  let role = null, state = null;
-  if (rest.length === 2) [role, state] = rest;
+  let role = null, state = null, variant = null;
+  if (rest.length === 3) [role, state, variant] = rest;
+  else if (rest.length === 2) [role, state] = rest;
   else if (rest.length === 1) (STATES.includes(rest[0]) ? (state = rest[0]) : (role = rest[0]));
-  return { component, element, role, state };
+  return { component, element, role, state, variant };
 }
 
 const tokens = data.semantic.map(([name]) => parse(name));
@@ -38,7 +40,7 @@ function buildColumns() {
     return m;
   };
   const byOrder = (order) => (a, b) => order.indexOf(a) - order.indexOf(b);
-  const counts = { component: count("component"), element: count("element"), role: count("role"), state: count("state") };
+  const counts = { component: count("component"), element: count("element"), role: count("role"), state: count("state"), variant: count("variant") };
   return {
     counts,
     list: {
@@ -46,6 +48,7 @@ function buildColumns() {
       element: [...counts.element.keys()].sort(byOrder(ELEMENTS)),
       role: [...counts.role.keys()].sort((a, b) => counts.role.get(b) - counts.role.get(a)),
       state: [...counts.state.keys()].sort(byOrder(STATES)),
+      variant: [...counts.variant.keys()],
     },
   };
 }
@@ -123,7 +126,7 @@ export default function TokenMap() {
   return (
     <div style={{ margin: "20px 0" }}>
       <div style={{ overflowX: "auto" }}>
-        <div ref={wrap} style={{ position: "relative", display: "grid", gridTemplateColumns: "repeat(4, minmax(150px, 1fr))", minWidth: 640 }}>
+        <div ref={wrap} style={{ position: "relative", display: "grid", gridTemplateColumns: "repeat(5, minmax(130px, 1fr))", minWidth: 720 }}>
           <svg width={size.w} height={size.h} style={{ position: "absolute", inset: 0, pointerEvents: "none" }} aria-hidden="true">
             <style>{`@keyframes tm-fade{from{opacity:0}to{opacity:1}} .tm-line{animation:tm-fade .16s ease-out}`}</style>
             {lines.map((l, i) => (
