@@ -18,9 +18,9 @@ import Sw from "./Swatch.jsx";
 Naming rules and the interactive map: **Foundations / Token naming**.
 
 ## Global tokens
-25 tokens. Accessibility: ✅ passes AA · ⚠️ passes in one mode or for one pairing · ❌ fails AA · ➖ not applicable.
+26 tokens. Accessibility: ✅ passes AA · ⚠️ passes in one mode or for one pairing · ❌ fails AA · ➖ not applicable.
 
-### Background (10)
+### Background (11)
 
 | Token | Light · Dark | Primitive | AA | Use | More |
 |---|---|---|---|---|---|
@@ -34,6 +34,7 @@ Naming rules and the interactive map: **Foundations / Token naming**.
 | `Color/Background/Warning` | <Sw c="#FEF1D9" /> #FEF1D9 · <Sw c="#341300" /> #341300 | `szOrange/50` / `szOrange/950` | ⚠️ | Background for warnings and caution messages. | <details><summary>Details</summary><strong>Not for:</strong> Errors (use Error).<br /><strong>Accessibility:</strong> ⚠️ Content/Primary passes AA in light and dark. Content/Warning fails AA in light (large text only), passes in dark.</details> |
 | `Color/Background/Transparent` | <Sw c="#FFFFFF00" /> #FFFFFF00 · <Sw c="#1B1C2600" /> #1B1C2600 | `szWhite @0%` / `szGray/950 @0%` | ➖ | Explicit no-fill value | <details><summary>Details</summary><strong>Not for:</strong> Hiding content or as an overlay.<br /><strong>Accessibility:</strong> ➖ No contrast of its own, depends on the surface behind it.<br /><strong>Other:</strong> value with 0% opacity</details> |
 | `Color/Background/Modal Background` | <Sw c="#1B1C26F5" /> #1B1C26F5 · <Sw c="#1B1C26F5" /> #1B1C26F5 | `szGray/950 @96%` | ➖ | Scrim behind modals and overlays. | <details><summary>Details</summary><strong>Not for:</strong> The surface of the modal itself (use Modal/Surface).<br /><strong>Accessibility:</strong> ➖ Not applicable, the content behind the scrim is meant to stay unreadable.<br /><strong>Other:</strong> 96% opacity, same in light and dark.</details> |
+| `Color/Background/Tertiary` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#383948" /> #383948 | `szGray/25` / `szGray/800` | ✅ | Subtle tinted background that separates groups of content from Background/Primary. | <details><summary>Details</summary><strong>Not for:</strong> Interaction feedback (use Hover) or high-contrast blocks (use Inversed).<br /><strong>Accessibility:</strong> ✅ Content/Primary and Content/Secondary pass AA in light and dark.</details> |
 
 ### Content (8)
 
@@ -65,7 +66,19 @@ Descriptions follow.
 Descriptions follow.
 
 ## Component tokens
-144 tokens in 15 components. Open a component to see its tokens. Via is the global token it points to, Primitive is the color it ends at (light / dark).
+150 tokens in 17 components. Open a component to see its tokens. Via is the global token it points to, Primitive is the color it ends at (light / dark).
+
+<details>
+<summary>Audio Player (4)</summary>
+
+| Token | Light · Dark | Via | Primitive |
+|---|---|---|---|
+| `Surface/Primary/Idle` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#29293A" /> #29293A | — | `szGray/50` / `szGray/900` |
+| `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
+| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| `Content/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Content/Secondary/Idle/Default` | `szGray/600` / `szGray/200` |
+
+</details>
 
 <details>
 <summary>Button (31)</summary>
@@ -259,6 +272,16 @@ Descriptions follow.
 | `Content/Primary/Hover` | <Sw c="#7BD0C6" /> #7BD0C6 · <Sw c="#7BD0C6" /> #7BD0C6 | — | `szGreen/200` |
 | `Content/Secondary/Idle` | <Sw c="#71737F" /> #71737F · <Sw c="#71737F" /> #71737F | — | `szGray/500` |
 | `Logo/Idle` | <Sw c="#C0C1C6" /> #C0C1C6 · <Sw c="#C0C1C6" /> #C0C1C6 | — | `szGray/200` |
+
+</details>
+
+<details>
+<summary>Progress Indicator (2)</summary>
+
+| Token | Light · Dark | Via | Primitive |
+|---|---|---|---|
+| `Surface/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| `Background/Primary/Idle` | <Sw c="#29293A1A" /> #29293A1A · <Sw c="#F9F9FA1A" /> #F9F9FA1A | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
 
 </details>
 
