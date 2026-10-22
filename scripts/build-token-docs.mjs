@@ -104,7 +104,7 @@ import Sw from "./Swatch.jsx";
 Naming rules and the interactive map: **Foundations / Token naming**.
 
 ## Global tokens
-${globals.length} tokens. Accessibility: ✅ passes AA · ⚠️ passes in one mode or for one pairing · ❌ fails AA · ➖ not applicable.
+${globals.length} tokens. Accessibility legend: ✅ meets AA for normal text (4.5:1) · ⚠️ large text only (3:1 to 4.5:1) · ❌ fails · ➖ not applicable. (light) or (dark) means only in that mode.
 
 `;
 
@@ -121,7 +121,7 @@ for (const element of ["Background", "Content", "Border"]) {
   for (const { t, f } of parsed) {
     mdx += `| ${cp(t.name)} | ${pair(t)} | ${primCell(t)} |`;
     if (hasDesc) {
-      const icon = f.a11y ? f.a11y.split(" ")[0] : "—";
+      const icon = f.a11y ? ([...new Set(f.a11y.match(/✅|⚠️|❌|➖/gu) ?? [])].join(" ") || "—") : "—";
       const more = [
         f.notFor && `<strong>Not for:</strong> ${esc(f.notFor)}`,
         f.a11y && `<strong>Accessibility:</strong> ${esc(f.a11y)}`,
