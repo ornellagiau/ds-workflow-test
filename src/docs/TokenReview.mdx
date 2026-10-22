@@ -1,0 +1,62 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Notes/Token review (Oct 2026)" summary="Review of the Turm color tokens against current practice. A dated note, not a rule." />
+
+# Token review
+
+The Turm color tokens, checked against current practice. Status: 17 Oct 2026.
+
+This is a dated note, not a rule. The rules are under Foundations / Token naming.
+
+One topic needs input from the design team: **contrast**. Everything else is already decided or for information.
+
+## Contrast: input needed
+
+The standard is WCAG 2.2 AA. Normal text needs 4.5:1, the outline of a control needs 3:1. The ratios are calculated from the token colors and rounded.
+
+| # | Token | On | Today | Proposal | Decision |
+|---|---|---|---|---|---|
+| 1a | `Color/Content/Warning` (light) | `Color/Background/Primary` | 3.4:1 | `szOrange/600` (6.4:1) | open |
+| 1b | `Color/Content/Warning` (light) | `Color/Background/Warning` | 3.0:1 | `szOrange/600` (5.7:1) | open |
+| 2 | `Color/Content/Success` (light) | `Color/Background/Success` | 4.2:1 | `szSignalGreen/600` (5.8:1) | open |
+| 3 | `Color/Content/Primary/Idle/Inversed` (dark) | `Color/Background/Inversed` | 1.3:1 | A: light text `szGray/25` (10.8:1). B: a light Inversed background in dark mode, so it is truly inverted. | open |
+| 4 | `Color/Border/Primary` | `Color/Background/Primary` | 1.3:1 light, 1.5:1 dark | New border token for controls at `szGray/400` (3.4:1 light, 5.0:1 dark). See below. | open |
+
+These cases are fine: Warning in dark mode (5.0:1), Success on the plain page (4.7:1), Inversed in light mode (13.6:1).
+
+### Borders in plain words
+
+`Color/Border/Primary` is a very light grey line. That is fine for dividers. But WCAG asks for 3:1 for the outline of a control (a text field, checkbox or radio), so that people can see where the control is. Input, Checkbox, Radio and Chip outlines use that light grey today. The only border that passes is `Color/Border/Strong` (14:1), and it is very heavy.
+
+The question is whether the outline is the only thing that shows where the field is.
+
+- If yes, add one border token for controls (proposal in the table).
+- If a fill or something else already makes the control recognizable, the light border is allowed and nothing changes.
+
+## Working well
+
+- Three tiers (primitives, semantic, component), with light and dark as modes.
+- One documented naming pattern: see Foundations / Token naming.
+- Content means text, icons and everything that sits on a surface.
+- No brand or theme layer is needed beyond light and dark.
+- WCAG 2.2 AA is the right target.
+- This documentation is generated from Figma, so it stays in sync.
+
+## For information
+
+- **Primitives are visible in the Figma picker.** Designers need them for exploring, so that stays. It differs from the usual practice of hiding primitives, and a solution is being worked on.
+- **Most component tokens (87 of 144) point straight at primitives** instead of the global colors. The usual three-tier model puts component tokens on top of semantic tokens. This is not urgent and not a priority. It can be discussed if it comes up.
+- **Descriptions:** the Background tokens have them. The Content and Border tokens are being written.
+
+## How this was checked
+
+Compared against:
+
+- [WCAG 2.2](https://www.w3.org/TR/WCAG22/), the current W3C Recommendation. WCAG 3 is still a working draft.
+- EU accessibility law, through the standard EN 301 549. Today it points to WCAG 2.1 AA. The newer version, published in Sept 2026, points to WCAG 2.2 AA ([overview](https://www.dwt.com/insights/2026/09/european-accessibility-act-ict-standards-update), [Irish NDA](https://nda.ie/news/en301549-published)).
+- [Design Tokens Community Group format 2025.10](https://www.designtokens.org/).
+- Token practice: [Sujeet Jaiswal, Design Tokens and Theming Architecture](https://sujeet.pro/articles/design-tokens-and-theming), [EightShapes, Naming Tokens in Design Systems](https://medium.com/eightshapes-llc/naming-tokens-in-design-systems-9e86c7444676), [Klinke on naming and AI agents](https://www.designsystemscollective.com/naming-conventions-were-important-ai-agents-made-them-essential-633990e55158), [Vallaure on agent-legible libraries](https://uxdesign.cc/agentic-ai-design-systems-figma-a-practical-guide-6ab0b681718d).
+
+Not checked: the typography, size and responsive collections, and the component library.
+
+The ratios are a snapshot of the token colors on the date above. If a token changes, the numbers change.
