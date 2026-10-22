@@ -1,5 +1,5 @@
 {
-  "$description": "DRAFT export of the Turm color tokens from Figma (Color Primitives, Color Semantics), naming as of 16.10.2026. Source: Figma. Do not edit by hand.",
+  "$description": "DRAFT export of the Turm color tokens from Figma (Color Primitives, Color Semantics), 176 tokens, as of 22.10.2026. Source: Figma. Do not edit by hand.",
   "$format": "semantic rows are [name, light, dark, description?]. Values: '#RRGGBB[AA]' literal, 'p:<primitive>' alias to a primitive, 's:<token>' alias to a semantic token, '@<n>' suffix = opacity in percent.",
   "primitives": {
     "szGreen/25": "#F5FAFA",
@@ -245,6 +245,13 @@
     ["Tag/Surface/Primary/Idle", "p:szGray/50", "p:szGray/800"],
     ["Tag/Content/Primary/Idle", "s:Color/Content/Primary/Idle/Default", "s:Color/Content/Primary/Idle/Default"],
     ["Tag/Border/Primary/Focused", "p:szGreen/300", "p:szGreen/300"],
-    ["Color/Content/Secondary/Idle/Inversed", "p:szGray/300", "p:szGray/600", "Tags: \nIntent: \nNot for: \nAccessibility infos: \nOther: "]
+    ["Color/Content/Secondary/Idle/Inversed", "p:szGray/300", "p:szGray/600", "Tags: \nIntent: \nNot for: \nAccessibility infos: \nOther: "],
+    ["Color/Background/Tertiary", "p:szGray/25", "p:szGray/800", "🎯 Intent: Subtle tinted background that separates groups of content from Background/Primary.\n🚫 Not for: Interaction feedback (use Hover) or high-contrast blocks (use Inversed).\n♿ Accessibility: ✅ Content/Primary and Content/Secondary pass AA in light and dark.\n📝 Other:"],
+    ["Audio Player/Surface/Primary/Idle", "p:szGray/50", "p:szGray/900"],
+    ["Audio Player/Border/Primary/Idle", "s:Color/Border/Primary", "s:Color/Border/Primary"],
+    ["Audio Player/Content/Primary/Idle", "s:Color/Content/Primary/Idle/Default", "s:Color/Content/Primary/Idle/Default"],
+    ["Audio Player/Content/Secondary/Idle", "s:Color/Content/Secondary/Idle/Default", "s:Color/Content/Secondary/Idle/Default"],
+    ["Progress Indicator/Background/Primary/Idle", "s:Color/Content/Primary/Idle/Default@10", "s:Color/Content/Primary/Idle/Default@10"],
+    ["Progress Indicator/Surface/Primary/Idle", "s:Color/Content/Primary/Idle/Default", "s:Color/Content/Primary/Idle/Default"]
   ]
 }
