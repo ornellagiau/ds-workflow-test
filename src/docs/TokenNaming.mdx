@@ -1,5 +1,6 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 import TokenMap from "./TokenMap.jsx";
+import TokenChain from "./TokenChain.jsx";
 
 <Meta title="Foundations/Token naming" summary="How Turm color tokens are named: the pattern, the words per slot, and the rules. With an interactive map." />
 
@@ -36,6 +37,11 @@ Light and dark are not part of the name. They are modes of the same token.
 
 ## Explore the names
 <TokenMap />
+
+## Explore the references
+Which token points to which. Hover or tap a token to follow its chain from primitive to global token to component token. Dashed lines skip the global tokens.
+
+<TokenChain />
 
 ## Good to know
 - Toggle and Switch are separate components.
