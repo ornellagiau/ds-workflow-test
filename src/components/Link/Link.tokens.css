@@ -1,0 +1,20 @@
+/* Provisional token values for the Link story. Generated from Link.contract.yaml and the Turm token data.
+   The CSS variable names are provisional (the CSS naming rule is not defined yet). */
+:root {
+  --color-border-highlight: #C4E8E3;
+  --color-content-secondary-idle-default: #5C5E6A;
+  --link-border-primary-disabled: #898B96;
+  --link-border-primary-idle: #3AB8AB;
+  --link-border-secondary-idle: #29293A;
+  --link-content-primary-disabled: #898B96;
+  --link-content-primary-idle: #29293A;
+}
+[data-theme="dark"] {
+  --color-border-highlight: #005450;
+  --color-content-secondary-idle-default: #C0C1C6;
+  --link-border-primary-disabled: #5C5E6A;
+  --link-border-primary-idle: #3AB8AB;
+  --link-border-secondary-idle: #F9F9FA;
+  --link-content-primary-disabled: #5C5E6A;
+  --link-content-primary-idle: #F9F9FA;
+}

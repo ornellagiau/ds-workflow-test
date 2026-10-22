@@ -1,0 +1,96 @@
+import { Meta, Canvas, Controls } from "@storybook/addon-docs/blocks";
+import * as LinkStories from "./Link.stories";
+
+<Meta of={LinkStories} />
+
+# Link
+
+> **Status: draft.** Generated from `Link.contract.yaml`. Hover, press and tab to see the states. Needs review.
+
+<Canvas of={LinkStories.Primary} />
+
+## Purpose
+Text link that goes somewhere else (another page or view).
+
+## When not to use
+- Actions on the current page. Use Button.
+
+## Emphasis
+| Emphasis | Use |
+|---|---|
+| `primary` | Default link with an accent underline. |
+| `secondary` | Dark underline. |
+| `quiet` | Underline only on hover. Use only in link lists (footer, navigation). |
+
+## Props
+| Contract | In code | Type | Default |
+|---|---|---|---|
+| `text` | `children` | string | `Hier einloggen` |
+| `size` | `size` | `S` / `M` | `S` |
+| `emphasis` | `emphasis` | `primary` / `secondary` / `quiet` | `primary` |
+| `leading_icon` | `leadingIcon` | slot, optional | `null` |
+| `trailing_icon` | `trailingIcon` | slot, optional | `null` |
+| `href` | `href` | string, not visible | required |
+| `disabled` | `disabled` | boolean | `false` |
+
+<Controls of={LinkStories.Primary} />
+
+## Styles by emphasis and state
+Hover, focus and pressed are set by interaction (CSS), not by props. Only `disabled` is a prop.
+
+| Emphasis | State | Text color | Underline | Focus ring |
+|---|---|---|---|---|
+| primary | idle | `Link/Content/Primary/Idle` | `Link/Border/Primary/Idle` | — |
+| primary | hover | `Link/Content/Primary/Idle` | `Link/Border/Secondary/Idle` | — |
+| primary | focus | `Link/Content/Primary/Idle` | `Link/Border/Primary/Idle` | `Color/Border/Highlight` |
+| primary | pressed | `Color/Content/Secondary/Idle/Default` | `Link/Border/Primary/Idle` | — |
+| primary | disabled | `Link/Content/Primary/Disabled` | `Link/Border/Primary/Disabled` | — |
+| secondary | idle | `Link/Content/Primary/Idle` | `Link/Border/Secondary/Idle` | — |
+| secondary | hover | `Link/Content/Primary/Idle` | `Link/Border/Primary/Idle` | — |
+| secondary | focus | `Link/Content/Primary/Idle` | `Link/Border/Secondary/Idle` | `Color/Border/Highlight` |
+| secondary | pressed | `Color/Content/Secondary/Idle/Default` | `Link/Border/Secondary/Idle` | — |
+| secondary | disabled | `Link/Content/Primary/Disabled` | `Link/Border/Primary/Disabled` | — |
+| quiet | idle | `Link/Content/Primary/Idle` | none | — |
+| quiet | hover | `Link/Content/Primary/Idle` | `Link/Border/Secondary/Idle` | — |
+| quiet | focus | `Link/Content/Primary/Idle` | none | `Color/Border/Highlight` |
+| quiet | pressed | `Color/Content/Secondary/Idle/Default` | `Link/Border/Secondary/Idle` | — |
+| quiet | disabled | `Link/Content/Primary/Disabled` | none | — |
+
+## Tokens
+| Token | Light | Dark |
+|---|---|---|
+| `Color/Border/Highlight` | #C4E8E3 | #005450 |
+| `Color/Content/Secondary/Idle/Default` | #5C5E6A | #C0C1C6 |
+| `Link/Border/Primary/Disabled` | #898B96 | #5C5E6A |
+| `Link/Border/Primary/Idle` | #3AB8AB | #3AB8AB |
+| `Link/Border/Secondary/Idle` | #29293A | #F9F9FA |
+| `Link/Content/Primary/Disabled` | #898B96 | #5C5E6A |
+| `Link/Content/Primary/Idle` | #29293A | #F9F9FA |
+
+## Accessibility
+- **role:** link
+- **keyboard:** Tab moves focus to the link, Enter follows the link
+- **accessible name:** the visible text
+- **focus indicator:** 2px ring outside, Color/Border/Highlight
+- **target size:** S 18px high, M 20px high
+- **disabled:** aria-disabled, not followed
+
+## Open
+- **set:** low contrast, no Link focus token
+- **focus indicator:** 1.3:1 light, 1.9:1 dark
+- **target size:** below 24px, inline links are exempt
+
+## Assumed, not in Figma
+- `href`: not in Figma
+- `disabled`: Figma has State=Disabled
+- `states`: set by interaction, not by the author
+- `keyboard`
+- `accessible_name`
+- `disabled`
+
+## Examples
+<Canvas of={LinkStories.Sizes} />
+<Canvas of={LinkStories.WithIcons} />
+<Canvas of={LinkStories.Disabled} />
+<Canvas of={LinkStories.QuietInLinkList} />
+<Canvas of={LinkStories.Dark} />

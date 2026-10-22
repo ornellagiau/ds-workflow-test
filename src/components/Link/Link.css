@@ -1,0 +1,45 @@
+/* Link: written from Link.contract.yaml.
+   The CSS variable names are provisional (the CSS naming rule is not defined yet). */
+
+.ds-link {
+  display: inline-flex;
+  color: var(--link-content-primary-idle);
+  text-decoration: none;
+  font-family: "SZSansDigital", sans-serif;   /* typography: variable modes (Role, Breakpoint), not part of the colors */
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+}
+.ds-link--s { font-size: 12px; }
+.ds-link--m { font-size: 14px; }
+
+/* In Figma the 1px underline sits inside the 4px bottom padding: 3px padding + 1px border = 4px. */
+.ds-link__content {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid var(--link-border-primary-idle);
+}
+.ds-link__icon { display: inline-flex; width: 16px; height: 16px; }
+
+/* emphasis */
+.ds-link--secondary .ds-link__content { border-bottom-color: var(--link-border-secondary-idle); }
+.ds-link--quiet .ds-link__content { border-bottom-color: transparent; }   /* keeps the height */
+
+/* hover */
+.ds-link--primary:hover .ds-link__content   { border-bottom-color: var(--link-border-secondary-idle); }
+.ds-link--secondary:hover .ds-link__content { border-bottom-color: var(--link-border-primary-idle); }
+.ds-link--quiet:hover .ds-link__content     { border-bottom-color: var(--link-border-secondary-idle); }
+
+/* focus: 2px ring outside (OPEN in the contract: low contrast, no Link focus token) */
+.ds-link:focus-visible { outline: 2px solid var(--color-border-highlight); outline-offset: 0; }
+
+/* pressed */
+.ds-link:active { color: var(--color-content-secondary-idle-default); }
+.ds-link--quiet:active .ds-link__content { border-bottom-color: var(--link-border-secondary-idle); }
+
+/* disabled (all emphases use the Primary disabled tokens; quiet has no underline) */
+.ds-link[aria-disabled="true"] { color: var(--link-content-primary-disabled); cursor: not-allowed; }
+.ds-link[aria-disabled="true"] .ds-link__content { border-bottom-color: var(--link-border-primary-disabled); }
+.ds-link--quiet[aria-disabled="true"] .ds-link__content { border-bottom-color: transparent; }
