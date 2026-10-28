@@ -84,7 +84,12 @@ try {
     log.versionsOk = false;
     log.versionsError = e.message;
   }
-  if (!events) events = [{ id: String(file.version), at: file.lastModified, source: "polling" }];
+  // The version history lags behind: the newest saves show up there only later. So the current state of the file
+  // (its version id and last-modified time) is always added as well. Same id = counted once.
+  events = events || [];
+  if (file.version && file.lastModified && !events.some((e) => e.id === String(file.version))) {
+    events.push({ id: String(file.version), at: file.lastModified, source: "polling" });
+  }
   const known = new Set(log.events.map((e) => e.id));
   newEvents = events.filter((e) => e.id && e.at && !known.has(e.id));
   log.events = [...newEvents, ...log.events].sort((a, b) => b.at.localeCompare(a.at)).slice(0, MAX_EVENTS);
@@ -121,10 +126,13 @@ if (error && previousStatus !== "failed") {
   parts.push("**The Turm check works again.**");
 }
 if (!error && firstRun) {
-  parts.push(`**Tracking of Turm started.** Latest edit: ${lastEdit ? fmt(lastEdit) : "unknown"}. ${s.total} earlier changes were found in the history.`);
+  parts.push(
+    `**Tracking of Turm started.** Latest edit: ${lastEdit ? fmt(lastEdit) : "unknown"}. ${s.total} change${s.total === 1 ? "" : "s"} found in the history.` +
+      (log.versionsOk === false ? " The version history is not available for this token, so only the latest save is known. Add the file versions scope to the token to see more." : "")
+  );
 } else if (!error && newEvents.length) {
   parts.push(
-    `**Turm changed.** ${newEvents.length} new save${newEvents.length > 1 ? "s" : ""} since the last check. Latest edit: ${lastEdit ? fmt(lastEdit) : "unknown"}. Changes in the last 7 days: ${s.c7}.\n\nTokens may have changed. Open a chat with Claude and ask for the exact token check.\n\n_This counts every save, not only token changes._`
+    `**Turm changed.** ${newEvents.length} new save${newEvents.length > 1 ? "s" : ""} since the last check. Latest edit: ${lastEdit ? fmt(lastEdit) : "unknown"}. Changes in the last 7 days: ${s.c7}.\n\n${newEvents.slice(0, 5).map((e) => `- ${fmt(e.at)}`).join("\n")}\n\nTokens may have changed. Open a chat with Claude and ask for the exact token check.\n\n_This counts every save, not only token changes._`
   );
 }
 if (parts.length) writeFileSync(NOTIFY, parts.join("\n\n") + `\n\n[Turm updates page](${PAGE_LINK})\n`);
