@@ -1,0 +1,20 @@
+{
+  "fileKey": "MepRgN24p5VtYVZf1IZer7",
+  "startedAt": "2026-10-28T03:44:38.456Z",
+  "lastStatus": "ok",
+  "versionsOk": false,
+  "events": [
+    {
+      "id": "2413279000514044527",
+      "at": "2026-10-22T19:24:08Z",
+      "source": "polling"
+    }
+  ],
+  "lastModified": "2026-10-22T19:24:08Z",
+  "versionsError": "Figma answered 403 Forbidden",
+  "lastCheck": {
+    "at": "2026-10-28T03:44:38.456Z",
+    "ok": true,
+    "error": null
+  }
+}
