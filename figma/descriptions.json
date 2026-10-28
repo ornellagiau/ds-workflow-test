@@ -1,10 +1,18 @@
 {
+  "39:4": {
+    "name": "Button",
+    "description": "Action on the current page. Max. one primary per view. Not for navigation."
+  },
   "1:127": {
-    "name": "Button primary",
+    "name": "Variant=Primary",
     "description": "Main action in a view. Max. one per view. For navigation use a link."
   },
   "1:128": {
-    "name": "Button secondary",
+    "name": "Variant=Secondary",
     "description": "Alternative action next or below to a primary button."
+  },
+  "85:227": {
+    "name": "Link",
+    "description": "Ein Set für alle Textlinks. Ersetzt: Small, Small underlined, Login, Back, Link mit Pfeil, Link Inhalt laden.\n\nACHSEN\nSize S / M\nEmphasis Primary (Akzent-Unterstrich) / Secondary (dunkler Unterstrich) / Quiet (Unterstrich erst im Hover)\nState Idle / Hover / Focus / Pressed / Disabled\n= 30 Varianten\n\nKEINE Achsen: Product und Breakpoint laufen ueber Variable Modes\nTypography Role: SZ, SZ Interview, SZ Meinung, SZ Reportage, Magazin, Magazin Interview, Jetzt, Jetzt Meinung, Dossier\nTypography Semantic: Mobile / Tablet / Desktop\nColor Semantics: light / dark\n\nPROPERTIES\nLink Text, Show Leading Icon, Show Trailing Icon.\nIcon-Swap: die verschachtelten Instanzen Icon Leading / Icon Trailing sind direkt tauschbar.\nDer Unterstrich ist ein border-bottom und wächst mit Autolayout mit."
   }
 }

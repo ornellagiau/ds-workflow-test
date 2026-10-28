@@ -3,7 +3,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "tokens": "node scripts/build-tokens.mjs && node scripts/build-token-docs.mjs",
+    "tokens": "node scripts/build-token-docs.mjs",
     "figma:descriptions": "node scripts/figma-descriptions.mjs",
     "prepare-content": "npm run tokens && npm run figma:descriptions && npm run check-sync",
     "storybook": "npm run tokens && storybook dev -p 6006",

@@ -1,16 +1,22 @@
 import { Meta } from "@storybook/addon-docs/blocks";
 
-<Meta title="Introduction" summary="Entry point and index of the DS workflow test design system." />
+<Meta title="Introduction" summary="Entry point and index of the Turm design system test: color tokens, components and status pages." />
 
-# DS workflow test
+# Turm design system test
 
 One place for docs and live previews. Docs are written here and nowhere else.
 
 ## Index
-- **Foundations/Color tokens**: all color tokens, generated from Figma via `tokens/tokens.json`.
-- **Components/Button**: actions on the current page (`primary`, `secondary`).
+- **Foundations/Token naming**: how Turm color tokens are named, with an interactive map of the names and of which token points to which.
+- **Foundations/Color tokens**: all Turm color tokens with light and dark values, what each is for and what it is not for, and its AA status.
+- **Components/Link**: navigation to another page or view. Takes its colors from the Turm tokens.
+- **Components/Button**: actions on the current page (`primary`, `secondary`). Uses plain hex values on purpose, it is the demo for the sync status.
+- **Notes/Token review**: a dated review of the color tokens against current practice, with open decisions.
+- **Status/Sync status**: generated comparison of Figma components and code.
+- **Status/Turm updates**: how often the Turm Foundations file in Figma changes (generated daily).
 
 ## How this works
-1. Token values live in Figma → exported to `tokens/tokens.json` (`figma/export-tokens.js`).
+1. Token values and descriptions live in the Figma file **Turm Foundations**. A Claude chat exports them to `tokens/turm-colors.json`. The Color tokens page is generated from that file.
 2. Component docs are one `.mdx` file per component, next to the code.
-3. The `figma-description` lines in each `.mdx` are copied into Figma (`figma/sync-descriptions.js`).
+3. The `figma-description` lines in each component `.mdx` are copied into Figma (`figma/sync-descriptions.js`).
+4. A daily run checks Turm for changes (you get an email through a GitHub issue) and compares Figma components with the code (Status/Sync status).

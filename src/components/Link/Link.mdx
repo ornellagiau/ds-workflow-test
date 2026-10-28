@@ -3,6 +3,26 @@ import * as LinkStories from "./Link.stories";
 
 <Meta of={LinkStories} />
 
+{/* figma-description:set:
+Ein Set für alle Textlinks. Ersetzt: Small, Small underlined, Login, Back, Link mit Pfeil, Link Inhalt laden.
+
+ACHSEN
+Size S / M
+Emphasis Primary (Akzent-Unterstrich) / Secondary (dunkler Unterstrich) / Quiet (Unterstrich erst im Hover)
+State Idle / Hover / Focus / Pressed / Disabled
+= 30 Varianten
+
+KEINE Achsen: Product und Breakpoint laufen ueber Variable Modes
+Typography Role: SZ, SZ Interview, SZ Meinung, SZ Reportage, Magazin, Magazin Interview, Jetzt, Jetzt Meinung, Dossier
+Typography Semantic: Mobile / Tablet / Desktop
+Color Semantics: light / dark
+
+PROPERTIES
+Link Text, Show Leading Icon, Show Trailing Icon.
+Icon-Swap: die verschachtelten Instanzen Icon Leading / Icon Trailing sind direkt tauschbar.
+Der Unterstrich ist ein border-bottom und wächst mit Autolayout mit.
+*/}
+
 # Link
 
 > **Status: draft.** Generated from `Link.contract.yaml`. Hover, press and tab to see the states. Needs review.

@@ -1,5 +1,6 @@
 {
-  "$description": "Maps Figma components to code. Figma: one component set 'Button' with a Variant property. Code: one Button with a variant prop. Code Connect template: src/components/Button/Button.figma.ts.",
+  "$description": "Maps Figma components to code. Used by scripts/figma-descriptions.mjs (descriptions) and scripts/check-sync.mjs (comparison). Per component: code = the main file (the .css, .mdx and .figma.ts live next to it); figmaSetId = the component set in the sandbox file; properties = Figma property -> code prop; variants = extra description targets (can be empty); sync = what check-sync compares (see README, section 'Sync check and Code Connect').",
+  "$fileKey": "Qg7XFgQigOnQuD40ATSl9O",
   "Button": {
     "code": "src/components/Button/Button.jsx",
     "figmaSetId": "39:4",
@@ -7,6 +8,66 @@
     "variants": {
       "primary":   { "figmaName": "Variant=Primary",   "nodeId": "1:127" },
       "secondary": { "figmaName": "Variant=Secondary", "nodeId": "1:128" }
+    },
+    "sync": {
+      "layout": true,
+      "elements": {
+        "root":  { "classes": ["ds-button"] },
+        "label": { "parent": "root", "classes": [] }
+      },
+      "layers": { "root": {}, "label": { "type": "TEXT" } },
+      "axes": {
+        "Variant": { "Primary": "ds-button--primary", "Secondary": "ds-button--secondary" }
+      },
+      "checks": [
+        { "name": "Background",   "figma": { "layer": "root",  "kind": "fill" },     "css": { "element": "root",  "prop": "background-color" } },
+        { "name": "Border color", "figma": { "layer": "root",  "kind": "stroke" },   "css": { "element": "root",  "prop": "border-top-color" } },
+        { "name": "Text color",   "figma": { "layer": "label", "kind": "textFill" }, "css": { "element": "label", "prop": "color" } }
+      ]
+    }
+  },
+  "Link": {
+    "code": "src/components/Link/Link.jsx",
+    "figmaSetId": "85:227",
+    "properties": {
+      "Link Text": "children",
+      "Size": "size",
+      "Emphasis": "emphasis",
+      "State": "disabled",
+      "Show Leading Icon": "leadingIcon",
+      "Show Trailing Icon": "trailingIcon",
+      "Swap Leading Icon": "leadingIcon",
+      "Swap Trailing Icon": "trailingIcon"
+    },
+    "variants": {},
+    "sync": {
+      "tokensCss": "src/components/Link/Link.tokens.css",
+      "darkFrameId": "160:98",
+      "collapseAxis": "Size",
+      "elements": {
+        "root":    { "classes": ["ds-link"] },
+        "content": { "parent": "root", "classes": ["ds-link__content"] },
+        "label":   { "parent": "content", "classes": ["ds-link__label"] }
+      },
+      "layers": { "root": {}, "content": { "name": "Content" }, "label": { "type": "TEXT" } },
+      "axes": {
+        "Size": { "S": "ds-link--s", "M": "ds-link--m" },
+        "Emphasis": { "Primary": "ds-link--primary", "Secondary": "ds-link--secondary", "Quiet": "ds-link--quiet" },
+        "State": {
+          "Idle": [],
+          "Hover": [":hover"],
+          "Focus": [":focus-visible"],
+          "Pressed": [":active"],
+          "Disabled": ["[aria-disabled=true]"]
+        }
+      },
+      "checks": [
+        { "name": "Text color",       "figma": { "layer": "label",   "kind": "textFill" },          "css": { "element": "label",   "prop": "color" } },
+        { "name": "Underline color",  "figma": { "layer": "content", "kind": "bottomStroke" },      "css": { "element": "content", "prop": "border-bottom-color" } },
+        { "name": "Underline width",  "figma": { "layer": "content", "kind": "bottomStrokeWidth" }, "css": { "element": "content", "prop": "border-bottom-width" } },
+        { "name": "Focus ring color", "figma": { "layer": "root",    "kind": "stroke" },            "css": { "element": "root",    "prop": "outline-color" } },
+        { "name": "Focus ring width", "figma": { "layer": "root",    "kind": "strokeWidth" },       "css": { "element": "root",    "prop": "outline-width" } }
+      ]
     }
   }
 }

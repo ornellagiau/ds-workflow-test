@@ -1,9 +1,9 @@
-// tokens/turm-colors.draft.json -> src/docs/ColorTokensDraft.mdx
-// DRAFT. Real Turm color tokens, grouped by what you want to color (Background, Content, Border), then by component.
+// tokens/turm-colors.json -> src/docs/ColorTokens.mdx
+// Real Turm color tokens, grouped by what you want to color (Background, Content, Border), then by component.
 // Values are written literally into the MDX, because Storybook's AI manifest only sees what is in the file.
 import { readFileSync, writeFileSync } from "node:fs";
 
-const data = JSON.parse(readFileSync("tokens/turm-colors.draft.json", "utf8"));
+const data = JSON.parse(readFileSync("tokens/turm-colors.json", "utf8"));
 const prim = data.primitives;
 const sem = new Map(data.semantic.map(([name, light, dark, description]) => [name, { name, light, dark, description }]));
 
@@ -84,17 +84,17 @@ const all = [...sem.values()].map((t) => ({ ...t, ...parseName(t.name) }));
 const globals = all.filter((t) => t.component === "Color");
 const components = all.filter((t) => t.component !== "Color");
 
-let mdx = `{/* GENERATED from tokens/turm-colors.draft.json. Do not edit. */}
+let mdx = `{/* GENERATED from tokens/turm-colors.json. Do not edit. */}
 import { Meta } from "@storybook/addon-docs/blocks";
 import Sw from "./Swatch.jsx";
 
-<Meta title="Foundations/Color tokens (draft)" summary="Real Turm color tokens, grouped by what you want to color. Light and dark values, what each token is for, and AA status." />
+<Meta title="Foundations/Color tokens" summary="Real Turm color tokens, grouped by what you want to color. Light and dark values, what each token is for, and AA status." />
 
-# Color tokens (draft)
+# Color tokens
 
 > **Source: Figma.** Values and descriptions come from the Figma file [Turm Foundations](https://www.figma.com/design/MepRgN24p5VtYVZf1IZer7). Change them there. This page is generated.
 >
-> **Draft.** The CSS naming rule still needs to be defined, so no CSS variable names are shown.
+> The CSS naming rule is not defined yet, so no CSS variable names are shown.
 
 ## How to choose a token
 1. Start with the **global tokens** (\`Color/*\`). They work anywhere.
@@ -160,5 +160,5 @@ for (const [fam, items] of families) {
   mdx += `\n</details>\n\n`;
 }
 
-writeFileSync("src/docs/ColorTokensDraft.mdx", mdx);
-console.log(`token docs: ${sem.size} semantic + ${Object.keys(prim).length} primitives -> src/docs/ColorTokensDraft.mdx`);
+writeFileSync("src/docs/ColorTokens.mdx", mdx);
+console.log(`token docs: ${sem.size} semantic + ${Object.keys(prim).length} primitives -> src/docs/ColorTokens.mdx`);

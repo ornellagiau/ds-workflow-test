@@ -12,7 +12,7 @@ One topic needs input from the design team: **contrast**. Everything else is alr
 
 ## Contrast: input needed
 
-The standard is WCAG 2.2 AA. Normal text needs 4.5:1, the outline of a control needs 3:1. The ratios are calculated from the token colors and rounded.
+The standard is WCAG 2.2 AA. Normal text needs 4.5:1, the outline of an interactive element needs 3:1. The ratios are calculated from the token colors and rounded.
 
 | # | Token | On | Today | Proposal | Decision |
 |---|---|---|---|---|---|
@@ -20,18 +20,18 @@ The standard is WCAG 2.2 AA. Normal text needs 4.5:1, the outline of a control n
 | 1b | `Color/Content/Warning` (light) | `Color/Background/Warning` | 3.0:1 | `szOrange/600` (5.7:1) | open |
 | 2 | `Color/Content/Success` (light) | `Color/Background/Success` | 4.2:1 | `szSignalGreen/600` (5.8:1) | open |
 | 3 | `Color/Content/Primary/Idle/Inversed` (dark) | `Color/Background/Inversed` | 1.3:1 | A: light text `szGray/25` (10.8:1). B: a light Inversed background in dark mode, so it is truly inverted. | open |
-| 4 | `Color/Border/Primary` | `Color/Background/Primary` | 1.3:1 light, 1.5:1 dark | New border token for controls at `szGray/400` (3.4:1 light, 5.0:1 dark). See below. | open |
+| 4 | `Color/Border/Primary` | `Color/Background/Primary` | 1.3:1 light, 1.5:1 dark | New border token for interactive elements at `szGray/400` (3.4:1 light, 5.0:1 dark). See below. | open |
 
 These cases are fine: Warning in dark mode (5.0:1), Success on the plain page (4.7:1), Inversed in light mode (13.6:1).
 
 ### Borders in plain words
 
-`Color/Border/Primary` is a very light grey line. That is fine for dividers. But WCAG asks for 3:1 for the outline of a control (a text field, checkbox or radio), so that people can see where the control is. Input, Checkbox, Radio and Chip outlines use that light grey today. The only border that passes is `Color/Border/Strong` (14:1), and it is very heavy.
+`Color/Border/Primary` is a very light grey line. That is fine for dividers. But WCAG asks for 3:1 for the outline of an interactive element (a text field, checkbox or radio), so that people can see where the element is. Input, Checkbox, Radio and Chip outlines use that light grey today. The only border that passes is `Color/Border/Strong` (14:1), and it is very heavy.
 
 The question is whether the outline is the only thing that shows where the field is.
 
-- If yes, add one border token for controls (proposal in the table).
-- If a fill or something else already makes the control recognizable, the light border is allowed and nothing changes.
+- If yes, add one border token for interactive elements (proposal in the table).
+- If a fill or something else already makes the element recognizable, the light border is allowed and nothing changes.
 
 ## Working well
 

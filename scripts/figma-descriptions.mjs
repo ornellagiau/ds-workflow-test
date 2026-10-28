@@ -1,5 +1,6 @@
 // Reads `figma-description:<key>:` lines from each component's MDX and maps them to Figma node IDs
 // via figma/component-map.json. Output: figma/descriptions.json { nodeId: { name, description } }.
+// A description can span several lines, line breaks are kept.
 //   figma-description:set:      -> the component set (figmaSetId)
 //   figma-description:<variant>: -> each variant (variants.<variant>.nodeId)
 import { readFileSync, writeFileSync } from "node:fs";
@@ -9,7 +10,8 @@ const out = {};
 const read = (mdx, key, component) => {
   const m = new RegExp(`\\{\\/\\*\\s*figma-description:${key}:\\s*([\\s\\S]*?)\\*\\/\\}`).exec(mdx);
   if (!m) throw new Error(`Missing figma-description:${key} in ${component}.mdx`);
-  return m[1].trim().replace(/\s+/g, " ");
+  // keeps line breaks (so a description can have a structure), collapses other whitespace
+  return m[1].trim().split("\n").map((l) => l.trim().replace(/\s+/g, " ")).join("\n").replace(/\n{3,}/g, "\n\n");
 };
 for (const [component, entry] of Object.entries(map)) {
   if (component.startsWith("$")) continue;

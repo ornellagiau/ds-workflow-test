@@ -27,18 +27,18 @@ Triggers an **action on the current page**, e.g. save, submit, cancel.
 
 ## Anti-patterns
 - Two `primary` buttons in the same view.
-- Using a button's color tokens on other elements (they are button-only by name).
+- Copying the button's colors to other elements. They are plain hex values on purpose (see Known gaps).
 
 
 ## Accessibility
-- Contrast (checked against tokens): `primary` text white on #4705C3 = **10.11:1** (passes AA and AAA). `secondary` text black on white = 21:1. Outline #4705C3 on white = 10.11:1 (passes 3:1 for UI components).
+- Contrast (checked against the hex values in the CSS): `primary` text white on #4705C3 = **10.11:1** (passes AA and AAA). `secondary` text black on white = 21:1. Outline #4705C3 on white = 10.11:1 (passes 3:1 for UI components).
 - `secondary` has a transparent background: contrast depends on the page background. Only checked on white.
 - Focus: uses the browser's default focus ring. Do not remove it.
 
 ## Known gaps (from Figma)
 - Height is **37px**, below the 44px target size.
 - No hover, focus, disabled or pressed states exist in Figma yet.
-- `button-primary/text` and `button-secondary/text` have no state segment; the other tokens use `-idle`.
+- Colors are plain hex values, not tokens. This is on purpose: Button is the demo for the Sync status page and is not connected to the Turm tokens.
 -  The label is a Figma text property (`Label`) and maps to `children`. Figma `Variant` maps to `variant`. Mapping: `Button.figma.ts`.
 
 ## Examples

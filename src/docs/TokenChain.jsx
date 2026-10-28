@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import data from "../../tokens/turm-colors.draft.json";
+import data from "../../tokens/turm-colors.json";
 
 // Interactive map of which token points to which: primitives -> global tokens (Color/*) -> component tokens.
 // Hover (or tap, to pin) a token: thin lines show what it points to and who uses it. Dashed lines skip the global tokens.

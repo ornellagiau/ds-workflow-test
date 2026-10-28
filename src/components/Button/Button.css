@@ -1,5 +1,7 @@
 /* Specs from Figma (Button primary 1:127, Button secondary 1:128):
-   Inter Bold 12, line-height auto, padding 10/30, 1px stroke inside + included in layout, radius 0, height 37 */
+   Inter Bold 12, line-height auto, padding 10/30, 1px stroke inside + included in layout, radius 0, height 37.
+   Colors are plain hex values on purpose: Button is not connected to the Turm tokens.
+   It stays as the demo for the Sync status page. */
 .ds-button {
   font-family: "Inter", system-ui, sans-serif;
   font-weight: 700;
@@ -11,13 +13,13 @@
   cursor: pointer;
 }
 .ds-button--primary {
-  background: var(--button-primary-surface-idle);
-  border-color: var(--button-primary-outline-idle);
-  color: var(--button-primary-text);
+  background: #4705C3;
+  border-color: #4705C3;
+  color: #FFFFFF;
 }
 .ds-button--secondary {
   background: transparent;
-  border-color: var(--button-secondary-outline-idle);
-  color: var(--button-secondary-text);
+  border-color: #4705C3;
+  color: #000000;
 }
-/* No hover/focus/disabled tokens exist in Figma yet. The browser's default focus ring is kept on purpose. */
+/* No hover/focus/disabled states exist in Figma yet. The browser's default focus ring is kept on purpose. */

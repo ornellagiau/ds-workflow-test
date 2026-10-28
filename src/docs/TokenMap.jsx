@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import data from "../../tokens/turm-colors.draft.json";
+import data from "../../tokens/turm-colors.json";
 
 // Interactive map of the token naming: Component -> Element -> Role -> State -> Variant.
 // Hover (or tap, to pin) a name: thin lines show which other names exist together with it.
