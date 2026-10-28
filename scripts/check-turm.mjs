@@ -22,6 +22,7 @@ const NOTIFY = "status/turm-notify.md";
 const PAGE_LINK = "https://ornellagiau.github.io/ds-workflow-test/?path=/docs/status-turm-updates--docs";
 const MAX_EVENTS = 500;
 const DAY = 86400000;
+const WINDOW = 15 * 60 * 1000;   // a version created up to 15 minutes after a save counts as that save
 const now = process.env.TURM_NOW ? new Date(process.env.TURM_NOW) : new Date();
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -84,15 +85,32 @@ try {
     log.versionsOk = false;
     log.versionsError = e.message;
   }
-  // The version history lags behind: the newest saves show up there only later. So the current state of the file
-  // (its version id and last-modified time) is always added as well. Same id = counted once.
+  // The version history lags behind, and the file's "version" id does not change with every save. So the file's
+  // last-modified time is used too: a save that is newer than every known event is logged right away as "lm:<time>".
+  // When the version history later lists that save (created up to 15 minutes after it), it replaces the "lm" entry silently.
   events = events || [];
-  if (file.version && file.lastModified && !events.some((e) => e.id === String(file.version))) {
-    events.push({ id: String(file.version), at: file.lastModified, source: "polling" });
+  const existing = log.events;
+  const known = new Set(existing.map((e) => e.id));
+  const replaced = new Set();
+  const toLog = [];
+  newEvents = [];
+  for (const v of events.filter((e) => e.id && e.at && !known.has(e.id))) {
+    const lm = existing.find((l) => {
+      const d = Date.parse(v.at) - Date.parse(l.at);   // a version is created after the save it belongs to
+      return l.id.startsWith("lm:") && !replaced.has(l.id) && d >= -60000 && d <= WINDOW;
+    });
+    if (lm) replaced.add(lm.id);
+    else newEvents.push(v);
+    toLog.push(v);
   }
-  const known = new Set(log.events.map((e) => e.id));
-  newEvents = events.filter((e) => e.id && e.at && !known.has(e.id));
-  log.events = [...newEvents, ...log.events].sort((a, b) => b.at.localeCompare(a.at)).slice(0, MAX_EVENTS);
+  const all = [...toLog, ...existing.filter((e) => !replaced.has(e.id))];
+  if (file.lastModified && !all.some((e) => Date.parse(e.at) >= Date.parse(file.lastModified) - 60000)) {   // no event at or after the last save yet
+    const lm = { id: `lm:${file.lastModified}`, at: file.lastModified, source: "polling" };
+    toLog.push(lm);
+    newEvents.push(lm);
+    all.push(lm);
+  }
+  log.events = all.sort((a, b) => b.at.localeCompare(a.at)).slice(0, MAX_EVENTS);
 } catch (e) {
   error = e.message;
 }
