@@ -1,4 +1,3 @@
-import "../src/tokens.css";
 import "./docs.css";
 import theme from "./theme";
 
