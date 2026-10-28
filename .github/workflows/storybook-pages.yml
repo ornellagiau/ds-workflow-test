@@ -1,5 +1,7 @@
-# On every push to main:
-#   deploy:       builds both Storybooks and publishes them to GitHub Pages
+# On every push to main, and once a day:
+#   deploy:       checks the Turm Foundations file in Figma (scripts/check-turm.mjs, read-only),
+#                 saves status/turm-log.json, opens or updates the GitHub issue "Turm changes" (GitHub emails you),
+#                 builds both Storybooks and publishes them to GitHub Pages
 #                 /      polished docs (.storybook-docs)   /dev/  developer Storybook (.storybook)
 #   (deploy also runs scripts/check-sync.mjs -> Status/Sync status page)
 #   code-connect: publishes src/**/*.figma.ts templates to Figma (needs secret FIGMA_ACCESS_TOKEN)
@@ -12,14 +14,17 @@ on:
   workflow_dispatch:
 permissions:
   contents: read
-  pages: write
-  id-token: write
 concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write   # saves status/turm-log.json
+      issues: write     # opens / comments on the issue "Turm changes"
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -31,6 +36,36 @@ jobs:
           cache: npm
       # npm install (not npm ci): lockfile may lag behind package.json in this test repo
       - run: npm install --no-audit --no-fund
+      - name: Check Turm Foundations (read-only)
+        run: node scripts/check-turm.mjs
+        env:
+          FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+      - name: Save the Turm log
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add status/turm-log.json
+          if git diff --cached --quiet; then
+            echo "No log change."
+          else
+            git commit -m "Turm log: update"
+            git pull --rebase --autostash origin main || true
+            git push || echo "Push skipped (the repo changed meanwhile). The next run adds it."
+          fi
+      - name: Notify by GitHub issue
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if [ ! -f status/turm-notify.md ]; then echo "Nothing to report."; exit 0; fi
+          number=$(gh issue list --state open --search "Turm changes in:title" --json number,title --jq '[.[] | select(.title=="Turm changes")][0].number // empty')
+          if [ -z "$number" ]; then
+            gh issue create --title "Turm changes" --body-file status/turm-notify.md --assignee "${{ github.repository_owner }}"
+          else
+            gh issue comment "$number" --body-file status/turm-notify.md
+          fi
       - run: npm run build-all
         env:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}   # used by scripts/check-sync.mjs (read-only)
