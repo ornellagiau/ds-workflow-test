@@ -1,38 +1,55 @@
-# DS workflow test: cost-free design system pipeline
+# Turm design system: docs, checks and Figma sync
 
-Figma (Turm Foundations: tokens) → GitHub (docs, code, daily checks) → Storybook on GitHub Pages (team view) → Claude (reads the repo).
+Figma (Turm Foundations: tokens; a sandbox file: components) → this repo (docs, code, daily checks) → Storybook on GitHub Pages → Claude (reads the repo).
 
-**State (28 Oct 2026):** the real Turm color tokens (176) with their descriptions are documented. Two components exist: **Link** (colors from the Turm tokens, provisional CSS names) and **Button** (plain hex values on purpose, the demo for the sync status). The repo is **public for now** and holds real Turm color token names, values and descriptions. It is meant to become private later, then Pages needs another home.
+**What it does.** It documents the real Turm color tokens and the first components (Link, Button) and keeps them honest: a daily run checks whether the Turm file in Figma changed, and compares the Figma components with the code in light and dark mode. It costs nothing to run (GitHub Actions and Pages).
 
-## Setup (about 15 min)
-1. Create a **public** repo on your personal GitHub account (GitHub Pages is free only for public repos). Mind what it contains: Turm color tokens and descriptions, no other internal SZ content.
-2. Upload this folder's contents to the repo (drag and drop in the GitHub web UI works, or `git push`).
-3. In the repo: **Settings → Pages → Source: GitHub Actions**.
-4. The workflow runs on every push and once a day. Your Storybook appears at `https://<user>.github.io/<repo>/`.
-5. In Claude: connect the **GitHub** connector and point it at the repo. `CLAUDE.md` tells it where to look.
+**State (29 Oct 2026).** 176 Turm color tokens with descriptions. Components: **Link** (colors from the Turm tokens, CSS names provisional) and **Button** (plain hex values on purpose, the demo for the sync status). The repo is being moved from a personal account into the SZ GitHub organization, as a private repo with a public docs site. **If you take this over, read [HANDOVER.md](HANDOVER.md) first.** It has the decisions, the steps and the open questions.
+
+## Folders
+| Folder | What | README |
+|---|---|---|
+| `src/` | Docs pages (MDX), components, explorers | [src/README.md](src/README.md) |
+| `tokens/` | The Turm color token data | [tokens/README.md](tokens/README.md) |
+| `scripts/` | The checks and generators, and their tests | [scripts/README.md](scripts/README.md), [scripts/tests/README.md](scripts/tests/README.md) |
+| `figma/` | Mapping of Figma components to code, description sync | [figma/README.md](figma/README.md) |
+| `status/` | The log of Turm changes | [status/README.md](status/README.md) |
+| `.storybook-docs/` | Look and settings of the polished docs site | [.storybook-docs/README.md](.storybook-docs/README.md) |
+| `docs-assets/` | Files the docs site serves (the font) | [docs-assets/README.md](docs-assets/README.md) |
+| `.github/workflows/` | The daily run | section "Operations" below |
+
+## Setup in an organization (about 20 min)
+1. Create the repo in the organization (private) and push the history of this repo into it (a mirror copy, see [HANDOVER.md](HANDOVER.md), section "Move runbook"). The default branch should be `main` (the workflow triggers on pushes to `main`).
+2. **Settings → Pages → Source: GitHub Actions.** If the repo is private and the docs site should be public, the organization plan and policy must allow it (ask the org owner).
+3. **Settings → Secrets and variables → Actions:** add the secret `FIGMA_ACCESS_TOKEN` (scopes `file_content:read`, `file_versions:read`, `file_code_connect:write`; the token's owner needs access to both Figma files). Optional variables: `DOCS_URL` (address of the docs site, used in notifications) and `TURM_LOG_BRANCH` (see "Operations").
+4. **Settings → Actions → General:** allow the actions the workflow uses (`actions/checkout`, `actions/setup-node`, `actions/upload-pages-artifact`, `actions/deploy-pages`).
+5. Run **Actions → Publish Storybook → Run workflow** once. Expected: a green run, the site, a commit "Turm log: update", and the pages Status/Sync status and Status/Turm updates.
+6. In Claude (optional): connect the GitHub connector to the repo. `CLAUDE.md` tells it where to look.
 
 ## Two Storybooks, one source
 | URL | For | Config |
 |---|---|---|
-| `/` | Design and product: doc pages only, neutral theme | `.storybook-docs/` |
-| `/dev/` | Developers: all stories, controls, test cases | `.storybook/` |
+| `/` | Design and product: doc pages only, calm theme, light and dark | `.storybook-docs/` |
+| `/dev/` | Developers: all stories, controls, test cases, default look | `.storybook/` |
 
-Both read the **same** `src/**/*.mdx` and stories. `.storybook-docs/` holds styling and settings only, never content.
+Both read the **same** `src/**/*.mdx` and stories. `.storybook-docs/` holds styling and settings only, never content. The generated pages are written so they also read well without the docs stylesheet.
 
 ## Local
 ```
 npm install
 npm run storybook        # dev version, port 6006
 npm run storybook:docs   # polished version, port 6007
+npm test                 # tests of the checks, with test data, no secret needed
 ```
-To test the sync check without Figma: `FIGMA_FIXTURE=scripts/fixtures/figma-sync.json node scripts/check-sync.mjs`.
+Without Figma: `FIGMA_FIXTURE=scripts/fixtures/figma-sync.json node scripts/check-sync.mjs`.
 
 ## Where things live
 | What | File | Edited by |
 |---|---|---|
 | Turm color tokens (data) | `tokens/turm-colors.json` | Written by the export in a Claude chat from Turm Foundations (Figma). Never by hand |
-| Color tokens page | `src/docs/ColorTokens.mdx` | Generated by `scripts/build-token-docs.mjs` (part of `npm run tokens`) |
-| Token naming page and explorers | `src/docs/TokenNaming.mdx`, `TokenMap.jsx`, `TokenChain.jsx` | You, with Claude |
+| Color tokens page (with the values explorer) | `src/docs/ColorTokens.mdx` | Generated by `scripts/build-token-docs.mjs` (part of `npm run tokens`) |
+| Token naming page and names explorer | `src/docs/TokenNaming.mdx`, `TokenMap.jsx` | You, with Claude |
+| Values explorer | `src/docs/TokenChain.jsx`, used by `scripts/build-token-docs.mjs` | You, with Claude |
 | Token review (dated note) | `src/docs/TokenReview.mdx` | You, with Claude |
 | Component docs | `src/components/*/*.mdx` | You (AI drafts, you review) |
 | Link CSS names | `src/components/Link/Link.tokens.css` | Provisional until the CSS naming rule exists |
@@ -43,7 +60,7 @@ To test the sync check without Figma: `FIGMA_FIXTURE=scripts/fixtures/figma-sync
 | Turm updates page | `src/docs/TurmStatus.mdx` | Generated by `scripts/check-turm.mjs`, not committed |
 
 ## Flow
-- **Token or description change in Turm:** you get the email from the daily check → open a chat with Claude and say "check Turm" → Claude compares and exports `tokens/turm-colors.json` → you commit → the pages update.
+- **Token or description change in Turm:** you see it on the Turm updates page (and get the email, once it is switched on) → open a chat with Claude and say "check Turm" → Claude compares and exports `tokens/turm-colors.json` → you commit → the pages update.
 - **Doc change:** edit the `.mdx` → commit → Storybook updates → ask Claude to run `figma/sync-descriptions.js` in Figma.
 
 ## Sync check and Code Connect
@@ -97,12 +114,12 @@ The workflow also watches the real **Turm Foundations** file in Figma, so you ca
 - It reads the Turm file from Figma, read-only: the last edit and the version history.
 - **Log:** it saves `status/turm-log.json`. The workflow commits it only when something changed. The log holds only timestamps and anonymous version ids, no names and no labels, because the repo is public.
 - **Page:** the Storybook page **Status/Turm updates** shows the last edit, changes in the last 7 and 30 days, the average per week and the latest changes.
-- **Email:** the workflow opens an issue **"Turm changes"** assigned to the repo owner and adds one comment per event. GitHub emails you. Events: tracking started (first run), Turm changed, the check failed (once, not every day), the check works again.
+- **Email: switched off for now.** The workflow can open an issue **"Turm changes"** and add one comment per event (tracking started, Turm changed, the check failed once, the check works again), and GitHub then emails the assignee. The step is commented out in `.github/workflows/storybook-pages.yml` until the repo has moved to the organization, because everyone with write access would get the email. Until then the Turm updates page and `status/turm-log.json` show every change. To switch it on: see "Operations".
 - It counts every save in the version history, not only token changes. The current state of the file (its version id) is counted too, because Figma adds saves to the version list only with a delay. The same id is counted once.
 - If the version history is not available (missing token scope), it counts at most one change per day.
 - **What it cannot show:** it knows *when* Turm was saved, never *which tokens* changed. For that, ask Claude for the exact token check.
 
-**When the email arrives**
+**When Turm changed** (see the Turm updates page, or the email once it is switched on)
 1. Open a chat with Claude in the project and say "check Turm".
 2. Claude reads the tokens through the Figma connector, compares them with the Turm data file in `tokens/`, and tells you exactly which names, values or descriptions changed.
 3. Commit the updated files.
@@ -110,17 +127,56 @@ The workflow also watches the real **Turm Foundations** file in Figma, so you ca
 **Setup**
 - Files: `scripts/check-turm.mjs` and `.github/workflows/storybook-pages.yml`.
 - Secret `FIGMA_ACCESS_TOKEN`: a Figma token with exactly these scopes: `file_content:read`, `file_versions:read`, `file_code_connect:write` (the last one is for the Code Connect publish step). Scopes cannot be changed afterwards: to change them, create a new token and replace the secret. Tokens expire, so note the expiry date. When it expires, the page says "Not checked" and you get an email.
-- The workflow file grants itself `contents: write` (log commit) and `issues: write` (issue). Only if the commit step fails with 403: **Settings → Actions → General → Workflow permissions → Read and write**.
-- First test: **Actions → Publish Storybook → Run workflow**. Expected: the issue "Turm changes", a commit "Turm log: update" and the page Status/Turm updates.
+- The workflow file grants itself `contents: write` (log commit) and `issues: write` (only needed for the email). Only if the commit step fails with 403: **Settings → Actions → General → Workflow permissions → Read and write**.
+- If the default branch is protected and the Actions bot may not push to it, set the repository variable `TURM_LOG_BRANCH` (for example `turm-data`). The log then lives on that branch (see `scripts/turm-log.sh`).
+- First test: **Actions → Publish Storybook → Run workflow**. Expected: a commit "Turm log: update" (or an update of the log branch) and the page Status/Turm updates. With the email switched on, also the issue "Turm changes".
 
 **If something looks wrong**
 | Sign | Cause | Fix |
 |---|---|---|
 | Page says "Not checked: Figma answered 403 or 404" | The token has no access to the Turm file, or it expired | Create a new read-only token and replace the secret |
 | Page says "version history was not available" | The token lacks the file versions scope | Add the scope to the token; until then at most one change per day is counted |
-| The issue gets a comment but no email | GitHub email notifications are off, or the mail is in spam | GitHub → Settings → Notifications: turn on email for "Participating, @mentions and custom". The issue is assigned to the repo owner, so it counts as participating. Check spam. |
+| (Email switched on) The issue gets a comment but no email | GitHub email notifications are off, or the mail is in spam | GitHub → Settings → Notifications: turn on email for "Participating, @mentions and custom". The issue is assigned to the repo owner, so it counts as participating. Check spam. |
 | Log not updated although Turm changed | The log commit was skipped because the repo changed at the same moment | The next run adds it |
 
 **Good to know**
 - The times come from Figma. Scheduled runs can be late, so they are not the time of the change.
 - The repo is public for now. That is why the issue text and the log stay generic. When the repo becomes private, this can be extended.
+
+## Operations
+For whoever runs this. Nothing here needs a server: it is one workflow.
+
+**What runs, and when.** The workflow `Publish Storybook` runs on every push to `main`, once a day at about 06:00 UTC (GitHub may start it hours late), and by hand (**Actions → Publish Storybook → Run workflow**). The jobs: `deploy` (check Turm, keep the log, run the sync check, build, publish), `tests` (`npm test`), `code-connect` (publish the Code Connect templates to Figma). A red `tests` or `code-connect` job does not stop the site from being published.
+
+**Secrets and variables**
+| Name | Kind | What for | Owner | Expires |
+|---|---|---|---|---|
+| `FIGMA_ACCESS_TOKEN` | secret | Reads the Figma files (check, sync) and publishes Code Connect. Scopes: `file_content:read`, `file_versions:read`, `file_code_connect:write`. Read-only apart from Code Connect | Ornella Giau (a Figma token belongs to a person) | Figma limits how long a token lives. Write the date here: ______ |
+| `DOCS_URL` | variable, optional | Address of the docs site for links in notifications. If unset, it is derived from the repository name | repo admin | never |
+| `TURM_LOG_BRANCH` | variable, optional | Keeps the log on its own branch, for a protected default branch | repo admin | never |
+
+**Settings the workflow depends on**
+| Setting | Where | Value |
+|---|---|---|
+| Pages source | Settings → Pages | GitHub Actions |
+| Workflow token | the workflow file asks for `contents: write`, `pages: write`, `id-token: write`, `issues: write`; the organization may restrict the default token | must allow these |
+| Allowed actions | Settings → Actions → General | the four actions listed in the Setup |
+| Default branch | repository | `main` |
+
+**When the token expires or is revoked.** The page Status/Turm updates says "Not checked: Figma answered 403", the sync page says "Could not check", and the job `code-connect` fails. To rotate: create a new Figma token (Figma → Settings → Security → Personal access tokens) with the three scopes above, replace the secret, and run the workflow once. Scopes cannot be changed on an existing token.
+
+**Switch the email notification on.** In `.github/workflows/storybook-pages.yml`, remove the `# ` in front of the step "Notify by GitHub issue". Decide who gets it first: everyone with write access is usually subscribed to new issues, so assign a person (`--assignee`), or send the issue to a separate private repo that only the recipient can see, or send an email over SMTP instead. The notification text is written to `status/turm-notify.md` on every run that has news, whether or not the step is on.
+
+**Common failures**
+| Sign | Cause | Fix |
+|---|---|---|
+| The commit step fails with 403 | the workflow may not push to the default branch | allow workflow write access, or set `TURM_LOG_BRANCH` |
+| `deploy` fails at "Deploy to GitHub Pages" | Pages source not set, or the plan does not allow Pages for this repo | Settings → Pages |
+| Sync status says "Not checked" | secret missing, expired, or the token has no access to the Figma file | see above |
+| Sync status says "dark mode not compared" | the dark frame in the sandbox was changed or deleted | see `figma/README.md`, section "Dark frame" |
+| The daily run does not start | scheduled workflows only run from the default branch, and GitHub can switch them off in a public repo after 60 days without activity | push a commit, or run it by hand |
+
+**Rollback.** The site is rebuilt from `main` on every run. Revert the commit and push. The log (`status/turm-log.json`) only grows by bot commits and can stay.
+
+## Moving the repo
+The plan, the decisions, the open questions and the checks are in [HANDOVER.md](HANDOVER.md).

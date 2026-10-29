@@ -19,7 +19,10 @@ const API = "https://api.figma.com";
 const LOG = "status/turm-log.json";
 const PAGE = "src/docs/TurmStatus.mdx";
 const NOTIFY = "status/turm-notify.md";
-const PAGE_LINK = "https://ornellagiau.github.io/ds-workflow-test/?path=/docs/status-turm-updates--docs";
+// Address of the docs site, for the link in the notification text. Set the repository variable DOCS_URL; if it is not set,
+// it is derived from the repository name (https://<owner>.github.io/<repo>), and left out when that is not possible.
+const DOCS_URL = (process.env.DOCS_URL || (process.env.GITHUB_REPOSITORY ? `https://${process.env.GITHUB_REPOSITORY.split("/")[0].toLowerCase()}.github.io/${process.env.GITHUB_REPOSITORY.split("/")[1]}` : "")).replace(/\/$/, "");
+const PAGE_LINK = DOCS_URL ? `${DOCS_URL}/?path=/docs/status-turm-updates--docs` : "";
 const MAX_EVENTS = 500;
 const DAY = 86400000;
 const WINDOW = 15 * 60 * 1000;   // a version created up to 15 minutes after a save counts as that save
@@ -153,7 +156,7 @@ if (!error && firstRun) {
     `**Turm changed.** ${newEvents.length} new save${newEvents.length > 1 ? "s" : ""} since the last check. Latest edit: ${lastEdit ? fmt(lastEdit) : "unknown"}. Changes in the last 7 days: ${s.c7}.\n\n${newEvents.slice(0, 5).map((e) => `- ${fmt(e.at)}`).join("\n")}\n\nTokens may have changed. Open a chat with Claude and ask for the exact token check.\n\n_This counts every save, not only token changes._`
   );
 }
-if (parts.length) writeFileSync(NOTIFY, parts.join("\n\n") + `\n\n[Turm updates page](${PAGE_LINK})\n`);
+if (parts.length) writeFileSync(NOTIFY, parts.join("\n\n") + (PAGE_LINK ? `\n\n[Turm updates page](${PAGE_LINK})\n` : "\n"));
 
 // ---------- Page ----------
 const recent = log.events.slice(0, 10).map((e) => `| ${fmt(e.at)} | ${e.source === "versions" ? "version history" : "daily check"} |`).join("\n");

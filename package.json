@@ -12,7 +12,8 @@
     "build-dev": "storybook build -c .storybook -o site/dev",
     "build-all": "npm run prepare-content && npm run build-docs && npm run build-dev",
     "figma:connect": "figma connect publish --skip-update-check",
-    "check-sync": "node scripts/check-sync.mjs"
+    "check-sync": "node scripts/check-sync.mjs",
+    "test": "node --test \"scripts/tests/*.test.mjs\""
   },
   "dependencies": {
     "react": "^18.3.1",
