@@ -1,8 +1,9 @@
 {/* GENERATED from tokens/turm-colors.json. Do not edit. */}
 import { Meta } from "@storybook/addon-docs/blocks";
 import Sw from "./Swatch.jsx";
+import TokenChain from "./TokenChain.jsx";
 
-<Meta title="Foundations/Color tokens" summary="Real Turm color tokens, grouped by what you want to color. Light and dark values, what each token is for, and AA status." />
+<Meta title="Foundations/Color tokens" summary="Real Turm color tokens, grouped by what you want to color. Light and dark values, what each token is for, AA status, and an explorer of which token points to which." />
 
 # Color tokens
 
@@ -15,7 +16,12 @@ import Sw from "./Swatch.jsx";
 2. Use a **component token** only inside that component.
 3. Never use a **primitive** in a component.
 
-Naming rules and the interactive map: **Foundations / Token naming**.
+Naming rules and the interactive map of the names: **Foundations / Token naming**.
+
+## Explore the values
+Which token points to which, and the color it ends at. Hover or tap a token to follow its chain from primitive to global token to component token. Dashed lines skip the global tokens.
+
+<TokenChain />
 
 ## Global tokens
 26 tokens. Accessibility legend: ✅ meets AA for normal text (4.5:1) · ⚠️ large text only (3:1 to 4.5:1) · ❌ fails · ➖ not applicable. (light) or (dark) means only in that mode.
