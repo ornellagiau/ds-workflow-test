@@ -1,16 +1,22 @@
-# On every push to main, and once a day:
-#   deploy:       checks the Turm Foundations file in Figma (scripts/check-turm.mjs, read-only),
-#                 saves status/turm-log.json, opens or updates the GitHub issue "Turm changes" (GitHub emails you),
-#                 builds both Storybooks and publishes them to GitHub Pages
-#                 /      polished docs (.storybook-docs)   /dev/  developer Storybook (.storybook)
-#   (deploy also runs scripts/check-sync.mjs -> Status/Sync status page)
-#   code-connect: publishes src/**/*.figma.ts templates to Figma (needs secret FIGMA_ACCESS_TOKEN)
+# On every push to main, and once a day.
+#   deploy:       checks the Turm Foundations file in Figma (scripts/check-turm.mjs, read-only), keeps its log
+#                 (status/turm-log.json, see scripts/turm-log.sh), builds both Storybooks and publishes them to GitHub Pages
+#                   /      polished docs (.storybook-docs)      /dev/  developer Storybook (.storybook)
+#                 It also runs the sync check (scripts/check-sync.mjs -> page Status/Sync status).
+#                 The email notification (an issue "Turm changes") is SWITCHED OFF for now, see the note in the steps.
+#   tests:        runs the tests of the checks (npm test). They use test data and need no secret.
+#   code-connect: publishes src/**/*.figma.ts templates to Figma (needs the secret FIGMA_ACCESS_TOKEN)
+#
+# Settings that belong to this workflow (README, section "Operations"):
+#   secret   FIGMA_ACCESS_TOKEN   Figma token, scopes file_content:read, file_versions:read, file_code_connect:write
+#   variable DOCS_URL             optional, address of the docs site, used in notifications
+#   variable TURM_LOG_BRANCH      optional, name of a branch for the log, when the default branch is protected
 name: Publish Storybook
 on:
   push:
     branches: [main]
   schedule:
-    - cron: "0 6 * * *"   # daily 06:00 UTC: catches Figma changes even without a code push
+    - cron: "0 6 * * *"   # daily 06:00 UTC (GitHub may start it hours late): catches Figma changes even without a code push
   workflow_dispatch:
 permissions:
   contents: read
@@ -22,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write   # saves status/turm-log.json
-      issues: write     # opens / comments on the issue "Turm changes"
+      issues: write     # only needed when the email step below is switched on
       pages: write
       id-token: write
     environment:
@@ -34,38 +40,39 @@ jobs:
         with:
           node-version: 22
           cache: npm
-      # npm install (not npm ci): lockfile may lag behind package.json in this test repo
+      # npm install (not npm ci): the lock file may lag behind package.json
       - run: npm install --no-audit --no-fund
+      - name: Get the Turm log (only when it lives on its own branch)
+        run: bash scripts/turm-log.sh restore
+        env:
+          TURM_LOG_BRANCH: ${{ vars.TURM_LOG_BRANCH }}
       - name: Check Turm Foundations (read-only)
         run: node scripts/check-turm.mjs
         env:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}
+          DOCS_URL: ${{ vars.DOCS_URL }}
       - name: Save the Turm log
-        if: github.ref == 'refs/heads/main'
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add status/turm-log.json
-          if git diff --cached --quiet; then
-            echo "No log change."
-          else
-            git commit -m "Turm log: update"
-            git pull --rebase --autostash origin main || true
-            git push || echo "Push skipped (the repo changed meanwhile). The next run adds it."
-          fi
-      - name: Notify by GitHub issue
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+        run: bash scripts/turm-log.sh save
         env:
-          GH_TOKEN: ${{ github.token }}
-          GH_REPO: ${{ github.repository }}
-        run: |
-          if [ ! -f status/turm-notify.md ]; then echo "Nothing to report."; exit 0; fi
-          number=$(gh issue list --state open --search "Turm changes in:title" --json number,title --jq '[.[] | select(.title=="Turm changes")][0].number // empty')
-          if [ -z "$number" ]; then
-            gh issue create --title "Turm changes" --body-file status/turm-notify.md --assignee "${{ github.repository_owner }}"
-          else
-            gh issue comment "$number" --body-file status/turm-notify.md
-          fi
+          TURM_LOG_BRANCH: ${{ vars.TURM_LOG_BRANCH }}
+      # --- Email notification (an issue "Turm changes"): SWITCHED OFF until the repo has moved to the organization. ---
+      # In an organization repo everyone with write access would get an email for each issue. To switch it on again,
+      # remove the "# " at the start of the lines below (up to the line "- run: npm run build-all"), and choose who is
+      # assigned: replace the assignee below by a user name, or remove the --assignee option.
+      # - name: Notify by GitHub issue
+      #   if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)
+      #   env:
+      #     GH_TOKEN: ${{ github.token }}
+      #     GH_REPO: ${{ github.repository }}
+      #   run: |
+      #     if [ ! -f status/turm-notify.md ]; then echo "Nothing to report."; exit 0; fi
+      #     number=$(gh issue list --state open --search "Turm changes in:title" --json number,title --jq '[.[] | select(.title=="Turm changes")][0].number // empty')
+      #     if [ -z "$number" ]; then
+      #       gh issue create --title "Turm changes" --body-file status/turm-notify.md --assignee "${{ github.repository_owner }}"
+      #     else
+      #       gh issue comment "$number" --body-file status/turm-notify.md
+      #     fi
       - run: npm run build-all
         env:
           FIGMA_ACCESS_TOKEN: ${{ secrets.FIGMA_ACCESS_TOKEN }}   # used by scripts/check-sync.mjs (read-only)
@@ -74,6 +81,16 @@ jobs:
           path: site
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install --no-audit --no-fund
+      - run: npm test
 
   code-connect:
     runs-on: ubuntu-latest
