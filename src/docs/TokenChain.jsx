@@ -95,7 +95,7 @@ export default function TokenChain() {
   const nodeRefs = useRef({});
   const leaveTimer = useRef(null);
   const [mode, setMode] = useState("light");
-  const [open, setOpen] = useState({});
+  const [open, setOpen] = useState(() => Object.fromEntries(families.map((f) => ["pf:" + f, true])));   // the single primitives are visible from the start; the arrow closes a family
   const [hover, setHover] = useState(null);
   const [pin, setPin] = useState(null);
   const [lines, setLines] = useState([]);
@@ -151,7 +151,7 @@ export default function TokenChain() {
 
   const summary = active ? describe(active, mode) : "Hover or tap a token to follow its chain. Open a group with the arrow. Dashed lines skip the global tokens.";
 
-  const node = (id, { group = false, label, count }) => {
+  const node = (id, { group = false, label, count, swatch }) => {
     const on = lit.has(id), dim = active && !on, me = active === id;
     return (
       <div key={id} style={{ display: "flex", alignItems: "stretch", margin: "0 0 2px" }}>
@@ -182,7 +182,7 @@ export default function TokenChain() {
             fontWeight: me || group ? 600 : 400, opacity: dim ? 0.3 : 1, transition: "opacity .15s, background .15s", overflowWrap: "break-word",
           }}
         >
-          <span>{label}</span>
+          <span>{swatch && <span aria-hidden="true" style={{ display: "inline-block", width: 10, height: 10, borderRadius: 2, marginRight: 7, background: swatch, border: "1px solid rgba(128,128,128,.45)" }} />}{label}</span>
           {count !== undefined && <span style={{ fontSize: 11, opacity: 0.55, fontVariantNumeric: "tabular-nums", fontWeight: 400 }}>{count}</span>}
         </button>
       </div>
@@ -217,7 +217,7 @@ export default function TokenChain() {
             {families.map((f) => (
               <div key={f}>
                 {node("pf:" + f, { group: true, label: f, count: primsOf(f).length })}
-                {open["pf:" + f] && primsOf(f).map((p) => node("p:" + p, { label: p.includes("/") ? p.split("/")[1] : p }))}
+                {open["pf:" + f] && primsOf(f).map((p) => node("p:" + p, { label: p.includes("/") ? p.split("/")[1] : p, swatch: prim[p] }))}
               </div>
             ))}
           </div>
