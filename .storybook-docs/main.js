@@ -12,5 +12,9 @@ export default {
       options: { mdxPluginOptions: { mdxCompileOptions: { remarkPlugins: [remarkGfm] } } },
     },
   ],
+  // The font files live in docs-assets/fonts and are served from the site root (/fonts/...).
+  staticDirs: ["../docs-assets"],
+  // Readers only need the docs: switch off the built-in story tools (grid, background, outline, measure, viewport, highlight).
+  features: { backgrounds: false, measure: false, outline: false, highlight: false, viewport: false },
   framework: { name: "@storybook/react-vite", options: {} },
 };

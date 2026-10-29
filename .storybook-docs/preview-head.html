@@ -1,2 +1,11 @@
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="./fonts/inter.css" />
+<script>
+  // Light or dark before the first paint (same rule as mode.js). data-theme also switches the dark color values of Link.
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("ds-theme"); } catch (e) {}
+    var dark = saved === "dark" || (saved !== "light" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+    document.documentElement.style.colorScheme = dark ? "dark" : "light";
+  })();
+</script>

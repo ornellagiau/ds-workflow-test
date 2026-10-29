@@ -1,3 +1,30 @@
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<title>DS workflow test</title>
+<link rel="stylesheet" href="./fonts/inter.css" />
+<title>Turm design system</title>
+<script>
+  (function () {
+    var saved = null;
+    try { saved = localStorage.getItem("ds-theme"); } catch (e) {}
+    var dark = saved === "dark" || (saved !== "light" && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches);
+    document.documentElement.setAttribute("data-ds-theme", dark ? "dark" : "light");
+    document.documentElement.style.colorScheme = dark ? "dark" : "light";
+  })();
+</script>
+<style>
+  /* Sidebar: quiet and clean. Light: Turm tokens Content/Primary #29293A, Content/Secondary #5C5E6A, Content/Highlight #006A64,
+     Background/Highlight #E7F5F3. Dark: Content/Primary #F9F9FA, Content/Secondary #C0C1C6, Content/Highlight #C4E8E3. */
+  .sidebar-header a { font-weight: 650; letter-spacing: -0.01em; color: #29293A; }
+  .sidebar-subheading { font-size: 11px; letter-spacing: 0.08em; color: #5C5E6A; }
+  .sidebar-item { font-size: 14px; border-radius: 8px; }
+  /* Pages need no icon: hide it (the text keeps its place). */
+  .sidebar-item[data-nodetype="document"] a > div:first-child { display: none; }
+  .sidebar-item[data-selected="true"] { background: #E7F5F3 !important; }
+  .sidebar-item[data-selected="true"], .sidebar-item[data-selected="true"] a { color: #006A64 !important; font-weight: 600; }
+
+  /* The toolbar only keeps the light/dark switch. */
+  button[aria-label="Enter full screen"], button[aria-label="Exit full screen"] { display: none !important; }
+
+  html[data-ds-theme="dark"] .sidebar-header a { color: #F9F9FA; }
+  html[data-ds-theme="dark"] .sidebar-subheading { color: #C0C1C6; }
+  html[data-ds-theme="dark"] .sidebar-item[data-selected="true"] { background: #1D3B3B !important; }
+  html[data-ds-theme="dark"] .sidebar-item[data-selected="true"], html[data-ds-theme="dark"] .sidebar-item[data-selected="true"] a { color: #C4E8E3 !important; }
+</style>
