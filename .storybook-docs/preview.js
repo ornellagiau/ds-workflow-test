@@ -7,7 +7,7 @@ export default {
     // Sidebar order: status first, then foundations, components, notes.
     options: {
       storySort: {
-        order: ["Introduction", "Status", ["Sync status", "Turm updates"], "Foundations", ["Color tokens", "Token naming"], "Components", ["Button", "Link"], "Notes"],
+        order: ["Introduction", "Status", ["Sync status", "Turm updates"], "Foundations", ["Token naming", "Color tokens"], "Components", ["Button", "Link"], "Notes"],
       },
     },
     docs: { theme, codePanel: false, canvas: { sourceState: "none" } },
