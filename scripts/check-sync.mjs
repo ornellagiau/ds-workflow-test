@@ -414,23 +414,41 @@ Compares each Figma component with its **implementation** (not with the contract
 if (error) {
   mdx += `> **Not checked.** ${esc(error)}\n`;
 } else {
-  mdx += `| Component | Status | Figma | Docs |\n|---|---|---|---|\n`;
-  for (const r of results) {
-    const status = r.error ? "❓ could not check" : r.diffs.length ? `⚠️ ${r.shown} difference${r.shown > 1 ? "s" : ""}` : "✅ in sync";
-    mdx += `| ${r.name} | ${status} | <a href="${figmaUrl(r.entry.figmaSetId)}" target="_blank">Open in Figma</a> | <a href="./?path=/docs/components-${r.name.toLowerCase()}--docs" target="_top">Docs</a> |\n`;
-  }
-  for (const r of results) {
-    mdx += `\n## ${r.name}\n\n`;
-    if (r.error) { mdx += `> ${esc(r.error)}\n`; continue; }
-    mdx += `${r.variantsCompared} Figma variants. ${r.notes.join(" ")}\n`;
-    if (!r.diffs.length) continue;
-    mdx += `\n| Area | Difference | Figma | Code |\n|---|---|---|---|\n`;
+  // Problems first, one compact row each; a row opens to its differences. Components that are in sync are folded into one group.
+  const state = (r) => (r.error ? "error" : r.diffs.length ? "warn" : "ok");
+  const order = { error: 0, warn: 1, ok: 2 };
+  const sorted = [...results].sort((a, b) => order[state(a)] - order[state(b)] || a.name.localeCompare(b.name));
+  const count = (st) => results.filter((r) => state(r) === st).length;
+  const plural = (n, w) => `${n} ${w}${n === 1 ? "" : "s"}`;
+  const problems = sorted.filter((r) => state(r) !== "ok"), oks = sorted.filter((r) => state(r) === "ok");
+  mdx += `${plural(results.length, "component")}: **${count("ok")} in sync**, ${count("warn")} with differences, ${count("error")} could not be checked.\n\n`;
+  const spans = (r) => {
+    const st = state(r);
+    const [cls, text] = st === "error" ? ["muted", "Could not check"] : st === "warn" ? ["warn", plural(r.shown, "difference")] : ["ok", "In sync"];
+    const notesText = (r.notes || []).join(" ");   // a component that could not be checked has no notes
+    const flagged = /not found|not compared|no readable|returned the light colors|has only \d+ of/.test(notesText);
+    const mode = r.error ? "" : notesText.includes("light and dark") ? "light and dark" : flagged ? "light only, dark not compared" : "light only";
+    const note = r.error ? "see details" : `${r.variantsCompared} variants · ${mode}`;
+    const title = r.error ? "" : esc(notesText).replace(/"/g, "&quot;");
+    return `<span className="ds-sync-name">${r.name}</span> <span className="ds-badge ds-badge-${cls}">${text}</span> <span className="ds-sync-note" title="${title}">${note}</span> <span className="ds-sync-links"><a href="${figmaUrl(r.entry.figmaSetId)}" target="_blank">Figma</a> <a href="./?path=/docs/components-${r.name.toLowerCase()}--docs" target="_top">Docs</a></span>`;
+  };
+  const body = (r) => {
+    if (r.error) return `${esc(r.error)}\n`;
+    let t = `${r.variantsCompared} Figma variants. ${r.notes.join(" ")}\n\n| Area | Difference | Figma | Code |\n|---|---|---|---|\n`;
     for (const d of collapse(r.diffs, r.collapseAxis)) {
       const where = [d.mode !== "all" ? d.mode : null, d.labels.filter(Boolean).slice(0, 6).join("; ") + (d.labels.length > 6 ? "; …" : "")].filter(Boolean).join(", ");
-      mdx += `| ${d.area} | ${esc(d.what)}${where ? ` (${esc(where)})` : ""} | \`${esc(d.figma)}\` | \`${esc(d.code)}\` |\n`;
+      t += `| ${d.area} | ${esc(d.what)}${where ? ` (${esc(where)})` : ""} | \`${esc(d.figma)}\` | \`${esc(d.code)}\` |\n`;
     }
-  }
-  if (warnings.length) mdx += `\n## Not read by the check\n\n${warnings.map((w) => `- ${esc(w)}`).join("\n")}\n`;
+    return t;
+  };
+  const open = problems.length <= 2 ? " open" : "";
+  const plainRow = (r) => `<div className="ds-sync-row"><span className="ds-sync-spacer"></span>${spans(r)}</div>\n`;
+  mdx += `<div className="ds-sync-list">\n`;
+  for (const r of problems) mdx += `<details className="ds-sync-item"${open}>\n<summary className="ds-sync-row">${spans(r)}</summary>\n\n${body(r)}\n</details>\n`;
+  if (oks.length && problems.length) mdx += `<details className="ds-sync-group">\n<summary className="ds-sync-row"><span className="ds-sync-name">In sync (${oks.length})</span></summary>\n<div>\n${oks.map(plainRow).join("")}</div>\n</details>\n`;
+  else for (const r of oks) mdx += plainRow(r);
+  mdx += `</div>\n\n`;
+  if (warnings.length) mdx += `## Not read by the check\n\n${warnings.map((w) => `- ${esc(w)}`).join("\n")}\n`;
 }
 writeFileSync(OUT, mdx);
 console.log(error ? `sync check: not checked (${error})` : `sync check: ${results.map((r) => `${r.name} ${r.error ? "error" : r.shown + " diffs"}`).join(", ")}${warnings.length ? `, ${warnings.length} warnings` : ""}`);

@@ -2,18 +2,40 @@ import { Meta } from "@storybook/addon-docs/blocks";
 
 <Meta title="Introduction" summary="Entry point and index of the Turm design system test: color tokens, components and status pages." />
 
-# Turm design system test
+# Turm design system
 
-One place for docs and live previews. Docs are written here and nowhere else.
+Docs and live previews for the Turm color tokens and the first components. Docs are written here and nowhere else.
 
-## Index
-- **Foundations/Token naming**: how Turm color tokens are named, with an interactive map of the names and of which token points to which.
-- **Foundations/Color tokens**: all Turm color tokens with light and dark values, what each is for and what it is not for, and its AA status.
-- **Components/Link**: navigation to another page or view. Takes its colors from the Turm tokens.
-- **Components/Button**: actions on the current page (`primary`, `secondary`). Uses plain hex values on purpose, it is the demo for the sync status.
-- **Notes/Token review**: a dated review of the color tokens against current practice, with open decisions.
-- **Status/Sync status**: generated comparison of Figma components and code.
-- **Status/Turm updates**: how often the Turm Foundations file in Figma changes (generated daily).
+<div className="ds-cards">
+  <a className="ds-card" href="./?path=/docs/foundations-color-tokens--docs" target="_top">
+    <span className="ds-eyebrow">Foundations</span> <strong className="ds-card-title">Color tokens</strong><br />
+    <span className="ds-card-text">All Turm color tokens with light and dark values, what each is for and not for, and its AA status.</span>
+  </a>
+  <a className="ds-card" href="./?path=/docs/foundations-token-naming--docs" target="_top">
+    <span className="ds-eyebrow">Foundations</span> <strong className="ds-card-title">Token naming</strong><br />
+    <span className="ds-card-text">How tokens are named, with an interactive map of the names and of which token points to which.</span>
+  </a>
+  <a className="ds-card" href="./?path=/docs/components-link--docs" target="_top">
+    <span className="ds-eyebrow">Components</span> <strong className="ds-card-title">Link</strong><br />
+    <span className="ds-card-text">Navigation to another page or view. Takes its colors from the Turm tokens.</span>
+  </a>
+  <a className="ds-card" href="./?path=/docs/components-button--docs" target="_top">
+    <span className="ds-eyebrow">Components</span> <strong className="ds-card-title">Button</strong><br />
+    <span className="ds-card-text">Actions on the current page. Uses plain hex values on purpose, it is the demo for the sync status.</span>
+  </a>
+  <a className="ds-card" href="./?path=/docs/status-sync-status--docs" target="_top">
+    <span className="ds-eyebrow">Status</span> <strong className="ds-card-title">Sync status</strong><br />
+    <span className="ds-card-text">Generated comparison of the Figma components with the code, in light and dark mode.</span>
+  </a>
+  <a className="ds-card" href="./?path=/docs/status-turm-updates--docs" target="_top">
+    <span className="ds-eyebrow">Status</span> <strong className="ds-card-title">Turm updates</strong><br />
+    <span className="ds-card-text">How often the Turm Foundations file in Figma changes. Generated daily.</span>
+  </a>
+  <a className="ds-card" href="./?path=/docs/notes-token-review-oct-2026--docs" target="_top">
+    <span className="ds-eyebrow">Notes</span> <strong className="ds-card-title">Token review</strong><br />
+    <span className="ds-card-text">A dated review of the color tokens against current practice, with the open decisions.</span>
+  </a>
+</div>
 
 ## How this works
 1. Token values and descriptions live in the Figma file **Turm Foundations**. A Claude chat exports them to `tokens/turm-colors.json`. The Color tokens page is generated from that file.

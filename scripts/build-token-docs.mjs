@@ -61,10 +61,9 @@ function fields(description) {
 }
 
 const cp = (text) => `\`${text}\``;
-const pair = (t) => {
-  const l = resolve(t.light, "light"), d = resolve(t.dark, "dark");
-  return `${sw(l)} ${l} · ${sw(d)} ${d}`;
-};
+// Light and dark, one under the other: swatch, hex, and the primitive it ends at (see chain below).
+const valLine = (hex, prim) => `<div className="ds-val">${sw(hex)} <span className="ds-hex">${hex}</span> <em>${prim}</em></div>`;
+const valCell = (t) => valLine(resolve(t.light, "light"), chain(t.light, "light").prim) + valLine(resolve(t.dark, "dark"), chain(t.dark, "dark").prim);
 // Follow aliases down to the primitive. "via" lists the semantic tokens passed on the way.
 function chain(ref, mode, via = []) {
   if (ref.startsWith("#")) return { prim: "literal", via };
@@ -72,11 +71,11 @@ function chain(ref, mode, via = []) {
   if (ref.startsWith("p:")) return { prim: target + (opacity !== undefined ? ` @${opacity}%` : ""), via };
   return chain(sem.get(target)[mode], mode, [...via, target]);
 }
-const both = (l, d) => (l === d ? `\`${l}\`` : `\`${l}\` / \`${d}\``);
-const primCell = (t) => both(chain(t.light, "light").prim, chain(t.dark, "dark").prim);
 const viaCell = (t) => {
   const l = chain(t.light, "light").via[0], d = chain(t.dark, "dark").via[0];
-  return !l && !d ? "—" : both(l ?? "—", d ?? "—");
+  if (!l && !d) return "—";
+  const line = (v) => `<div className="ds-via">${v ?? "—"}</div>`;
+  return l === d ? line(l) : line(l) + line(d);
 };
 const rank = (list, v) => { const i = list.indexOf(v); return i < 0 ? 99 : i; };
 
@@ -117,9 +116,9 @@ for (const element of ["Background", "Content", "Border"]) {
   const hasDesc = parsed.some((p) => p.f.intent || p.f.notFor || p.f.a11y || p.f.other);
   mdx += `### ${element} (${rows.length})\n\n`;
   // Visible: token, values, AA icon, one-line use. Not for / Accessibility / Other open on demand.
-  mdx += hasDesc ? `| Token | Light · Dark | Primitive | AA | Use | More |\n|---|---|---|---|---|---|\n` : `| Token | Light · Dark | Primitive |\n|---|---|---|\n`;
+  mdx += hasDesc ? `| Token | Light / Dark | AA | Use | More |\n|---|---|---|---|---|\n` : `| Token | Light / Dark |\n|---|---|\n`;
   for (const { t, f } of parsed) {
-    mdx += `| ${cp(t.name)} | ${pair(t)} | ${primCell(t)} |`;
+    mdx += `| ${cp(t.name)} | ${valCell(t)} |`;
     if (hasDesc) {
       const icon = f.a11y ? ([...new Set(f.a11y.match(/✅|⚠️|❌|➖/gu) ?? [])].join(" ") || "—") : "—";
       const more = [
@@ -137,14 +136,14 @@ for (const element of ["Background", "Content", "Border"]) {
 
 const byComponent = new Map();
 for (const t of components) (byComponent.get(t.component) ?? byComponent.set(t.component, []).get(t.component)).push(t);
-mdx += `## Component tokens\n${components.length} tokens in ${byComponent.size} components. Open a component to see its tokens. Via is the global token it points to, Primitive is the color it ends at (light / dark).\n\n`;
+mdx += `## Component tokens\n${components.length} tokens in ${byComponent.size} components. Open a component to see its tokens. Each value shows the primitive it ends at. Via is the global token it points to.\n\n`;
 for (const name of [...byComponent.keys()].sort()) {
   const rows = byComponent.get(name).sort((a, b) =>
     rank(ELEMENTS, a.element) - rank(ELEMENTS, b.element) ||
     rank(ROLES, a.role) - rank(ROLES, b.role) || String(a.role).localeCompare(String(b.role)) ||
     rank(STATES, a.state) - rank(STATES, b.state));
-  mdx += `<details>\n<summary>${name} (${rows.length})</summary>\n\n| Token | Light · Dark | Via | Primitive |\n|---|---|---|---|\n`;
-  for (const t of rows) mdx += `| ${cp(t.name.split("/").slice(1).join("/"))} | ${pair(t)} | ${viaCell(t)} | ${primCell(t)} |\n`;
+  mdx += `<details>\n<summary>${name} (${rows.length})</summary>\n\n| Token | Light / Dark | Via |\n|---|---|---|\n`;
+  for (const t of rows) mdx += `| ${cp(t.name.split("/").slice(1).join("/"))} | ${valCell(t)} | ${viaCell(t)} |\n`;
   mdx += `\n</details>\n\n`;
 }
 

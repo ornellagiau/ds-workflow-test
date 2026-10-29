@@ -5,10 +5,10 @@ import data from "../../tokens/turm-colors.json";
 // Hover (or tap, to pin) a token: thin lines show what it points to and who uses it. Dashed lines skip the global tokens.
 // Reads the same data as the naming map and the generated Color tokens page.
 
-const ACCENT = "#009990";
-const SOFT = "rgba(0,153,144,0.12)";
-const SOFT_STRONG = "rgba(0,153,144,0.22)";
-const LINE = "rgba(128,128,128,0.28)";
+const ACCENT = "var(--ds-accent, #006A64)";
+const SOFT = "var(--ds-accent-tint, #E7F5F3)";
+const SOFT_STRONG = "var(--ds-accent-tint-2, #CFEAE7)";
+const LINE = "var(--ds-line, rgba(128,128,128,0.28))";
 
 const prim = data.primitives;
 const semantic = data.semantic.map(([name, light, dark]) => ({ name, light, dark }));
@@ -179,7 +179,7 @@ export default function TokenChain() {
             font: "inherit", fontSize: 13, lineHeight: 1.4, textAlign: "left", cursor: "pointer",
             padding: "3px 8px", marginLeft: group ? 0 : 20, borderRadius: 6, border: "none",
             background: me ? SOFT_STRONG : on ? SOFT : "transparent", color: on ? ACCENT : "inherit",
-            fontWeight: me || group ? 600 : 400, opacity: dim ? 0.3 : 1, transition: "opacity .15s, background .15s", overflowWrap: "anywhere",
+            fontWeight: me || group ? 600 : 400, opacity: dim ? 0.3 : 1, transition: "opacity .15s, background .15s", overflowWrap: "break-word",
           }}
         >
           <span>{label}</span>
@@ -193,7 +193,7 @@ export default function TokenChain() {
   const colStyle = (ci) => ({ position: "relative", padding: ci ? "0 16px" : "0 16px 0 0", borderLeft: ci ? `1px solid ${LINE}` : "none" });
 
   return (
-    <div style={{ margin: "20px 0" }}>
+    <div className="ds-explorer">
       <div role="group" aria-label="Mode" style={{ display: "inline-flex", border: `1px solid ${LINE}`, borderRadius: 8, overflow: "hidden", marginBottom: 16 }}>
         {["light", "dark"].map((m) => (
           <button key={m} type="button" aria-pressed={mode === m} onClick={() => setMode(m)}

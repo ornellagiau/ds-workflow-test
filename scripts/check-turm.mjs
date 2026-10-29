@@ -170,14 +170,17 @@ How often the Turm Foundations file in Figma changes. Last checked: **${fmt(log.
 `;
 if (error) mdx += `\n> **Not checked.** ${esc(error)}. ${s.total ? "The numbers below are from the last successful check." : ""}\n`;
 if (s.total) {
+  const [editDate, editTime] = lastEdit ? fmt(lastEdit).split(", ").reduce((a, p, i, all) => (i === all.length - 1 ? [a[0].replace(/, $/, ""), p] : [a[0] + p + ", ", a[1]]), ["", ""]) : ["unknown", ""];
+  const stat = (label, value, sub) => `<div className="ds-stat"><span className="ds-stat-label">${label}</span> <span className="ds-stat-value">${value}</span> <span className="ds-stat-sub">${sub}</span></div>`;
   mdx += `
-| | |
-|---|---|
-| Last edit | ${lastEdit ? fmt(lastEdit) : "unknown"} |
-| Changes in the last 7 days | ${s.c7} |
-| Changes in the last 30 days | ${s.c30} (on ${s.activeDays30} days) |
-| Average per week (last 4 weeks) | ${s.perWeek} |
-| Tracking since | ${fmt(log.startedAt)} |
+<div className="ds-stats">
+${stat("Last edit", editDate, editTime)}
+${stat("Last 7 days", s.c7, s.c7 === 1 ? "change" : "changes")}
+${stat("Last 30 days", s.c30, `on ${s.activeDays30} day${s.activeDays30 === 1 ? "" : "s"}`)}
+${stat("Per week", s.perWeek, "average, last 4 weeks")}
+</div>
+
+Tracking since ${fmt(log.startedAt)}.
 
 ## Latest changes
 | When | Source |

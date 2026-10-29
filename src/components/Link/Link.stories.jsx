@@ -5,12 +5,13 @@ export default {
   title: "Components/Link",
   component: Link,
   argTypes: {
-    size: { control: "inline-radio", options: ["S", "M"] },
-    emphasis: { control: "inline-radio", options: ["primary", "secondary", "quiet"] },
-    disabled: { control: "boolean" },
-    href: { control: "text" },
-    leadingIcon: { control: false },
-    trailingIcon: { control: false },
+    href: { description: "Where the link goes. Required, except when disabled.", control: "text", table: { type: { summary: "string" } } },
+    children: { description: "The link text.", control: "text", table: { type: { summary: "string" }, defaultValue: { summary: '"Hier einloggen"' } } },
+    size: { description: "Text size.", control: "inline-radio", options: ["S", "M"], table: { type: { summary: '"S" | "M"' }, defaultValue: { summary: '"S"' } } },
+    emphasis: { description: "How strong the underline is.", control: "inline-radio", options: ["primary", "secondary", "quiet"], table: { type: { summary: '"primary" | "secondary" | "quiet"' }, defaultValue: { summary: '"primary"' } } },
+    disabled: { description: "Not clickable, not focusable, no href.", control: "boolean", table: { type: { summary: "boolean" }, defaultValue: { summary: "false" } } },
+    leadingIcon: { description: "Optional icon before the text. A text placeholder for now, there is no Icon component yet.", control: false, table: { type: { summary: "node" } } },
+    trailingIcon: { description: "Optional icon after the text. A text placeholder for now, there is no Icon component yet.", control: false, table: { type: { summary: "node" } } },
   },
 };
 

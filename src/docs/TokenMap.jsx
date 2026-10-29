@@ -16,10 +16,10 @@ const ELEMENTS = ["Surface", "Background", "Border", "Content", "Logo"];
 const STATES = ["Idle", "Hover", "Active", "Focused", "Selected", "Disabled", "Error", "Warning", "Success"];
 
 // Calm palette: one accent, everything else is the text color at low opacity (works in light and dark docs).
-const ACCENT = "#009990";
-const SOFT = "rgba(0,153,144,0.12)";
-const SOFT_STRONG = "rgba(0,153,144,0.22)";
-const LINE = "rgba(128,128,128,0.28)";
+const ACCENT = "var(--ds-accent, #006A64)";
+const SOFT = "var(--ds-accent-tint, #E7F5F3)";
+const SOFT_STRONG = "var(--ds-accent-tint-2, #CFEAE7)";
+const LINE = "var(--ds-line, rgba(128,128,128,0.28))";
 
 // "Color/Surface/Error" has no Role: a lone last word counts as State if it is a state word.
 function parse(name) {
@@ -124,7 +124,7 @@ export default function TokenMap() {
   const isActive = (col, v) => active && active.col === col && active.value === v;
 
   return (
-    <div style={{ margin: "20px 0" }}>
+    <div className="ds-explorer">
       <div style={{ overflowX: "auto" }}>
         <div ref={wrap} style={{ position: "relative", display: "grid", gridTemplateColumns: "repeat(5, minmax(130px, 1fr))", minWidth: 720 }}>
           <svg width={size.w} height={size.h} style={{ position: "absolute", inset: 0, pointerEvents: "none" }} aria-hidden="true">

@@ -3,7 +3,12 @@ import { Button } from "./Button";
 export default {
   title: "Components/Button",
   component: Button,
-  argTypes: { variant: { control: "inline-radio", options: ["primary", "secondary"] } },
+  argTypes: {
+    variant: { description: "The one main action, or an alternative next to it.", control: "inline-radio", options: ["primary", "secondary"], table: { type: { summary: '"primary" | "secondary"' }, defaultValue: { summary: '"primary"' } } },
+    children: { description: "The label.", control: "text", table: { type: { summary: "string" }, defaultValue: { summary: '"Button"' } } },
+    type: { description: "Use \"submit\" for the primary button inside a form.", control: "inline-radio", options: ["button", "submit"], table: { type: { summary: '"button" | "submit"' }, defaultValue: { summary: '"button"' } } },
+    onClick: { description: "Click handler.", control: false, table: { type: { summary: "function" } } },
+  },
 };
 
 /** The one main action in a view. Figma: Button, Variant=Primary. */

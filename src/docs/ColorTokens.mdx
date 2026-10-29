@@ -22,331 +22,331 @@ Naming rules and the interactive map: **Foundations / Token naming**.
 
 ### Background (11)
 
-| Token | Light · Dark | Primitive | AA | Use | More |
-|---|---|---|---|---|---|
-| `Color/Background/Primary` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `szWhite` / `szGray/950` | ✅ ⚠️ | Default color for all background, areas and surfaces that have no further special definition. | <details><summary>Details</summary><strong>Not for:</strong> Overlays (use Modal Background) or emphasized blocks (use Secondary or Inversed).<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight, Success, Error · ⚠️ large text only: Content Warning (light)</details> |
-| `Color/Background/Secondary` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | `szGray/50` / `szGray/800` | ✅ ⚠️ | Subtle tinted background that separates groups of content from Background/Primary. Also standard surface color for interactive elements that lay on Background/Primary and have no further a shade or a border | <details><summary>Details</summary><strong>Not for:</strong> Interaction feedback (use Hover) or high-contrast blocks (use Inversed).<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight · ⚠️ large text only: Content Success (light), Error (dark), Warning · Fill of an interactive element below 3:1 on Background/Primary: add a border or a clear label</details> |
-| `Color/Background/Inversed` | <Sw c="#29293A" /> #29293A · <Sw c="#383948" /> #383948 | `szGray/900` / `szGray/800` | ✅ ⚠️ ❌ | High-contrast block with Content/Inversed on top. | <details><summary>Details</summary><strong>Not for:</strong> Designing in dark mode<br /><strong>Accessibility:</strong> Light: ✅ Content Primary Inversed, Secondary Inversed · ⚠️ large text only: Content Success, Warning · ❌ Content Primary, Secondary, Highlight, Error. Dark: ✅ Content Primary, Secondary, Highlight, Success · ⚠️ large text only: Content Error, Warning · ❌ Content Primary Inversed, Secondary Inversed<br /><strong>Other:</strong> often does not change in dark mode, check the behaviour before use.</details> |
-| `Color/Background/Hover` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#494A58" /> #494A58 | `szGray/100` / `szGray/700` | ✅ ⚠️ ❌ | Background feedback on hover for neutral interactive surfaces. | <details><summary>Details</summary><strong>Not for:</strong> hover of highlight background<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight · ⚠️ large text only: Content Success · ❌ Content Error (dark), Warning</details> |
-| `Color/Background/Highlight` | <Sw c="#E7F5F3" /> #E7F5F3 · <Sw c="#006A64" /> #006A64 | `szGreen/50` / `szGreen/600` | ✅ ⚠️ ❌ | Brand-tinted background that draws attention to non-critical content. | <details><summary>Details</summary><strong>Not for:</strong> Status feedback (use Success, Error or Warning).<br /><strong>Accessibility:</strong> ✅ Content Primary, Highlight · ⚠️ large text only: Content Secondary (dark), Success (light), Warning (light) · ❌ Content Success (dark), Error (dark), Warning (dark)</details> |
-| `Color/Background/Success` | <Sw c="#E6F7E5" /> #E6F7E5 · <Sw c="#153108" /> #153108 | `szSignalGreen/50` / `szSignalGreen/900` | ✅ ⚠️ | Background for positive and confirmation messages. | <details><summary>Details</summary><strong>Not for:</strong> Brand emphasis (use Highlight).<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight · ⚠️ large text only: Content Success (light), Error (dark), Warning</details> |
-| `Color/Background/Error` | <Sw c="#FEEFED" /> #FEEFED · <Sw c="#3C0A0F" /> #3C0A0F | `szRed/50` / `szRed/950` | ✅ ⚠️ | Background for error messages and invalid fields. | <details><summary>Details</summary><strong>Not for:</strong> Warnings (use Warning).<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight, Error · ⚠️ large text only: Content Success (light), Warning (light)</details> |
-| `Color/Background/Warning` | <Sw c="#FEF1D9" /> #FEF1D9 · <Sw c="#341300" /> #341300 | `szOrange/50` / `szOrange/950` | ✅ ⚠️ | Background for warnings and caution messages. | <details><summary>Details</summary><strong>Not for:</strong> Errors (use Error).<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight, Error · ⚠️ large text only: Content Success (light), Warning (light)</details> |
-| `Color/Background/Transparent` | <Sw c="#FFFFFF00" /> #FFFFFF00 · <Sw c="#1B1C2600" /> #1B1C2600 | `szWhite @0%` / `szGray/950 @0%` | ➖ | Explicit no-fill value | <details><summary>Details</summary><strong>Not for:</strong> Hiding content or as an overlay.<br /><strong>Accessibility:</strong> ➖ No contrast of its own, depends on the surface behind it.<br /><strong>Other:</strong> value with 0% opacity</details> |
-| `Color/Background/Modal Background` | <Sw c="#1B1C26F5" /> #1B1C26F5 · <Sw c="#1B1C26F5" /> #1B1C26F5 | `szGray/950 @96%` | ➖ | Scrim behind modals and overlays. | <details><summary>Details</summary><strong>Not for:</strong> The surface of the modal itself (use Modal/Surface).<br /><strong>Accessibility:</strong> ➖ Not applicable, the content behind the scrim is meant to stay unreadable.<br /><strong>Other:</strong> 96% opacity, same in light and dark.</details> |
-| `Color/Background/Tertiary` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#383948" /> #383948 | `szGray/25` / `szGray/800` | ✅ ⚠️ | Subtle tinted background that separates groups of content from Background/Secondary and Background/Primary. | <details><summary>Details</summary><strong>Not for:</strong> Interaction feedback (use Hover) or high-contrast blocks (use Inversed).<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight · ⚠️ large text only: Content Success (light), Error (dark), Warning · Fill of an interactive element below 3:1 on Background/Primary: add a border or a clear label</details> |
+| Token | Light / Dark | AA | Use | More |
+|---|---|---|---|---|
+| `Color/Background/Primary` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | ✅ ⚠️ | Default color for all background, areas and surfaces that have no further special definition. | <details><summary>Details</summary><strong>Not for:</strong> Overlays (use Modal Background) or emphasized blocks (use Secondary or Inversed).<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight, Success, Error · ⚠️ large text only: Content Warning (light)</details> |
+| `Color/Background/Secondary` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | ✅ ⚠️ | Subtle tinted background that separates groups of content from Background/Primary. Also standard surface color for interactive elements that lay on Background/Primary and have no further a shade or a border | <details><summary>Details</summary><strong>Not for:</strong> Interaction feedback (use Hover) or high-contrast blocks (use Inversed).<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight · ⚠️ large text only: Content Success (light), Error (dark), Warning · Fill of an interactive element below 3:1 on Background/Primary: add a border or a clear label</details> |
+| `Color/Background/Inversed` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | ✅ ⚠️ ❌ | High-contrast block with Content/Inversed on top. | <details><summary>Details</summary><strong>Not for:</strong> Designing in dark mode<br /><strong>Accessibility:</strong> Light: ✅ Content Primary Inversed, Secondary Inversed · ⚠️ large text only: Content Success, Warning · ❌ Content Primary, Secondary, Highlight, Error. Dark: ✅ Content Primary, Secondary, Highlight, Success · ⚠️ large text only: Content Error, Warning · ❌ Content Primary Inversed, Secondary Inversed<br /><strong>Other:</strong> often does not change in dark mode, check the behaviour before use.</details> |
+| `Color/Background/Hover` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#494A58" /> <span className="ds-hex">#494A58</span> <em>szGray/700</em></div> | ✅ ⚠️ ❌ | Background feedback on hover for neutral interactive surfaces. | <details><summary>Details</summary><strong>Not for:</strong> hover of highlight background<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight · ⚠️ large text only: Content Success · ❌ Content Error (dark), Warning</details> |
+| `Color/Background/Highlight` | <div className="ds-val"><Sw c="#E7F5F3" /> <span className="ds-hex">#E7F5F3</span> <em>szGreen/50</em></div><div className="ds-val"><Sw c="#006A64" /> <span className="ds-hex">#006A64</span> <em>szGreen/600</em></div> | ✅ ⚠️ ❌ | Brand-tinted background that draws attention to non-critical content. | <details><summary>Details</summary><strong>Not for:</strong> Status feedback (use Success, Error or Warning).<br /><strong>Accessibility:</strong> ✅ Content Primary, Highlight · ⚠️ large text only: Content Secondary (dark), Success (light), Warning (light) · ❌ Content Success (dark), Error (dark), Warning (dark)</details> |
+| `Color/Background/Success` | <div className="ds-val"><Sw c="#E6F7E5" /> <span className="ds-hex">#E6F7E5</span> <em>szSignalGreen/50</em></div><div className="ds-val"><Sw c="#153108" /> <span className="ds-hex">#153108</span> <em>szSignalGreen/900</em></div> | ✅ ⚠️ | Background for positive and confirmation messages. | <details><summary>Details</summary><strong>Not for:</strong> Brand emphasis (use Highlight).<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight · ⚠️ large text only: Content Success (light), Error (dark), Warning</details> |
+| `Color/Background/Error` | <div className="ds-val"><Sw c="#FEEFED" /> <span className="ds-hex">#FEEFED</span> <em>szRed/50</em></div><div className="ds-val"><Sw c="#3C0A0F" /> <span className="ds-hex">#3C0A0F</span> <em>szRed/950</em></div> | ✅ ⚠️ | Background for error messages and invalid fields. | <details><summary>Details</summary><strong>Not for:</strong> Warnings (use Warning).<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight, Error · ⚠️ large text only: Content Success (light), Warning (light)</details> |
+| `Color/Background/Warning` | <div className="ds-val"><Sw c="#FEF1D9" /> <span className="ds-hex">#FEF1D9</span> <em>szOrange/50</em></div><div className="ds-val"><Sw c="#341300" /> <span className="ds-hex">#341300</span> <em>szOrange/950</em></div> | ✅ ⚠️ | Background for warnings and caution messages. | <details><summary>Details</summary><strong>Not for:</strong> Errors (use Error).<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight, Error · ⚠️ large text only: Content Success (light), Warning (light)</details> |
+| `Color/Background/Transparent` | <div className="ds-val"><Sw c="#FFFFFF00" /> <span className="ds-hex">#FFFFFF00</span> <em>szWhite @0%</em></div><div className="ds-val"><Sw c="#1B1C2600" /> <span className="ds-hex">#1B1C2600</span> <em>szGray/950 @0%</em></div> | ➖ | Explicit no-fill value | <details><summary>Details</summary><strong>Not for:</strong> Hiding content or as an overlay.<br /><strong>Accessibility:</strong> ➖ No contrast of its own, depends on the surface behind it.<br /><strong>Other:</strong> value with 0% opacity</details> |
+| `Color/Background/Modal Background` | <div className="ds-val"><Sw c="#1B1C26F5" /> <span className="ds-hex">#1B1C26F5</span> <em>szGray/950 @96%</em></div><div className="ds-val"><Sw c="#1B1C26F5" /> <span className="ds-hex">#1B1C26F5</span> <em>szGray/950 @96%</em></div> | ➖ | Scrim behind modals and overlays. | <details><summary>Details</summary><strong>Not for:</strong> The surface of the modal itself (use Modal/Surface).<br /><strong>Accessibility:</strong> ➖ Not applicable, the content behind the scrim is meant to stay unreadable.<br /><strong>Other:</strong> 96% opacity, same in light and dark.</details> |
+| `Color/Background/Tertiary` | <div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | ✅ ⚠️ | Subtle tinted background that separates groups of content from Background/Secondary and Background/Primary. | <details><summary>Details</summary><strong>Not for:</strong> Interaction feedback (use Hover) or high-contrast blocks (use Inversed).<br /><strong>Accessibility:</strong> ✅ Content Primary, Secondary, Highlight · ⚠️ large text only: Content Success (light), Error (dark), Warning · Fill of an interactive element below 3:1 on Background/Primary: add a border or a clear label</details> |
 
 ### Content (8)
 
-| Token | Light · Dark | Primitive | AA | Use | More |
-|---|---|---|---|---|---|
-| `Color/Content/Primary/Idle/Default` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `szGray/900` / `szGray/25` | ✅ ❌ | Default color for text, icons and lines drawn in text color, such as link underlines. | <details><summary>Details</summary><strong>Not for:</strong> Supporting information (use Secondary), or content on inverted backgrounds (use the Inversed variant).<br /><strong>Accessibility:</strong> ✅ all Backgrounds except the one below · ❌ Background Inversed (light)</details> |
-| `Color/Content/Primary/Idle/Inversed` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#29293A" /> #29293A | `szGray/25` / `szGray/900` | ✅ ❌ | Text and icons on backgrounds that need the opposite of the normal text color, such as colored labels and Background/Inversed in light mode. | <details><summary>Details</summary><strong>Not for:</strong> Normal backgrounds (use Primary Default).<br /><strong>Accessibility:</strong> ✅ Background Inversed (light) · ❌ every other Background and Inversed (dark). Only for Background Inversed</details> |
-| `Color/Content/Secondary/Idle/Default` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `szGray/600` / `szGray/200` | ✅ ⚠️ ❌ | Supporting text and icons such as subtitles, metadata and helper text, for example in header, teaser, card, input and modal. | <details><summary>Details</summary><strong>Not for:</strong> Main content or text that must stand out (use Primary), or status messages.<br /><strong>Accessibility:</strong> ✅ all Backgrounds except those below · ⚠️ large text only: Background Highlight (dark) · ❌ Background Inversed (light)</details> |
-| `Color/Content/Secondary/Idle/Inversed` | <Sw c="#A5A5AE" /> #A5A5AE · <Sw c="#5C5E6A" /> #5C5E6A | `szGray/300` / `szGray/600` | ✅ ❌ | Supporting text and icons on inverted backgrounds. | <details><summary>Details</summary><strong>Not for:</strong> Normal backgrounds (use Secondary Default), or main content on inverted backgrounds (use Primary Inversed).<br /><strong>Accessibility:</strong> ✅ Background Inversed (light) · ❌ every other Background and Inversed (dark). Only for Background Inversed</details> |
-| `Color/Content/Highlight` | <Sw c="#006A64" /> #006A64 · <Sw c="#C4E8E3" /> #C4E8E3 | `szGreen/600` / `szGreen/100` | ✅ ❌ | Brand-colored text and icons for emphasis, for example highlighted text in header and modal. | <details><summary>Details</summary><strong>Not for:</strong> Body text (use Primary), status messages (use Success, Error or Warning), or Background/Inversed.<br /><strong>Accessibility:</strong> ✅ all Backgrounds except the one below · ❌ Background Inversed (light)</details> |
-| `Color/Content/Success` | <Sw c="#33842A" /> #33842A · <Sw c="#5EB958" /> #5EB958 | `szSignalGreen/500` / `szSignalGreen/300` | ✅ ⚠️ ❌ | Text and icons for positive and confirmation messages. | <details><summary>Details</summary><strong>Not for:</strong> Brand emphasis (use Highlight), or as the only sign of success (add an icon or label).<br /><strong>Accessibility:</strong> Light: ✅ Background Primary · ⚠️ large text only: all other Backgrounds. Dark: ✅ all Backgrounds except those below · ⚠️ large text only: Background Hover · ❌ Background Highlight</details> |
-| `Color/Content/Error` | <Sw c="#BF080E" /> #BF080E · <Sw c="#FF4C4C" /> #FF4C4C | `szRed/600` / `szRed/400` | ✅ ❌ ⚠️ | Text and icons for error messages and invalid fields, for example error and helper text in input. | <details><summary>Details</summary><strong>Not for:</strong> Warnings (use Warning), or as the only sign of an error (add an icon or label).<br /><strong>Accessibility:</strong> Light: ✅ all Backgrounds except the one below · ❌ Background Inversed. Dark: ✅ Background Primary, Error, Warning · ⚠️ large text only: Background Secondary, Tertiary, Inversed, Success · ❌ Background Hover, Highlight</details> |
-| `Color/Content/Warning` | <Sw c="#BD7F00" /> #BD7F00 · <Sw c="#BD7F00" /> #BD7F00 | `szOrange/400` | ⚠️ ❌ ✅ | Text and icons for warnings and caution messages, for example warning and helper text in input. | <details><summary>Details</summary><strong>Not for:</strong> Errors (use Error), small text in light mode, or as the only sign of a warning (add an icon or label for colorblindness).<br /><strong>Accessibility:</strong> Light: ⚠️ large text only: all Backgrounds except the one below · ❌ Background Hover. Dark: ✅ Background Primary, Error, Warning · ⚠️ large text only: Background Secondary, Tertiary, Inversed, Success · ❌ Background Hover, Highlight</details> |
+| Token | Light / Dark | AA | Use | More |
+|---|---|---|---|---|
+| `Color/Content/Primary/Idle/Default` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | ✅ ❌ | Default color for text, icons and lines drawn in text color, such as link underlines. | <details><summary>Details</summary><strong>Not for:</strong> Supporting information (use Secondary), or content on inverted backgrounds (use the Inversed variant).<br /><strong>Accessibility:</strong> ✅ all Backgrounds except the one below · ❌ Background Inversed (light)</details> |
+| `Color/Content/Primary/Idle/Inversed` | <div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | ✅ ❌ | Text and icons on backgrounds that need the opposite of the normal text color, such as colored labels and Background/Inversed in light mode. | <details><summary>Details</summary><strong>Not for:</strong> Normal backgrounds (use Primary Default).<br /><strong>Accessibility:</strong> ✅ Background Inversed (light) · ❌ every other Background and Inversed (dark). Only for Background Inversed</details> |
+| `Color/Content/Secondary/Idle/Default` | <div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div><div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div> | ✅ ⚠️ ❌ | Supporting text and icons such as subtitles, metadata and helper text, for example in header, teaser, card, input and modal. | <details><summary>Details</summary><strong>Not for:</strong> Main content or text that must stand out (use Primary), or status messages.<br /><strong>Accessibility:</strong> ✅ all Backgrounds except those below · ⚠️ large text only: Background Highlight (dark) · ❌ Background Inversed (light)</details> |
+| `Color/Content/Secondary/Idle/Inversed` | <div className="ds-val"><Sw c="#A5A5AE" /> <span className="ds-hex">#A5A5AE</span> <em>szGray/300</em></div><div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div> | ✅ ❌ | Supporting text and icons on inverted backgrounds. | <details><summary>Details</summary><strong>Not for:</strong> Normal backgrounds (use Secondary Default), or main content on inverted backgrounds (use Primary Inversed).<br /><strong>Accessibility:</strong> ✅ Background Inversed (light) · ❌ every other Background and Inversed (dark). Only for Background Inversed</details> |
+| `Color/Content/Highlight` | <div className="ds-val"><Sw c="#006A64" /> <span className="ds-hex">#006A64</span> <em>szGreen/600</em></div><div className="ds-val"><Sw c="#C4E8E3" /> <span className="ds-hex">#C4E8E3</span> <em>szGreen/100</em></div> | ✅ ❌ | Brand-colored text and icons for emphasis, for example highlighted text in header and modal. | <details><summary>Details</summary><strong>Not for:</strong> Body text (use Primary), status messages (use Success, Error or Warning), or Background/Inversed.<br /><strong>Accessibility:</strong> ✅ all Backgrounds except the one below · ❌ Background Inversed (light)</details> |
+| `Color/Content/Success` | <div className="ds-val"><Sw c="#33842A" /> <span className="ds-hex">#33842A</span> <em>szSignalGreen/500</em></div><div className="ds-val"><Sw c="#5EB958" /> <span className="ds-hex">#5EB958</span> <em>szSignalGreen/300</em></div> | ✅ ⚠️ ❌ | Text and icons for positive and confirmation messages. | <details><summary>Details</summary><strong>Not for:</strong> Brand emphasis (use Highlight), or as the only sign of success (add an icon or label).<br /><strong>Accessibility:</strong> Light: ✅ Background Primary · ⚠️ large text only: all other Backgrounds. Dark: ✅ all Backgrounds except those below · ⚠️ large text only: Background Hover · ❌ Background Highlight</details> |
+| `Color/Content/Error` | <div className="ds-val"><Sw c="#BF080E" /> <span className="ds-hex">#BF080E</span> <em>szRed/600</em></div><div className="ds-val"><Sw c="#FF4C4C" /> <span className="ds-hex">#FF4C4C</span> <em>szRed/400</em></div> | ✅ ❌ ⚠️ | Text and icons for error messages and invalid fields, for example error and helper text in input. | <details><summary>Details</summary><strong>Not for:</strong> Warnings (use Warning), or as the only sign of an error (add an icon or label).<br /><strong>Accessibility:</strong> Light: ✅ all Backgrounds except the one below · ❌ Background Inversed. Dark: ✅ Background Primary, Error, Warning · ⚠️ large text only: Background Secondary, Tertiary, Inversed, Success · ❌ Background Hover, Highlight</details> |
+| `Color/Content/Warning` | <div className="ds-val"><Sw c="#BD7F00" /> <span className="ds-hex">#BD7F00</span> <em>szOrange/400</em></div><div className="ds-val"><Sw c="#BD7F00" /> <span className="ds-hex">#BD7F00</span> <em>szOrange/400</em></div> | ⚠️ ❌ ✅ | Text and icons for warnings and caution messages, for example warning and helper text in input. | <details><summary>Details</summary><strong>Not for:</strong> Errors (use Error), small text in light mode, or as the only sign of a warning (add an icon or label for colorblindness).<br /><strong>Accessibility:</strong> Light: ⚠️ large text only: all Backgrounds except the one below · ❌ Background Hover. Dark: ✅ Background Primary, Error, Warning · ⚠️ large text only: Background Secondary, Tertiary, Inversed, Success · ❌ Background Hover, Highlight</details> |
 
 ### Border (7)
 
-| Token | Light · Dark | Primitive | AA | Use | More |
-|---|---|---|---|---|---|
-| `Color/Border/Primary` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `szGray/100` / `szGray/800` | ❌ | Default thin line for dividers and for the outline of cards, teasers and interactive elements in their resting state. | <details><summary>Details</summary><strong>Not for:</strong> The only visible edge of an interactive element that must be recognized (use Strong), or status feedback (use Success, Error or Warning).<br /><strong>Accessibility:</strong> ❌ Outline of an interactive element below 3:1 on all Backgrounds except Inversed (light).</details> |
-| `Color/Border/Secondary` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#494A58" /> #494A58 | `szGray/50` / `szGray/700` | ❌ | Quieter line than Primary, for subtle dividers and separations inside dense areas. | <details><summary>Details</summary><strong>Not for:</strong> Outlines of interactive elements or anything that must be accessible (use Strong).<br /><strong>Accessibility:</strong> ❌ Outline of an interactive element below 3:1 on all Backgrounds except Inversed (light).</details> |
-| `Color/Border/Highlight` | <Sw c="#C4E8E3" /> #C4E8E3 · <Sw c="#005450" /> #005450 | `szGreen/100` / `szGreen/700` | ❌ | Brand-tinted line | <details><summary>Details</summary><strong>Not for:</strong> Status feedback (use Success, Error or Warning) or a focus ring (too faint on light backgrounds).<br /><strong>Accessibility:</strong> ❌ Outline of an interactive element below 3:1 on all Backgrounds except Inversed (light). Dividers and decoration only</details> |
-| `Color/Border/Success` | <Sw c="#C2EBBE" /> #C2EBBE · <Sw c="#286C1D" /> #286C1D | `szSignalGreen/100` / `szSignalGreen/600` | ❌ | Outline for positive and confirmation states | <details><summary>Details</summary><strong>Not for:</strong> Brand emphasis (use Highlight), or as the only sign of success (add text or an icon).<br /><strong>Accessibility:</strong> ❌ Outline of an interactive element below 3:1 on all Backgrounds except Inversed (light).</details> |
-| `Color/Border/Error` | <Sw c="#FCD8D4" /> #FCD8D4 · <Sw c="#980C13" /> #980C13 | `szRed/100` / `szRed/700` | ❌ | Outline for error states and invalid fields | <details><summary>Details</summary><strong>Not for:</strong> Warnings (use Warning), or as the only sign of an error (add text or an icon).<br /><strong>Accessibility:</strong> ❌ Outline of an interactive element below 3:1 on all Backgrounds except Inversed (light).</details> |
-| `Color/Border/Warning` | <Sw c="#FADDA2" /> #FADDA2 · <Sw c="#793900" /> #793900 | `szOrange/100` / `szOrange/700` | ❌ | Outline for warning and caution states | <details><summary>Details</summary><strong>Not for:</strong> Errors (use Error), or as the only sign of a warning (add text or an icon).<br /><strong>Accessibility:</strong> ❌ Outline of an interactive element below 3:1 on all Backgrounds except Inversed (light).</details> |
-| `Color/Border/Strong` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `szGray/900` / `szGray/25` | ✅ ❌ | High-contrast outline for interactive elements and any edge that must be clearly visible. | <details><summary>Details</summary><strong>Not for:</strong> Dividers and decoration (too heavy, use Primary or Secondary).<br /><strong>Accessibility:</strong> ✅ Outline of an interactive element on all Backgrounds except the one below · ❌ Background Inversed (light)</details> |
+| Token | Light / Dark | AA | Use | More |
+|---|---|---|---|---|
+| `Color/Border/Primary` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | ❌ | Default thin line for dividers and for the outline of cards, teasers and interactive elements in their resting state. | <details><summary>Details</summary><strong>Not for:</strong> The only visible edge of an interactive element that must be recognized (use Strong), or status feedback (use Success, Error or Warning).<br /><strong>Accessibility:</strong> ❌ Outline of an interactive element below 3:1 on all Backgrounds except Inversed (light).</details> |
+| `Color/Border/Secondary` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#494A58" /> <span className="ds-hex">#494A58</span> <em>szGray/700</em></div> | ❌ | Quieter line than Primary, for subtle dividers and separations inside dense areas. | <details><summary>Details</summary><strong>Not for:</strong> Outlines of interactive elements or anything that must be accessible (use Strong).<br /><strong>Accessibility:</strong> ❌ Outline of an interactive element below 3:1 on all Backgrounds except Inversed (light).</details> |
+| `Color/Border/Highlight` | <div className="ds-val"><Sw c="#C4E8E3" /> <span className="ds-hex">#C4E8E3</span> <em>szGreen/100</em></div><div className="ds-val"><Sw c="#005450" /> <span className="ds-hex">#005450</span> <em>szGreen/700</em></div> | ❌ | Brand-tinted line | <details><summary>Details</summary><strong>Not for:</strong> Status feedback (use Success, Error or Warning) or a focus ring (too faint on light backgrounds).<br /><strong>Accessibility:</strong> ❌ Outline of an interactive element below 3:1 on all Backgrounds except Inversed (light). Dividers and decoration only</details> |
+| `Color/Border/Success` | <div className="ds-val"><Sw c="#C2EBBE" /> <span className="ds-hex">#C2EBBE</span> <em>szSignalGreen/100</em></div><div className="ds-val"><Sw c="#286C1D" /> <span className="ds-hex">#286C1D</span> <em>szSignalGreen/600</em></div> | ❌ | Outline for positive and confirmation states | <details><summary>Details</summary><strong>Not for:</strong> Brand emphasis (use Highlight), or as the only sign of success (add text or an icon).<br /><strong>Accessibility:</strong> ❌ Outline of an interactive element below 3:1 on all Backgrounds except Inversed (light).</details> |
+| `Color/Border/Error` | <div className="ds-val"><Sw c="#FCD8D4" /> <span className="ds-hex">#FCD8D4</span> <em>szRed/100</em></div><div className="ds-val"><Sw c="#980C13" /> <span className="ds-hex">#980C13</span> <em>szRed/700</em></div> | ❌ | Outline for error states and invalid fields | <details><summary>Details</summary><strong>Not for:</strong> Warnings (use Warning), or as the only sign of an error (add text or an icon).<br /><strong>Accessibility:</strong> ❌ Outline of an interactive element below 3:1 on all Backgrounds except Inversed (light).</details> |
+| `Color/Border/Warning` | <div className="ds-val"><Sw c="#FADDA2" /> <span className="ds-hex">#FADDA2</span> <em>szOrange/100</em></div><div className="ds-val"><Sw c="#793900" /> <span className="ds-hex">#793900</span> <em>szOrange/700</em></div> | ❌ | Outline for warning and caution states | <details><summary>Details</summary><strong>Not for:</strong> Errors (use Error), or as the only sign of a warning (add text or an icon).<br /><strong>Accessibility:</strong> ❌ Outline of an interactive element below 3:1 on all Backgrounds except Inversed (light).</details> |
+| `Color/Border/Strong` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | ✅ ❌ | High-contrast outline for interactive elements and any edge that must be clearly visible. | <details><summary>Details</summary><strong>Not for:</strong> Dividers and decoration (too heavy, use Primary or Secondary).<br /><strong>Accessibility:</strong> ✅ Outline of an interactive element on all Backgrounds except the one below · ❌ Background Inversed (light)</details> |
 
 ## Component tokens
-150 tokens in 17 components. Open a component to see its tokens. Via is the global token it points to, Primitive is the color it ends at (light / dark).
+150 tokens in 17 components. Open a component to see its tokens. Each value shows the primitive it ends at. Via is the global token it points to.
 
 <details>
 <summary>Audio Player (4)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#29293A" /> #29293A | — | `szGray/50` / `szGray/900` |
-| `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
-| `Content/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Content/Secondary/Idle/Default` | `szGray/600` / `szGray/200` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | — |
+| `Border/Primary/Idle` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
+| `Content/Secondary/Idle` | <div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div><div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div> | <div className="ds-via">Color/Content/Secondary/Idle/Default</div> |
 
 </details>
 
 <details>
 <summary>Button (31)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
-| `Surface/Primary/Hover` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | — | `szGray/600` / `szGray/200` |
-| `Surface/Primary/Disabled` | <Sw c="#C0C1C6" /> #C0C1C6 · <Sw c="#494A58" /> #494A58 | — | `szGray/200` / `szGray/700` |
-| `Surface/Secondary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | — | `szWhite` / `szGray/950` |
-| `Surface/Secondary/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | — | `szGray/50` / `szGray/800` |
-| `Surface/Secondary/Disabled` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | — | `szWhite` / `szGray/950` |
-| `Surface/Highlight/Idle` | <Sw c="#7BD0C6" /> #7BD0C6 · <Sw c="#7BD0C6" /> #7BD0C6 | — | `szGreen/200` |
-| `Surface/Highlight/Hover` | <Sw c="#C4E8E3" /> #C4E8E3 · <Sw c="#C4E8E3" /> #C4E8E3 | — | `szGreen/100` |
-| `Surface/Highlight/Disabled` | <Sw c="#C0C1C6" /> #C0C1C6 · <Sw c="#494A58" /> #494A58 | — | `szGray/200` / `szGray/700` |
-| `Surface/Ghost/Idle` | <Sw c="#FFFFFF00" /> #FFFFFF00 · <Sw c="#1B1C2600" /> #1B1C2600 | — | `szWhite @0%` / `szGray/950 @0%` |
-| `Surface/Ghost/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | — | `szGray/50` / `szGray/800` |
-| `Surface/Ghost/Active` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#494A58" /> #494A58 | — | `szGray/100` / `szGray/700` |
-| `Border/Primary/Focused` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Border/Secondary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#FFFFFF" /> #FFFFFF | — | `szGray/900` / `szWhite` |
-| `Border/Secondary/Hover` | <Sw c="#29293A" /> #29293A · <Sw c="#FFFFFF" /> #FFFFFF | — | `szGray/900` / `szWhite` |
-| `Border/Secondary/Focused` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Border/Secondary/Disabled` | <Sw c="#A5A5AE" /> #A5A5AE · <Sw c="#383948" /> #383948 | — | `szGray/300` / `szGray/800` |
-| `Border/Highlight/Focused` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Border/Ghost/Focused` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Content/Primary/Idle` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#29293A" /> #29293A | — | `szGray/25` / `szGray/900` |
-| `Content/Primary/Hover` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#29293A" /> #29293A | — | `szGray/25` / `szGray/900` |
-| `Content/Primary/Disabled` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#898B96" /> #898B96 | — | `szGray/50` / `szGray/400` |
-| `Content/Secondary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
-| `Content/Secondary/Hover` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
-| `Content/Secondary/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#898B96" /> #898B96 | — | `szGray/400` |
-| `Content/Highlight/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | — | `szGray/900` |
-| `Content/Highlight/Hover` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | — | `szGray/900` |
-| `Content/Highlight/Disabled` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#898B96" /> #898B96 | — | `szGray/50` / `szGray/400` |
-| `Content/Ghost/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
-| `Content/Ghost/Hover` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
-| `Content/Ghost/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#898B96" /> #898B96 | — | `szGray/400` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | — |
+| `Surface/Primary/Hover` | <div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div><div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div> | — |
+| `Surface/Primary/Disabled` | <div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div><div className="ds-val"><Sw c="#494A58" /> <span className="ds-hex">#494A58</span> <em>szGray/700</em></div> | — |
+| `Surface/Secondary/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | — |
+| `Surface/Secondary/Hover` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | — |
+| `Surface/Secondary/Disabled` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | — |
+| `Surface/Highlight/Idle` | <div className="ds-val"><Sw c="#7BD0C6" /> <span className="ds-hex">#7BD0C6</span> <em>szGreen/200</em></div><div className="ds-val"><Sw c="#7BD0C6" /> <span className="ds-hex">#7BD0C6</span> <em>szGreen/200</em></div> | — |
+| `Surface/Highlight/Hover` | <div className="ds-val"><Sw c="#C4E8E3" /> <span className="ds-hex">#C4E8E3</span> <em>szGreen/100</em></div><div className="ds-val"><Sw c="#C4E8E3" /> <span className="ds-hex">#C4E8E3</span> <em>szGreen/100</em></div> | — |
+| `Surface/Highlight/Disabled` | <div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div><div className="ds-val"><Sw c="#494A58" /> <span className="ds-hex">#494A58</span> <em>szGray/700</em></div> | — |
+| `Surface/Ghost/Idle` | <div className="ds-val"><Sw c="#FFFFFF00" /> <span className="ds-hex">#FFFFFF00</span> <em>szWhite @0%</em></div><div className="ds-val"><Sw c="#1B1C2600" /> <span className="ds-hex">#1B1C2600</span> <em>szGray/950 @0%</em></div> | — |
+| `Surface/Ghost/Hover` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | — |
+| `Surface/Ghost/Active` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#494A58" /> <span className="ds-hex">#494A58</span> <em>szGray/700</em></div> | — |
+| `Border/Primary/Focused` | <div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div><div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div> | — |
+| `Border/Secondary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div> | — |
+| `Border/Secondary/Hover` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div> | — |
+| `Border/Secondary/Focused` | <div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div><div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div> | — |
+| `Border/Secondary/Disabled` | <div className="ds-val"><Sw c="#A5A5AE" /> <span className="ds-hex">#A5A5AE</span> <em>szGray/300</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | — |
+| `Border/Highlight/Focused` | <div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div><div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div> | — |
+| `Border/Ghost/Focused` | <div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div><div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div> | — |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | — |
+| `Content/Primary/Hover` | <div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | — |
+| `Content/Primary/Disabled` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#898B96" /> <span className="ds-hex">#898B96</span> <em>szGray/400</em></div> | — |
+| `Content/Secondary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | — |
+| `Content/Secondary/Hover` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | — |
+| `Content/Secondary/Disabled` | <div className="ds-val"><Sw c="#898B96" /> <span className="ds-hex">#898B96</span> <em>szGray/400</em></div><div className="ds-val"><Sw c="#898B96" /> <span className="ds-hex">#898B96</span> <em>szGray/400</em></div> | — |
+| `Content/Highlight/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | — |
+| `Content/Highlight/Hover` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | — |
+| `Content/Highlight/Disabled` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#898B96" /> <span className="ds-hex">#898B96</span> <em>szGray/400</em></div> | — |
+| `Content/Ghost/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | — |
+| `Content/Ghost/Hover` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | — |
+| `Content/Ghost/Disabled` | <div className="ds-val"><Sw c="#898B96" /> <span className="ds-hex">#898B96</span> <em>szGray/400</em></div><div className="ds-val"><Sw c="#898B96" /> <span className="ds-hex">#898B96</span> <em>szGray/400</em></div> | — |
 
 </details>
 
 <details>
 <summary>Card (7)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
-| `Surface/Primary/Hover` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#1B1C26" /> #1B1C26 | `—` / `Color/Background/Primary` | `szGray/25` / `szGray/950` |
-| `Surface/Secondary/Idle` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | `Color/Background/Secondary` | `szGray/50` / `szGray/800` |
-| `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Focused` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
-| `Content/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Content/Secondary/Idle/Default` | `szGray/600` / `szGray/200` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | <div className="ds-via">Color/Background/Primary</div> |
+| `Surface/Primary/Hover` | <div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | <div className="ds-via">—</div><div className="ds-via">Color/Background/Primary</div> |
+| `Surface/Secondary/Idle` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Background/Secondary</div> |
+| `Border/Primary/Idle` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Border/Primary/Focused` | <div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div><div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div> | — |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
+| `Content/Secondary/Idle` | <div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div><div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div> | <div className="ds-via">Color/Content/Secondary/Idle/Default</div> |
 
 </details>
 
 <details>
 <summary>Checkbox (13)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
-| `Surface/Primary/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#494A58" /> #494A58 | `Color/Background/Secondary` / `Color/Background/Hover` | `szGray/50` / `szGray/700` |
-| `Surface/Primary/Focused` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
-| `Surface/Primary/Selected` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
-| `Surface/Primary/Disabled` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#29293A" /> #29293A | — | `szGray/50` / `szGray/900` |
-| `Surface/Primary/Error` | <Sw c="#FEEFED" /> #FEEFED · <Sw c="#3C0A0F" /> #3C0A0F | `Color/Background/Error` | `szRed/50` / `szRed/950` |
-| `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Hover` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Focused` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
-| `Border/Primary/Selected` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
-| `Border/Primary/Disabled` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Error` | <Sw c="#E90004" /> #E90004 · <Sw c="#E90004" /> #E90004 | — | `szRed/500` |
-| `Content/Primary/Selected` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | <div className="ds-via">Color/Background/Primary</div> |
+| `Surface/Primary/Hover` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#494A58" /> <span className="ds-hex">#494A58</span> <em>szGray/700</em></div> | <div className="ds-via">Color/Background/Secondary</div><div className="ds-via">Color/Background/Hover</div> |
+| `Surface/Primary/Focused` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | <div className="ds-via">Color/Background/Primary</div> |
+| `Surface/Primary/Selected` | <div className="ds-val"><Sw c="#009990" /> <span className="ds-hex">#009990</span> <em>szGreen/400</em></div><div className="ds-val"><Sw c="#009990" /> <span className="ds-hex">#009990</span> <em>szGreen/400</em></div> | — |
+| `Surface/Primary/Disabled` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | — |
+| `Surface/Primary/Error` | <div className="ds-val"><Sw c="#FEEFED" /> <span className="ds-hex">#FEEFED</span> <em>szRed/50</em></div><div className="ds-val"><Sw c="#3C0A0F" /> <span className="ds-hex">#3C0A0F</span> <em>szRed/950</em></div> | <div className="ds-via">Color/Background/Error</div> |
+| `Border/Primary/Idle` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Border/Primary/Hover` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Border/Primary/Focused` | <div className="ds-val"><Sw c="#009990" /> <span className="ds-hex">#009990</span> <em>szGreen/400</em></div><div className="ds-val"><Sw c="#009990" /> <span className="ds-hex">#009990</span> <em>szGreen/400</em></div> | — |
+| `Border/Primary/Selected` | <div className="ds-val"><Sw c="#009990" /> <span className="ds-hex">#009990</span> <em>szGreen/400</em></div><div className="ds-val"><Sw c="#009990" /> <span className="ds-hex">#009990</span> <em>szGreen/400</em></div> | — |
+| `Border/Primary/Disabled` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Border/Primary/Error` | <div className="ds-val"><Sw c="#E90004" /> <span className="ds-hex">#E90004</span> <em>szRed/500</em></div><div className="ds-val"><Sw c="#E90004" /> <span className="ds-hex">#E90004</span> <em>szRed/500</em></div> | — |
+| `Content/Primary/Selected` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div> | — |
 
 </details>
 
 <details>
 <summary>Chip (7)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
-| `Surface/Primary/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#1B1C26" /> #1B1C26 | — | `szGray/50` / `szGray/950` |
-| `Surface/Primary/Active` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#1B1C26" /> #1B1C26 | — | `szGray/50` / `szGray/950` |
-| `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Hover` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Active` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
-| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | <div className="ds-via">Color/Background/Primary</div> |
+| `Surface/Primary/Hover` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | — |
+| `Surface/Primary/Active` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | — |
+| `Border/Primary/Idle` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Border/Primary/Hover` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Border/Primary/Active` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
 
 </details>
 
 <details>
 <summary>Header (14)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#29293A" /> #29293A | — | `szWhite` / `szGray/900` |
-| `Surface/Primary/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | — | `szGray/50` / `szGray/800` |
-| `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | — | `szGray/100` / `szGray/800` |
-| `Border/Secondary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
-| `Border/Secondary/Hover` | <Sw c="#71737F" /> #71737F · <Sw c="#71737F" /> #71737F | — | `szGray/500` |
-| `Border/Secondary/Active` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
-| `Border/Highlight/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
-| `Border/Highlight/Hover` | <Sw c="#C4E8E3" /> #C4E8E3 · <Sw c="#C4E8E3" /> #C4E8E3 | — | `szGreen/100` |
-| `Border/Highlight/Active` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/900` / `szGray/25` |
-| `Content/Primary/Hover` | <Sw c="#71737F" /> #71737F · <Sw c="#C0C1C6" /> #C0C1C6 | — | `szGray/500` / `szGray/200` |
-| `Content/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Content/Secondary/Idle/Default` | `szGray/600` / `szGray/200` |
-| `Content/Highlight/Idle` | <Sw c="#006A64" /> #006A64 · <Sw c="#C4E8E3" /> #C4E8E3 | `Color/Content/Highlight` | `szGreen/600` / `szGreen/100` |
-| `Logo/Primary` | <Sw c="#29293A" /> #29293A · <Sw c="#FFFFFF" /> #FFFFFF | — | `szGray/900` / `szWhite` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | — |
+| `Surface/Primary/Hover` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | — |
+| `Border/Primary/Idle` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | — |
+| `Border/Secondary/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div> | — |
+| `Border/Secondary/Hover` | <div className="ds-val"><Sw c="#71737F" /> <span className="ds-hex">#71737F</span> <em>szGray/500</em></div><div className="ds-val"><Sw c="#71737F" /> <span className="ds-hex">#71737F</span> <em>szGray/500</em></div> | — |
+| `Border/Secondary/Active` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | — |
+| `Border/Highlight/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div> | — |
+| `Border/Highlight/Hover` | <div className="ds-val"><Sw c="#C4E8E3" /> <span className="ds-hex">#C4E8E3</span> <em>szGreen/100</em></div><div className="ds-val"><Sw c="#C4E8E3" /> <span className="ds-hex">#C4E8E3</span> <em>szGreen/100</em></div> | — |
+| `Border/Highlight/Active` | <div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div><div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div> | — |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | — |
+| `Content/Primary/Hover` | <div className="ds-val"><Sw c="#71737F" /> <span className="ds-hex">#71737F</span> <em>szGray/500</em></div><div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div> | — |
+| `Content/Secondary/Idle` | <div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div><div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div> | <div className="ds-via">Color/Content/Secondary/Idle/Default</div> |
+| `Content/Highlight/Idle` | <div className="ds-val"><Sw c="#006A64" /> <span className="ds-hex">#006A64</span> <em>szGreen/600</em></div><div className="ds-val"><Sw c="#C4E8E3" /> <span className="ds-hex">#C4E8E3</span> <em>szGreen/100</em></div> | <div className="ds-via">Color/Content/Highlight</div> |
+| `Logo/Primary` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div> | — |
 
 </details>
 
 <details>
 <summary>Input (12)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
-| `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Active` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Border/Primary/Error` | <Sw c="#FF4C4C" /> #FF4C4C · <Sw c="#FC817D" /> #FC817D | — | `szRed/400` / `szRed/300` |
-| `Border/Primary/Warning` | <Sw c="#D39D00" /> #D39D00 · <Sw c="#FADDA2" /> #FADDA2 | — | `szOrange/300` / `szOrange/100` |
-| `Content/Primary/Idle` | <Sw c="#71737F" /> #71737F · <Sw c="#A5A5AE" /> #A5A5AE | — | `szGray/500` / `szGray/300` |
-| `Content/Primary/Active` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
-| `Content/Primary/Error` | <Sw c="#BF080E" /> #BF080E · <Sw c="#FF4C4C" /> #FF4C4C | `Color/Content/Error` | `szRed/600` / `szRed/400` |
-| `Content/Primary/Warning` | <Sw c="#BD7F00" /> #BD7F00 · <Sw c="#BD7F00" /> #BD7F00 | `Color/Content/Warning` | `szOrange/400` |
-| `Content/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Content/Secondary/Idle/Default` | `szGray/600` / `szGray/200` |
-| `Content/Secondary/Error` | <Sw c="#BF080E" /> #BF080E · <Sw c="#FF4C4C" /> #FF4C4C | `Color/Content/Error` | `szRed/600` / `szRed/400` |
-| `Content/Secondary/Warning` | <Sw c="#BD7F00" /> #BD7F00 · <Sw c="#BD7F00" /> #BD7F00 | `Color/Content/Warning` | `szOrange/400` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | <div className="ds-via">Color/Background/Primary</div> |
+| `Border/Primary/Idle` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Border/Primary/Active` | <div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div><div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div> | — |
+| `Border/Primary/Error` | <div className="ds-val"><Sw c="#FF4C4C" /> <span className="ds-hex">#FF4C4C</span> <em>szRed/400</em></div><div className="ds-val"><Sw c="#FC817D" /> <span className="ds-hex">#FC817D</span> <em>szRed/300</em></div> | — |
+| `Border/Primary/Warning` | <div className="ds-val"><Sw c="#D39D00" /> <span className="ds-hex">#D39D00</span> <em>szOrange/300</em></div><div className="ds-val"><Sw c="#FADDA2" /> <span className="ds-hex">#FADDA2</span> <em>szOrange/100</em></div> | — |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#71737F" /> <span className="ds-hex">#71737F</span> <em>szGray/500</em></div><div className="ds-val"><Sw c="#A5A5AE" /> <span className="ds-hex">#A5A5AE</span> <em>szGray/300</em></div> | — |
+| `Content/Primary/Active` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
+| `Content/Primary/Error` | <div className="ds-val"><Sw c="#BF080E" /> <span className="ds-hex">#BF080E</span> <em>szRed/600</em></div><div className="ds-val"><Sw c="#FF4C4C" /> <span className="ds-hex">#FF4C4C</span> <em>szRed/400</em></div> | <div className="ds-via">Color/Content/Error</div> |
+| `Content/Primary/Warning` | <div className="ds-val"><Sw c="#BD7F00" /> <span className="ds-hex">#BD7F00</span> <em>szOrange/400</em></div><div className="ds-val"><Sw c="#BD7F00" /> <span className="ds-hex">#BD7F00</span> <em>szOrange/400</em></div> | <div className="ds-via">Color/Content/Warning</div> |
+| `Content/Secondary/Idle` | <div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div><div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div> | <div className="ds-via">Color/Content/Secondary/Idle/Default</div> |
+| `Content/Secondary/Error` | <div className="ds-val"><Sw c="#BF080E" /> <span className="ds-hex">#BF080E</span> <em>szRed/600</em></div><div className="ds-val"><Sw c="#FF4C4C" /> <span className="ds-hex">#FF4C4C</span> <em>szRed/400</em></div> | <div className="ds-via">Color/Content/Error</div> |
+| `Content/Secondary/Warning` | <div className="ds-val"><Sw c="#BD7F00" /> <span className="ds-hex">#BD7F00</span> <em>szOrange/400</em></div><div className="ds-val"><Sw c="#BD7F00" /> <span className="ds-hex">#BD7F00</span> <em>szOrange/400</em></div> | <div className="ds-via">Color/Content/Warning</div> |
 
 </details>
 
 <details>
 <summary>Label (10)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#F9F9FA" /> #F9F9FA | — | `szGray/100` / `szGray/25` |
-| `Surface/Secondary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
-| `Surface/Exclusiv/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#C4E8E3" /> #C4E8E3 | — | `szGray/900` / `szGreen/100` |
-| `Surface/Live/Idle` | <Sw c="#E90004" /> #E90004 · <Sw c="#E90004" /> #E90004 | — | `szRed/500` |
-| `Surface/Opinion/Idle` | <Sw c="#C4E8E3" /> #C4E8E3 · <Sw c="#C4E8E3" /> #C4E8E3 | — | `szGreen/100` |
-| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
-| `Content/Secondary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | `Color/Content/Primary/Idle/Default` / `Color/Content/Primary/Idle/Inversed` | `szGray/900` |
-| `Content/Exclusiv/Idle` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#29293A" /> #29293A | `Color/Content/Primary/Idle/Inversed` | `szGray/25` / `szGray/900` |
-| `Content/Live/Idle` | <Sw c="#F9F9FA" /> #F9F9FA · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Inversed` / `Color/Content/Primary/Idle/Default` | `szGray/25` |
-| `Content/Opinion/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | `Color/Content/Primary/Idle/Default` / `Color/Content/Primary/Idle/Inversed` | `szGray/900` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | — |
+| `Surface/Secondary/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div> | — |
+| `Surface/Exclusiv/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#C4E8E3" /> <span className="ds-hex">#C4E8E3</span> <em>szGreen/100</em></div> | — |
+| `Surface/Live/Idle` | <div className="ds-val"><Sw c="#E90004" /> <span className="ds-hex">#E90004</span> <em>szRed/500</em></div><div className="ds-val"><Sw c="#E90004" /> <span className="ds-hex">#E90004</span> <em>szRed/500</em></div> | — |
+| `Surface/Opinion/Idle` | <div className="ds-val"><Sw c="#C4E8E3" /> <span className="ds-hex">#C4E8E3</span> <em>szGreen/100</em></div><div className="ds-val"><Sw c="#C4E8E3" /> <span className="ds-hex">#C4E8E3</span> <em>szGreen/100</em></div> | — |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
+| `Content/Secondary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div><div className="ds-via">Color/Content/Primary/Idle/Inversed</div> |
+| `Content/Exclusiv/Idle` | <div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Inversed</div> |
+| `Content/Live/Idle` | <div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Inversed</div><div className="ds-via">Color/Content/Primary/Idle/Default</div> |
+| `Content/Opinion/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div><div className="ds-via">Color/Content/Primary/Idle/Inversed</div> |
 
 </details>
 
 <details>
 <summary>Link (6)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Border/Primary/Idle` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Border/Primary/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#5C5E6A" /> #5C5E6A | — | `szGray/400` / `szGray/600` |
-| `Border/Secondary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
-| `Border/Secondary/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#5C5E6A" /> #5C5E6A | — | `szGray/400` / `szGray/600` |
-| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
-| `Content/Primary/Disabled` | <Sw c="#898B96" /> #898B96 · <Sw c="#5C5E6A" /> #5C5E6A | — | `szGray/400` / `szGray/600` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Border/Primary/Idle` | <div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div><div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div> | — |
+| `Border/Primary/Disabled` | <div className="ds-val"><Sw c="#898B96" /> <span className="ds-hex">#898B96</span> <em>szGray/400</em></div><div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div> | — |
+| `Border/Secondary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
+| `Border/Secondary/Disabled` | <div className="ds-val"><Sw c="#898B96" /> <span className="ds-hex">#898B96</span> <em>szGray/400</em></div><div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div> | — |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
+| `Content/Primary/Disabled` | <div className="ds-val"><Sw c="#898B96" /> <span className="ds-hex">#898B96</span> <em>szGray/400</em></div><div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div> | — |
 
 </details>
 
 <details>
 <summary>Modal (8)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#29293A" /> #29293A | `Header/Surface/Primary/Idle` | `szWhite` / `szGray/900` |
-| `Surface/Primary/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | `Header/Surface/Primary/Hover` | `szGray/50` / `szGray/800` |
-| `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Header/Border/Primary/Idle` | `szGray/100` / `szGray/800` |
-| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
-| `Content/Primary/Hover` | <Sw c="#71737F" /> #71737F · <Sw c="#C0C1C6" /> #C0C1C6 | — | `szGray/500` / `szGray/200` |
-| `Content/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Content/Secondary/Idle/Default` | `szGray/600` / `szGray/200` |
-| `Content/Highlight/Idle` | <Sw c="#006A64" /> #006A64 · <Sw c="#C4E8E3" /> #C4E8E3 | `Color/Content/Highlight` | `szGreen/600` / `szGreen/100` |
-| `Logo/Primary` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | <div className="ds-via">Header/Surface/Primary/Idle</div> |
+| `Surface/Primary/Hover` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Header/Surface/Primary/Hover</div> |
+| `Border/Primary/Idle` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Header/Border/Primary/Idle</div> |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
+| `Content/Primary/Hover` | <div className="ds-val"><Sw c="#71737F" /> <span className="ds-hex">#71737F</span> <em>szGray/500</em></div><div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div> | — |
+| `Content/Secondary/Idle` | <div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div><div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div> | <div className="ds-via">Color/Content/Secondary/Idle/Default</div> |
+| `Content/Highlight/Idle` | <div className="ds-val"><Sw c="#006A64" /> <span className="ds-hex">#006A64</span> <em>szGreen/600</em></div><div className="ds-val"><Sw c="#C4E8E3" /> <span className="ds-hex">#C4E8E3</span> <em>szGreen/100</em></div> | <div className="ds-via">Color/Content/Highlight</div> |
+| `Logo/Primary` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
 
 </details>
 
 <details>
 <summary>Product Switch (7)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#29293A" /> #29293A | — | `szGray/900` |
-| `Surface/Secondary/Idle` | <Sw c="#383948" /> #383948 · <Sw c="#383948" /> #383948 | — | `szGray/800` |
-| `Border/Primary` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#5C5E6A" /> #5C5E6A | — | `szGray/600` |
-| `Content/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
-| `Content/Primary/Hover` | <Sw c="#7BD0C6" /> #7BD0C6 · <Sw c="#7BD0C6" /> #7BD0C6 | — | `szGreen/200` |
-| `Content/Secondary/Idle` | <Sw c="#71737F" /> #71737F · <Sw c="#71737F" /> #71737F | — | `szGray/500` |
-| `Logo/Idle` | <Sw c="#C0C1C6" /> #C0C1C6 · <Sw c="#C0C1C6" /> #C0C1C6 | — | `szGray/200` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | — |
+| `Surface/Secondary/Idle` | <div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | — |
+| `Border/Primary` | <div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div><div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div> | — |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div> | — |
+| `Content/Primary/Hover` | <div className="ds-val"><Sw c="#7BD0C6" /> <span className="ds-hex">#7BD0C6</span> <em>szGreen/200</em></div><div className="ds-val"><Sw c="#7BD0C6" /> <span className="ds-hex">#7BD0C6</span> <em>szGreen/200</em></div> | — |
+| `Content/Secondary/Idle` | <div className="ds-val"><Sw c="#71737F" /> <span className="ds-hex">#71737F</span> <em>szGray/500</em></div><div className="ds-val"><Sw c="#71737F" /> <span className="ds-hex">#71737F</span> <em>szGray/500</em></div> | — |
+| `Logo/Idle` | <div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div><div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div> | — |
 
 </details>
 
 <details>
 <summary>Progress Indicator (2)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
-| `Background/Primary/Idle` | <Sw c="#29293A1A" /> #29293A1A · <Sw c="#F9F9FA1A" /> #F9F9FA1A | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
+| `Background/Primary/Idle` | <div className="ds-val"><Sw c="#29293A1A" /> <span className="ds-hex">#29293A1A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA1A" /> <span className="ds-hex">#F9F9FA1A</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
 
 </details>
 
 <details>
 <summary>Radio (13)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
-| `Surface/Primary/Hover` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#494A58" /> #494A58 | `Color/Background/Secondary` / `Color/Background/Hover` | `szGray/50` / `szGray/700` |
-| `Surface/Primary/Focused` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
-| `Surface/Primary/Selected` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
-| `Surface/Primary/Disabled` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#29293A" /> #29293A | — | `szGray/50` / `szGray/900` |
-| `Surface/Primary/Error` | <Sw c="#FEEFED" /> #FEEFED · <Sw c="#3C0A0F" /> #3C0A0F | `Color/Background/Error` | `szRed/50` / `szRed/950` |
-| `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Hover` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Focused` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
-| `Border/Primary/Selected` | <Sw c="#009990" /> #009990 · <Sw c="#009990" /> #009990 | — | `szGreen/400` |
-| `Border/Primary/Disabled` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Error` | <Sw c="#E90004" /> #E90004 · <Sw c="#E90004" /> #E90004 | — | `szRed/500` |
-| `Content/Primary/Selected` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | <div className="ds-via">Color/Background/Primary</div> |
+| `Surface/Primary/Hover` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#494A58" /> <span className="ds-hex">#494A58</span> <em>szGray/700</em></div> | <div className="ds-via">Color/Background/Secondary</div><div className="ds-via">Color/Background/Hover</div> |
+| `Surface/Primary/Focused` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | <div className="ds-via">Color/Background/Primary</div> |
+| `Surface/Primary/Selected` | <div className="ds-val"><Sw c="#009990" /> <span className="ds-hex">#009990</span> <em>szGreen/400</em></div><div className="ds-val"><Sw c="#009990" /> <span className="ds-hex">#009990</span> <em>szGreen/400</em></div> | — |
+| `Surface/Primary/Disabled` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div> | — |
+| `Surface/Primary/Error` | <div className="ds-val"><Sw c="#FEEFED" /> <span className="ds-hex">#FEEFED</span> <em>szRed/50</em></div><div className="ds-val"><Sw c="#3C0A0F" /> <span className="ds-hex">#3C0A0F</span> <em>szRed/950</em></div> | <div className="ds-via">Color/Background/Error</div> |
+| `Border/Primary/Idle` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Border/Primary/Hover` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Border/Primary/Focused` | <div className="ds-val"><Sw c="#009990" /> <span className="ds-hex">#009990</span> <em>szGreen/400</em></div><div className="ds-val"><Sw c="#009990" /> <span className="ds-hex">#009990</span> <em>szGreen/400</em></div> | — |
+| `Border/Primary/Selected` | <div className="ds-val"><Sw c="#009990" /> <span className="ds-hex">#009990</span> <em>szGreen/400</em></div><div className="ds-val"><Sw c="#009990" /> <span className="ds-hex">#009990</span> <em>szGreen/400</em></div> | — |
+| `Border/Primary/Disabled` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Border/Primary/Error` | <div className="ds-val"><Sw c="#E90004" /> <span className="ds-hex">#E90004</span> <em>szRed/500</em></div><div className="ds-val"><Sw c="#E90004" /> <span className="ds-hex">#E90004</span> <em>szRed/500</em></div> | — |
+| `Content/Primary/Selected` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div> | — |
 
 </details>
 
 <details>
 <summary>Switch (4)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | — | `szGray/50` / `szGray/800` |
-| `Surface/Primary/Active` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#494A58" /> #494A58 | — | `szWhite` / `szGray/700` |
-| `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#5C5E6A" /> #5C5E6A | — | `szGray/100` / `szGray/600` |
-| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | — |
+| `Surface/Primary/Active` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#494A58" /> <span className="ds-hex">#494A58</span> <em>szGray/700</em></div> | — |
+| `Border/Primary/Idle` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div> | — |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
 
 </details>
 
 <details>
 <summary>Tag (3)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#F2F2F3" /> #F2F2F3 · <Sw c="#383948" /> #383948 | — | `szGray/50` / `szGray/800` |
-| `Border/Primary/Focused` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
-| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#F2F2F3" /> <span className="ds-hex">#F2F2F3</span> <em>szGray/50</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | — |
+| `Border/Primary/Focused` | <div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div><div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div> | — |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
 
 </details>
 
 <details>
 <summary>Teaser (6)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Primary/Idle` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#1B1C26" /> #1B1C26 | `Color/Background/Primary` | `szWhite` / `szGray/950` |
-| `Border/Primary/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Hover` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#383948" /> #383948 | `Color/Border/Primary` | `szGray/100` / `szGray/800` |
-| `Border/Primary/Active` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
-| `Content/Primary/Idle` | <Sw c="#29293A" /> #29293A · <Sw c="#F9F9FA" /> #F9F9FA | `Color/Content/Primary/Idle/Default` | `szGray/900` / `szGray/25` |
-| `Content/Secondary/Idle` | <Sw c="#5C5E6A" /> #5C5E6A · <Sw c="#C0C1C6" /> #C0C1C6 | `Color/Content/Secondary/Idle/Default` | `szGray/600` / `szGray/200` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Primary/Idle` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#1B1C26" /> <span className="ds-hex">#1B1C26</span> <em>szGray/950</em></div> | <div className="ds-via">Color/Background/Primary</div> |
+| `Border/Primary/Idle` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Border/Primary/Hover` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#383948" /> <span className="ds-hex">#383948</span> <em>szGray/800</em></div> | <div className="ds-via">Color/Border/Primary</div> |
+| `Border/Primary/Active` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
+| `Content/Primary/Idle` | <div className="ds-val"><Sw c="#29293A" /> <span className="ds-hex">#29293A</span> <em>szGray/900</em></div><div className="ds-val"><Sw c="#F9F9FA" /> <span className="ds-hex">#F9F9FA</span> <em>szGray/25</em></div> | <div className="ds-via">Color/Content/Primary/Idle/Default</div> |
+| `Content/Secondary/Idle` | <div className="ds-val"><Sw c="#5C5E6A" /> <span className="ds-hex">#5C5E6A</span> <em>szGray/600</em></div><div className="ds-val"><Sw c="#C0C1C6" /> <span className="ds-hex">#C0C1C6</span> <em>szGray/200</em></div> | <div className="ds-via">Color/Content/Secondary/Idle/Default</div> |
 
 </details>
 
 <details>
 <summary>Toggle (3)</summary>
 
-| Token | Light · Dark | Via | Primitive |
-|---|---|---|---|
-| `Surface/Active` | <Sw c="#FFFFFF" /> #FFFFFF · <Sw c="#FFFFFF" /> #FFFFFF | — | `szWhite` |
-| `Background/Idle` | <Sw c="#E0E0E3" /> #E0E0E3 · <Sw c="#494A58" /> #494A58 | — | `szGray/100` / `szGray/700` |
-| `Background/Active` | <Sw c="#3AB8AB" /> #3AB8AB · <Sw c="#3AB8AB" /> #3AB8AB | — | `szGreen/300` |
+| Token | Light / Dark | Via |
+|---|---|---|
+| `Surface/Active` | <div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div><div className="ds-val"><Sw c="#FFFFFF" /> <span className="ds-hex">#FFFFFF</span> <em>szWhite</em></div> | — |
+| `Background/Idle` | <div className="ds-val"><Sw c="#E0E0E3" /> <span className="ds-hex">#E0E0E3</span> <em>szGray/100</em></div><div className="ds-val"><Sw c="#494A58" /> <span className="ds-hex">#494A58</span> <em>szGray/700</em></div> | — |
+| `Background/Active` | <div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div><div className="ds-val"><Sw c="#3AB8AB" /> <span className="ds-hex">#3AB8AB</span> <em>szGreen/300</em></div> | — |
 
 </details>
 
