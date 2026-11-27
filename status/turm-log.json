@@ -5,6 +5,16 @@
   "versionsOk": true,
   "events": [
     {
+      "id": "lm:2026-11-26T17:18:11Z",
+      "at": "2026-11-26T17:18:11Z",
+      "source": "polling"
+    },
+    {
+      "id": "2426218320154275755",
+      "at": "2026-11-26T17:10:36Z",
+      "source": "versions"
+    },
+    {
       "id": "2425405157788539663",
       "at": "2026-11-24T12:24:50Z",
       "source": "versions"
@@ -250,9 +260,9 @@
       "source": "versions"
     }
   ],
-  "lastModified": "2026-11-24T12:24:50Z",
+  "lastModified": "2026-11-26T17:18:11Z",
   "lastCheck": {
-    "at": "2026-11-26T16:40:43.491Z",
+    "at": "2026-11-27T16:26:46.551Z",
     "ok": true,
     "error": null
   }
